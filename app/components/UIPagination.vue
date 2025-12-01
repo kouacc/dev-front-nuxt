@@ -7,12 +7,12 @@ const props = withDefaults(
     maxPages?: number
   }>(),
   {
-    maxPages: 4,
-  },
+    maxPages: 4
+  }
 )
 
 const model = defineModel<number>('page', {
-  default: 1,
+  default: 1
 })
 
 const renderedPages = computed(() => {

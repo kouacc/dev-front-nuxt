@@ -9,8 +9,8 @@ const { toasts } = useToast()
       <TransitionGroup name="toast">
         <UIToast
           v-for="toast in toasts"
-          :key="toast.id"
           :id="toast.id"
+          :key="toast.id"
           :title="toast.title"
           :message="toast.message"
           :type="toast.type"

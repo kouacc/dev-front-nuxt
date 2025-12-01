@@ -3,7 +3,7 @@ import type { UIToastProps } from '@/types/components'
 
 withDefaults(defineProps<UIToastProps>(), {
   type: 'default',
-  variant: 'solid',
+  variant: 'solid'
 })
 </script>
 

@@ -1,12 +1,12 @@
 <script setup lang="ts">
 withDefaults(
   defineProps<{
-    orientation: 'top' | 'bottom' | 'left' | 'right'
+    orientation?: 'top' | 'bottom' | 'left' | 'right'
     content: string
   }>(),
   {
-    orientation: 'top',
-  },
+    orientation: 'top'
+  }
 )
 </script>
 

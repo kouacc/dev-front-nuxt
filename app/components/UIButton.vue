@@ -12,8 +12,8 @@ const props = withDefaults(
     type: 'button',
     variant: 'default',
     size: 'medium',
-    disabled: false,
-  },
+    disabled: false
+  }
 )
 
 const renderedComponent = computed(() => {

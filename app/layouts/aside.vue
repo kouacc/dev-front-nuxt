@@ -1,11 +1,11 @@
 <template>
-    <div class="ly-aside">
-        <aside class="ly-aside__sidebar">Sidebar</aside>
-        <main class="ly-aside__main">
-            Contenu de la page
-            <slot />
-        </main>
-    </div>
+  <div class="ly-aside">
+    <aside class="ly-aside__sidebar">Sidebar</aside>
+    <main class="ly-aside__main">
+      Contenu de la page
+      <slot />
+    </main>
+  </div>
 </template>
 
 <style lang="scss" scoped>
