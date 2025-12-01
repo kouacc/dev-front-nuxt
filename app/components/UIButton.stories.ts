@@ -1,4 +1,4 @@
-import UIButton from '@/components/UIButton.vue'
+/* import UIButton from '@/components/UIButton.vue'
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
 const meta = {
@@ -44,3 +44,4 @@ export const Ghost: Story = {
     variant: 'ghost'
   }
 }
+ */

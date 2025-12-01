@@ -1,4 +1,4 @@
-import UIInput from '@/components/UIInput.vue'
+/* import UIInput from '@/components/UIInput.vue'
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
 const meta = {
@@ -37,3 +37,4 @@ export const Outline: Story = {
     variant: 'outline'
   }
 }
+ */

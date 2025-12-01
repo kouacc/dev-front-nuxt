@@ -1,4 +1,4 @@
-import UIToast from './UIToast.vue'
+/* import UIToast from './UIToast.vue'
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
 const meta = {
@@ -124,3 +124,4 @@ export const ErrorOutline: Story = {
     message: 'This is a toast message.'
   }
 }
+ */

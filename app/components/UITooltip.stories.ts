@@ -1,4 +1,4 @@
-import UIButton from '@/components/UIButton.vue'
+/* import UIButton from '@/components/UIButton.vue'
 import UITooltip from '@/components/UITooltip.vue'
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
@@ -54,3 +54,4 @@ export const Right: Story = {
     orientation: 'right'
   }
 }
+ */
