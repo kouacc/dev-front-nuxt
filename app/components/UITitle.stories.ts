@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3-vite'
+/* import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import UITitle from './UITitle.vue'
 
 const meta = {
@@ -52,3 +52,4 @@ export const Heading5: Story = {
     type: 'heading5'
   }
 }
+ */

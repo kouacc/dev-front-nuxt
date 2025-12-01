@@ -1,4 +1,4 @@
-import UICheckbox from './UICheckbox.vue'
+/* import UICheckbox from './UICheckbox.vue'
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
 const meta = {
@@ -40,3 +40,4 @@ export const Right: Story = {
     position: 'right'
   }
 }
+ */

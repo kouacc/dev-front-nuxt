@@ -1,4 +1,4 @@
-import UIPagination from './UIPagination.vue'
+/* import UIPagination from './UIPagination.vue'
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
 const meta = {
@@ -24,3 +24,4 @@ export const Default: Story = {
     maxPages: 4
   }
 }
+ */
