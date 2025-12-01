@@ -11,9 +11,10 @@ defineProps<{
     <ol>
       <li v-for="(item, index) in items" :key="index">
         <template v-if="item.href && !item.disabled">
-          <RouterLink :to="item.href" exact-active-class="ui-breadcrumb__active">{{ item.text }}</RouterLink>
+          <RouterLink :to="item.href" exact-active-class="ui-breadcrumb__active"><Icon v-if="item.icon" :name="item.icon" />{{ item.text }}</RouterLink>
         </template>
         <template v-else>
+          <Icon v-if="item.icon" :name="item.icon" />
           <span :class="{ 'ui-breadcrumb__active': !item.href, 'ui-breadcrumb__disabled': item.disabled }">{{ item.text }}</span>
         </template>
         <svg
