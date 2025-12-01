@@ -14,9 +14,9 @@ export default defineNuxtConfig({
             @use "~/styles/foundations/functions" as *;
             @use "~/styles/foundations/variables" as *;
             @use "~/styles/foundations/mixins" as *;
-          `,
-        },
-      },
+          `
+        }
+      }
     }
   },
 

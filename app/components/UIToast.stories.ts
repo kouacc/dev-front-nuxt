@@ -9,7 +9,7 @@ const meta = {
     title: { control: 'text' },
     message: { control: 'text' },
     variant: { control: 'select', options: ['solid', 'outline'] },
-    type: { control: 'select', options: ['default', 'success', 'info', 'warning', 'error'] },
+    type: { control: 'select', options: ['default', 'success', 'info', 'warning', 'error'] }
   },
   args: {
     id: 'toast',
@@ -18,8 +18,8 @@ const meta = {
     variant: 'solid',
     type: 'default',
     actionLeft: { label: 'Button', callback: () => {}, priority: 'primary' },
-    actionRight: { label: 'Button', callback: () => {}, priority: 'secondary' },
-  },
+    actionRight: { label: 'Button', callback: () => {}, priority: 'secondary' }
+  }
 } satisfies Meta<typeof UIToast>
 
 export default meta
@@ -31,8 +31,8 @@ export const DefaultSolid: Story = {
     type: 'default',
     variant: 'solid',
     title: 'Toast Title',
-    message: 'This is a toast message.',
-  },
+    message: 'This is a toast message.'
+  }
 }
 
 export const SuccessSolid: Story = {
@@ -41,8 +41,8 @@ export const SuccessSolid: Story = {
     type: 'success',
     variant: 'solid',
     title: 'Toast Title',
-    message: 'This is a toast message.',
-  },
+    message: 'This is a toast message.'
+  }
 }
 
 export const InfoSolid: Story = {
@@ -51,8 +51,8 @@ export const InfoSolid: Story = {
     type: 'info',
     variant: 'solid',
     title: 'Toast Title',
-    message: 'This is a toast message.',
-  },
+    message: 'This is a toast message.'
+  }
 }
 
 export const WarningSolid: Story = {
@@ -61,8 +61,8 @@ export const WarningSolid: Story = {
     type: 'warning',
     variant: 'solid',
     title: 'Toast Title',
-    message: 'This is a toast message.',
-  },
+    message: 'This is a toast message.'
+  }
 }
 
 export const ErrorSolid: Story = {
@@ -71,8 +71,8 @@ export const ErrorSolid: Story = {
     type: 'error',
     variant: 'solid',
     title: 'Toast Title',
-    message: 'This is a toast message.',
-  },
+    message: 'This is a toast message.'
+  }
 }
 
 export const DefaultOutline: Story = {
@@ -81,8 +81,8 @@ export const DefaultOutline: Story = {
     type: 'default',
     variant: 'outline',
     title: 'Toast Title',
-    message: 'This is a toast message.',
-  },
+    message: 'This is a toast message.'
+  }
 }
 
 export const SuccessOutline: Story = {
@@ -91,8 +91,8 @@ export const SuccessOutline: Story = {
     type: 'success',
     variant: 'outline',
     title: 'Toast Title',
-    message: 'This is a toast message.',
-  },
+    message: 'This is a toast message.'
+  }
 }
 
 export const InfoOutline: Story = {
@@ -101,8 +101,8 @@ export const InfoOutline: Story = {
     type: 'info',
     variant: 'outline',
     title: 'Toast Title',
-    message: 'This is a toast message.',
-  },
+    message: 'This is a toast message.'
+  }
 }
 
 export const WarningOutline: Story = {
@@ -111,8 +111,8 @@ export const WarningOutline: Story = {
     type: 'warning',
     variant: 'outline',
     title: 'Toast Title',
-    message: 'This is a toast message.',
-  },
+    message: 'This is a toast message.'
+  }
 }
 
 export const ErrorOutline: Story = {
@@ -121,6 +121,6 @@ export const ErrorOutline: Story = {
     type: 'error',
     variant: 'outline',
     title: 'Toast Title',
-    message: 'This is a toast message.',
-  },
+    message: 'This is a toast message.'
+  }
 }

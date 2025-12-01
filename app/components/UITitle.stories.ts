@@ -8,19 +8,19 @@ const meta = {
   argTypes: {
     type: {
       control: 'select',
-      options: ['heading1', 'heading2', 'heading3', 'heading4', 'heading5'],
-    },
+      options: ['heading1', 'heading2', 'heading3', 'heading4', 'heading5']
+    }
   },
   args: {
-    type: 'heading1',
+    type: 'heading1'
   },
   render: (args) => ({
     components: { UITitle },
-    setup() {
+    setup () {
       return { args }
     },
-    template: '<UITitle v-bind="args">Heading</UITitle>',
-  }),
+    template: '<UITitle v-bind="args">Heading</UITitle>'
+  })
 } satisfies Meta<typeof UITitle>
 
 export default meta
@@ -28,27 +28,27 @@ type Story = StoryObj<typeof meta>
 
 export const Heading1: Story = {
   args: {
-    type: 'heading1',
-  },
+    type: 'heading1'
+  }
 }
 
 export const Heading2: Story = {
   args: {
-    type: 'heading2',
-  },
+    type: 'heading2'
+  }
 }
 export const Heading3: Story = {
   args: {
-    type: 'heading3',
-  },
+    type: 'heading3'
+  }
 }
 export const Heading4: Story = {
   args: {
-    type: 'heading4',
-  },
+    type: 'heading4'
+  }
 }
 export const Heading5: Story = {
   args: {
-    type: 'heading5',
-  },
+    type: 'heading5'
+  }
 }

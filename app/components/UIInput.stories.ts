@@ -12,15 +12,15 @@ const meta = {
     disabled: { control: 'boolean' },
     placeholder: { control: 'text' },
     helperText: { control: 'text' },
-    label: { control: 'text' },
+    label: { control: 'text' }
   },
   args: {
     size: 'medium',
     variant: 'full',
     placeholder: 'Placeholder',
     label: 'Input label',
-    helperText: 'Helper text',
-  },
+    helperText: 'Helper text'
+  }
 } satisfies Meta<typeof UIInput>
 
 export default meta
@@ -28,12 +28,12 @@ type Story = StoryObj<typeof meta>
 
 export const Full: Story = {
   args: {
-    variant: 'full',
-  },
+    variant: 'full'
+  }
 }
 
 export const Outline: Story = {
   args: {
-    variant: 'outline',
-  },
+    variant: 'outline'
+  }
 }

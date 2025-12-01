@@ -8,15 +8,15 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {
     content: { control: 'text' },
-    orientation: { control: 'select', options: ['top', 'bottom', 'left', 'right'] },
+    orientation: { control: 'select', options: ['top', 'bottom', 'left', 'right'] }
   },
   args: {
     content: 'Tooltip',
-    orientation: 'bottom',
+    orientation: 'bottom'
   },
   render: (args) => ({
     components: { UIButton, UITooltip },
-    setup() {
+    setup () {
       return { args }
     },
     template: `
@@ -24,8 +24,8 @@ const meta = {
       <UIButton>
         Tooltip
       </UIButton>
-    </UITooltip>`,
-  }),
+    </UITooltip>`
+  })
 } satisfies Meta<typeof UITooltip>
 
 export default meta
@@ -33,24 +33,24 @@ type Story = StoryObj<typeof meta>
 
 export const Bottom: Story = {
   args: {
-    orientation: 'bottom',
-  },
+    orientation: 'bottom'
+  }
 }
 
 export const Top: Story = {
   args: {
-    orientation: 'top',
-  },
+    orientation: 'top'
+  }
 }
 
 export const Left: Story = {
   args: {
-    orientation: 'left',
-  },
+    orientation: 'left'
+  }
 }
 
 export const Right: Story = {
   args: {
-    orientation: 'right',
-  },
+    orientation: 'right'
+  }
 }

@@ -7,7 +7,7 @@ export const useToast = () => {
     const index = toasts.value.length
     const newToast: UIToastProps = {
       id: index.toString(),
-      ...toast,
+      ...toast
     }
 
     toasts.value.push(newToast)
@@ -31,52 +31,52 @@ export const useToast = () => {
   const success = (
     title: string,
     message: string,
-    options?: Partial<Omit<UIToastProps, 'id' | 'title' | 'message' | 'type'>>,
+    options?: Partial<Omit<UIToastProps, 'id' | 'title' | 'message' | 'type'>>
   ) => {
     return addToast({
       title,
       message,
       type: 'success',
-      ...options,
+      ...options
     })
   }
 
   const error = (
     title: string,
     message: string,
-    options?: Partial<Omit<UIToastProps, 'id' | 'title' | 'message' | 'type'>>,
+    options?: Partial<Omit<UIToastProps, 'id' | 'title' | 'message' | 'type'>>
   ) => {
     return addToast({
       title,
       message,
       type: 'error',
-      ...options,
+      ...options
     })
   }
 
   const warning = (
     title: string,
     message: string,
-    options?: Partial<Omit<UIToastProps, 'id' | 'title' | 'message' | 'type'>>,
+    options?: Partial<Omit<UIToastProps, 'id' | 'title' | 'message' | 'type'>>
   ) => {
     return addToast({
       title,
       message,
       type: 'warning',
-      ...options,
+      ...options
     })
   }
 
   const info = (
     title: string,
     message: string,
-    options?: Partial<Omit<UIToastProps, 'id' | 'title' | 'message' | 'type'>>,
+    options?: Partial<Omit<UIToastProps, 'id' | 'title' | 'message' | 'type'>>
   ) => {
     return addToast({
       title,
       message,
       type: 'info',
-      ...options,
+      ...options
     })
   }
 
@@ -92,6 +92,6 @@ export const useToast = () => {
     error,
     warning,
     info,
-    clearAll,
+    clearAll
   }
 }

@@ -1,15 +1,16 @@
 <script setup lang="ts">
 withDefaults(
   defineProps<{
-    label?: string
+    label?: string | null
     position?: 'left' | 'right'
     disabled?: boolean
     indeterminate?: boolean
   }>(),
   {
+    label: null,
     position: 'right',
     disabled: false,
-    indeterminate: false,
+    indeterminate: false
   }
 )
 
@@ -22,11 +23,11 @@ const model = defineModel<boolean>({ default: false })
       {{ label }}
     </label>
     <input
-      type="checkbox"
       v-model="model"
+      type="checkbox"
       :disabled="disabled"
       :indeterminate="indeterminate"
-    />
+    >
     <label v-if="position === 'right'">
       {{ label }}
     </label>

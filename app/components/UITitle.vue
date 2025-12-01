@@ -1,26 +1,26 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed } from 'vue'
 
 const props = withDefaults(defineProps<{
   type?: 'heading1' | 'heading2' | 'heading3' | 'heading4' | 'heading5'
 }>(), {
-  type: 'heading1',
+  type: 'heading1'
 })
 
 const tag = computed(() => {
   switch (props.type) {
     case 'heading1':
-      return 'h1';
+      return 'h1'
     case 'heading2':
-      return 'h2';
+      return 'h2'
     case 'heading3':
-      return 'h3';
+      return 'h3'
     case 'heading4':
-      return 'h4';
+      return 'h4'
     case 'heading5':
-      return 'h5';
+      return 'h5'
     default:
-      return 'h1';
+      return 'h1'
   }
 })
 </script>

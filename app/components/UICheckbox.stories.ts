@@ -9,15 +9,15 @@ const meta = {
     disabled: { control: 'boolean' },
     indeterminate: { control: 'boolean' },
     label: { control: 'text' },
-    position: { control: 'radio', options: ['left', 'right'] },
+    position: { control: 'radio', options: ['left', 'right'] }
 
   },
   args: {
     disabled: false,
     indeterminate: false,
     label: 'Checkbox label',
-    position: 'right',
-  },
+    position: 'right'
+  }
 } satisfies Meta<typeof UICheckbox>
 
 export default meta
@@ -28,8 +28,8 @@ export const Left: Story = {
     disabled: false,
     indeterminate: false,
     label: 'Checkbox label',
-    position: 'left',
-  },
+    position: 'left'
+  }
 }
 
 export const Right: Story = {
@@ -37,6 +37,6 @@ export const Right: Story = {
     disabled: false,
     indeterminate: false,
     label: 'Checkbox label',
-    position: 'right',
-  },
+    position: 'right'
+  }
 }
