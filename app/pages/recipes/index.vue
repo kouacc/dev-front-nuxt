@@ -68,7 +68,7 @@ const paginatedRecipes = computed<FullRecipe[]>(() => {
 
     <ul>
       <li v-for="recipe in paginatedRecipes" :key="recipe.recipe_id">
-        <NuxtLink :to="{ name: 'recipes-id', params: { id: recipe.recipe_id } }">{{ recipe.title }}</NuxtLink>
+        <RecipeCard :recipe="recipe" />
       </li>
     </ul>
     <UIPagination v-model:page="page" :page-amount="totalPages" />
