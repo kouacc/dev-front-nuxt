@@ -20,6 +20,12 @@ export default defineNuxtConfig({
     }
   },
 
+  runtimeConfig: {
+    public: {
+      apiUrl: ''
+    }
+  },
+
   modules: [
     '@nuxt/eslint',
     '@nuxt/fonts',
