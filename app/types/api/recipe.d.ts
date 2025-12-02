@@ -8,3 +8,22 @@ interface Recipe {
   diet_name: string
   allergy_name: string
 }
+
+interface Instruction {
+  instruction_id: number
+  step_number: number
+  description: string
+}
+
+interface Ingredient {
+  ingredient_id: number
+  name: string
+  unit: string
+  quantity: number
+}
+
+type FullRecipe = Recipe & {
+  instructions: Instruction[]
+  ingredients: Ingredient[]
+}
+
