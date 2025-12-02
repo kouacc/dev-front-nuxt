@@ -1,8 +1,4 @@
 <script setup lang="ts">
-definePageMeta({
-  layout: 'aside'
-})
-
 const { data: recipes, error } = await useAsyncData('recipes', async () => {
   const { data } = await $fetch<APIResponse<FullRecipe[]>>('/recipes', {
     baseURL: useRuntimeConfig().public.apiUrl
@@ -20,7 +16,9 @@ if (error.value) {
 
 <template>
   <div>
-    <h1>Salut</h1>
+    <div class="hero">
+      
+    </div>
     <ul>
       <li v-for="recipe in recipes" :key="recipe.recipe_id">
         <NuxtLink :to="{ name: 'recipe-id', params: { id: recipe.recipe_id } }">{{ recipe.title }}</NuxtLink>
@@ -28,3 +26,12 @@ if (error.value) {
     </ul>
   </div>
 </template>
+
+<style lang="scss">
+.hero {
+  border-radius: rem(24);
+  width: 100%;
+  height: rem(300);
+  background-color: var(--color-grey-200);
+}
+</style>
