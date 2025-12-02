@@ -3,7 +3,7 @@ interface Recipe {
   title: string
   description: string
   image_url: string
-  cuisine_name: string
+  cuisine_name: Cuisine['name']
   goal_name: string
   diet_name: string
   allergy_name: string

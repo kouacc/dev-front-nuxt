@@ -14,7 +14,7 @@ withDefaults(
   }
 )
 
-const model = defineModel<boolean>({ default: false })
+const model = defineModel<boolean | string | string[]>({ default: false })
 </script>
 
 <template>
@@ -27,6 +27,7 @@ const model = defineModel<boolean>({ default: false })
       type="checkbox"
       :disabled="disabled"
       :indeterminate="indeterminate"
+      v-bind="$attrs"
     >
     <label v-if="position === 'right'">
       {{ label }}

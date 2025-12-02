@@ -36,6 +36,7 @@ const tag = computed(() => {
 .ui-title {
   font-weight: 600;
   color: var(--color-text);
+  font-family: 'Playfair Display', serif;
 
   h1 & {
     font-size: #{rem(48)};

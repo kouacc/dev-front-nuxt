@@ -59,8 +59,19 @@ const paginatedRecipes = computed<FullRecipe[]>(() => {
 <template>
   <div>
     <div class="hero" />
-    <UITitle>Homepage</UITitle>
-    
+    <UIInput v-model="searchQuery" label="Rechercher une recette" placeholder="Ex: Poulet au curry" />
+    <div class="recipes-filters">
+      <div v-for="(cuisine, index) in cuisines" :key="index" class="recipes-filters__item">
+        <UICheckbox v-model="filters" :label="cuisine.name" :value="cuisine.name" @input="page = 1" />
+      </div>
+    </div>
+
+    <ul>
+      <li v-for="recipe in paginatedRecipes" :key="recipe.recipe_id">
+        <RecipeCard :recipe="recipe" />
+      </li>
+    </ul>
+    <UIPagination v-model:page="page" :page-amount="totalPages" />
   </div>
 </template>
 
