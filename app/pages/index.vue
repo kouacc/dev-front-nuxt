@@ -4,7 +4,7 @@ definePageMeta({
 })
 
 const { data: recipes, error } = await useAsyncData('recipes', async () => {
-  const { data } = await $fetch<{ data: Recipe[] }>('/recipes', {
+  const { data } = await $fetch<APIResponse<FullRecipe[]>>('/recipes', {
     baseURL: useRuntimeConfig().public.apiUrl
   })
   return data
