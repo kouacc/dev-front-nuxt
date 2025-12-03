@@ -1,12 +1,5 @@
 import { jwtDecode } from 'jwt-decode'
-
-interface JWTPayload {
-  iss: number
-  exp: number
-  email: string
-  user_id: number
-  username: string
-}
+import type { JWTPayload } from '~/types/jwt'
 
 export default defineNuxtRouteMiddleware(() => {
   const token = useCookie('user-token').value
