@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { NuxtLinkProps } from '#app';
+import type { NuxtLinkProps } from '#app'
 
 defineProps<{
-  to: NuxtLinkProps['to'];
+  to: NuxtLinkProps['to']
   label: string;
   icon?: string;
 }>()
@@ -12,7 +12,7 @@ defineProps<{
   <NuxtLink :to="to" class="sidebar-link" active-class="sidebar-link--active">
     <Icon v-if="icon" :name="icon" />
     {{ label }}
-  </NuxtLink> 
+  </NuxtLink>
 </template>
 
 <style lang="scss">
@@ -24,7 +24,7 @@ defineProps<{
   background-color: var(--sd-link-bg-color);
   color: var(--sd-link-text-color);
   text-decoration: none;
-  display: inline;
+  display: block;
   padding: rem(12) rem(16);
   border-radius: rem(8);
   transition: background-color 0.1s ease-in-out;
@@ -34,9 +34,6 @@ defineProps<{
   }
 
   &--active {
-
   }
 }
-
-
 </style>
