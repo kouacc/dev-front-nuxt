@@ -1,3 +1,6 @@
+import { jwtDecode } from 'jwt-decode'
+import type { JWTPayload } from '~/types/jwt'
+
 export type LoginPayload = {
   email: string
   password: string
@@ -38,7 +41,8 @@ export const useAuth = () => {
     if (!token) {
       return null
     }
-    return token
+    const decoded = jwtDecode<JWTPayload>(token)
+    return decoded
   }
 
   const register = async (payload: RegisterPayload) => {
