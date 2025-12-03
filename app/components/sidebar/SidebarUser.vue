@@ -47,6 +47,7 @@ const user = useAuth().getUser()
     transition: background-color 0.1s ease-in-out;
     padding: rem(8);
     border-radius: rem(8);
+    display: flex;
 
     &:hover {
       --sd-user-btn-color: var(--color-primary-50);
