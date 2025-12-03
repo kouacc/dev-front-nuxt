@@ -35,5 +35,6 @@ const submitLoginForm = async () => {
       />
       <UIButton type="button" @click="submitLoginForm">Se connecter</UIButton>
     </form>
+    <UIButton type="button" @click="auth.logout">Se déconnecter</UIButton>
   </div>
 </template>

@@ -1,5 +1,3 @@
-const API_BASE_URL = process.env.API_BASE_URL
-
 export type LoginPayload = {
   email: string
   password: string
@@ -14,35 +12,57 @@ export type RegisterPayload = {
   is_admin: boolean
 }
 
+type LoginResponse = {
+  success: boolean
+  message: string
+  data: {
+    user: {
+      user_id: number
+      username: string
+      email: string
+      first_name: string
+      last_name: string
+      is_admin: 0 | 1
+      created_at: string
+      updated_at: string
+    }
+    token: string
+  }
+}
+
 export const useAuth = () => {
+  const apiUrl = useRuntimeConfig().public.apiUrl
+
   const getUser = async () => {
-    return await $fetch('/users/session', {
-      baseURL: API_BASE_URL
-    })
-    
+    const token = useCookie('user-token').value
+    if (!token) {
+      return null
+    }
+    return token
   }
 
   const register = async (payload: RegisterPayload) => {
     return await $fetch('/users/register', {
-      baseURL: API_BASE_URL,
+      baseURL: apiUrl,
       method: 'POST',
       body: payload
     })
   } 
 
   const login = async (payload: LoginPayload) => {
-    await $fetch('/users/login', {
-      baseURL: API_BASE_URL,
+    const user = await $fetch<LoginResponse>('/users/login', {
+      baseURL: apiUrl,
       method: 'POST',
       body: payload
     })
+    useCookie('user-token').value = user.data.token
+    return user
   }
 
   const logout = async () => {
-    await $fetch('/users/logout', {
-      baseURL: API_BASE_URL
-    })
-    return true
+    useCookie('user-token').value = ''
+    navigateTo('/login')
+    return
   }
 
   return {
