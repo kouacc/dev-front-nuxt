@@ -70,5 +70,6 @@ const onSubmit = async () => {
       <option v-for="(goal, index) in goals" :key="index" :value="goal.goal_id">{{ goal.name }}</option>
     </select>
     <button type="submit">Envoyer</button>
+    <UIButton as="button" type="submit">Envoyer</UIButton>
   </form>
 </template> 
