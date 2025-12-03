@@ -19,7 +19,7 @@ defineProps<{
 .sidebar-link {
   --sd-link-bg-color: transparent;
   --sd-link-text-color: var(--color-grey-800);
-  --sd-link-hover: var(--color-primary-100);
+  --sd-link-hover: var(--color-primary-50);
 
   background-color: var(--sd-link-bg-color);
   color: var(--sd-link-text-color);
