@@ -1,11 +1,13 @@
 <script setup lang="ts">
-const user = useAuth().getUser() 
+const user = useAuth().getUser()
+
+//TODO: déconnexion avec prompt modal
 </script>
 
 <template>
   <div class="sidebar-user">
-    <div>
-      
+    <div class="sidebar-user__info">
+      <UIAvatar :name="user!.username" />
       <span>{{ user?.username }}</span>
     </div>
     <button @click="useAuth().logout"><Icon name="lucide:log-out" size="20" /></button>
@@ -22,6 +24,18 @@ const user = useAuth().getUser()
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
+
+  &__info {
+    display: inline-flex;
+    align-items: center;
+    gap: rem(8);
+
+    > span {
+      font-weight: 600;
+      font-size: rem(14);
+      color: var(--color-grey-800);
+    }
+  }
 
   > button {
     --sd-user-btn-color: transparent;
