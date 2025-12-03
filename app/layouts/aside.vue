@@ -1,24 +1,23 @@
 <template>
   <div class="ly-aside">
-    <aside class="ly-aside__sidebar">Sidebar</aside>
+    <DashboardSidebar />
     <main class="ly-aside__main">
-      Contenu de la page
       <slot />
     </main>
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .ly-aside {
-    display: flex;
-    flex-flow: row wrap;
+  main {
+    margin-left: rem(300);
+    padding: rem(24);
+  }
 
-    &__sidebar {
-        flex: 1;
-    }
-
-    &__main {
-        flex: 4;
-    }
+  aside {
+    position: fixed;
+    left: 0;
+    top: 0;
+  }
 }
 </style>

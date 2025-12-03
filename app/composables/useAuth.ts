@@ -36,7 +36,7 @@ type LoginResponse = {
 export const useAuth = () => {
   const apiUrl = useRuntimeConfig().public.apiUrl
 
-  const getUser = async () => {
+  const getUser = (): JWTPayload | null => {
     const token = useCookie('user-token').value
     if (!token) {
       return null
