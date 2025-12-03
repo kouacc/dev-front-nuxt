@@ -7,17 +7,17 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .ly-aside {
-    display: flex;
-    flex-flow: row wrap;
+  main {
+    margin-left: rem(300);
+    padding: rem(24);
+  }
 
-    aside {
-        flex: 1;
-    }
-
-    &__main {
-        flex: 4;
-    }
+  aside {
+    position: fixed;
+    left: 0;
+    top: 0;
+  }
 }
 </style>

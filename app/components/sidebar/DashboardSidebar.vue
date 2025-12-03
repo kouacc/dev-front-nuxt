@@ -19,8 +19,13 @@ const nav = [
   background-color: var(--dh-sidebar-bg-color);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  max-height: 100%;
+  height: 100%;
+  max-width: rem(300);
+  width: 100%;
 
   border-right: 1.5px solid var(--color-primary-200);
-  padding: rem(16);
+  padding: rem(24);
 }
 </style>
