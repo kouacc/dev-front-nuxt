@@ -1,19 +1,43 @@
 <script setup lang="ts">
-withDefaults(
+const props = withDefaults(
   defineProps<{
     orientation?: 'top' | 'bottom' | 'left' | 'right'
     content: string
+    delay?: number
   }>(),
   {
-    orientation: 'top'
+    orientation: 'top',
+    delay: 300
   }
 )
+
+const isVisible = ref(false)
+let timeoutId: ReturnType<typeof setTimeout> | null = null
+
+const handleMouseEnter = () => {
+  timeoutId = setTimeout(() => {
+    isVisible.value = true
+  }, props.delay)
+}
+
+const handleMouseLeave = () => {
+  if (timeoutId) {
+    clearTimeout(timeoutId)
+    timeoutId = null
+  }
+  isVisible.value = false
+}
 </script>
 
 <template>
-  <div class="ui-tooltip" :class="`-${orientation}`">
+  <div 
+    class="ui-tooltip" 
+    :class="`-${orientation}`"
+    @mouseenter="handleMouseEnter"
+    @mouseleave="handleMouseLeave"
+  >
     <slot />
-    <span class="ui-tooltip__content">{{ content }}</span>
+    <span v-if="isVisible" class="ui-tooltip__content">{{ content }}</span>
   </div>
 </template>
 
