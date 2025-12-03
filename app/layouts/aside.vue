@@ -1,8 +1,7 @@
 <template>
   <div class="ly-aside">
-    <aside class="ly-aside__sidebar">Sidebar</aside>
+    <DashboardSidebar />
     <main class="ly-aside__main">
-      Contenu de la page
       <slot />
     </main>
   </div>
@@ -13,7 +12,7 @@
     display: flex;
     flex-flow: row wrap;
 
-    &__sidebar {
+    aside {
         flex: 1;
     }
 
