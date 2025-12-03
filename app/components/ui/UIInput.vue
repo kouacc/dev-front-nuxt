@@ -28,7 +28,7 @@ const model = defineModel({ type: String, default: '' })
 <template>
   <div :class="['ui-input', `-${props.color}`, `-${props.size}`, `-${props.variant}`]">
     <label v-if="props.label">{{ props.label }}</label>
-    <input v-model="model" :placeholder="props.placeholder" :disabled="props.disabled" :type="props.type" >
+    <input v-model="model" :placeholder="props.placeholder" :disabled="props.disabled" :type="props.type" v-bind="$attrs">
     <span v-if="props.helperText">{{ props.helperText }}</span>
   </div>
 </template>
