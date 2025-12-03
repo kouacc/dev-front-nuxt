@@ -11,13 +11,13 @@ defineProps<{
     <ol>
       <li v-for="(item, index) in items" :key="index">
         <template v-if="item.href && !item.disabled">
-          <RouterLink :to="item.href" exact-active-class="ui-breadcrumb__active"><Icon v-if="item.icon" :name="item.icon" />{{ item.text }}</RouterLink>
+          <RouterLink :to="item.href" class="ui-breadcrumb__item" exact-active-class="ui-breadcrumb--active"><Icon v-if="item.icon" :name="item.icon" />{{ item.text }}</RouterLink>
         </template>
         <template v-else>
           <Icon v-if="item.icon" :name="item.icon" />
-          <span :class="{ 'ui-breadcrumb__active': !item.href, 'ui-breadcrumb__disabled': item.disabled }">{{ item.text }}</span>
+          <span :class="['ui-breadcrumb__item', { 'ui-breadcrumb--active': !item.href, 'ui-breadcrumb--disabled': item.disabled }]">{{ item.text }}</span>
         </template>
-        <Icon name="lucide:chevron-right" />
+        <Icon v-if="index < items.length - 1" name="lucide:chevron-right" />
       </li>
     </ol>
   </nav>
@@ -37,12 +37,15 @@ defineProps<{
       display: flex;
       align-items: center;
 
-      a, span {
+      .ui-breadcrumb__item {
         text-decoration: none;
         color: var(--breadcrumb-text-color);
         background-color: var(--breadcrumb-bg-color);
         padding: #{rem(12)} #{rem(8)};
         border-radius: #{rem(12)};
+        display: inline-flex;
+        align-items: center;
+        gap: #{rem(8)};
 
         &:hover {
           --breadcrumb-text-color: var(--color-grey-500);
@@ -63,11 +66,11 @@ defineProps<{
   }
 }
 
-.ui-breadcrumb__active {
+.ui-breadcrumb--active {
   color: var(--color-text) !important;
 }
 
-.ui-breadcrumb__disabled {
+.ui-breadcrumb--disabled {
   color: var(--color-grey-400) !important;
 }
 </style>
