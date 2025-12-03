@@ -1,11 +1,14 @@
 <script setup lang="ts">
+const nav = [
+  { to: '/dashboard', label: 'My Recipes', icon: 'lucide:notebook-tabs' },
+  { to: '/dashboard/goals', label: 'My Goals', icon: 'lucide:target' },
+  { to: '/dashboard/settings', label: 'Settings', icon: 'lucide:settings' }
+]
 </script>
 
 <template>
   <aside class="dh-sidebar">
-    <SidebarLink to="/dashboard" label="My Recipes" icon="lucide:notebook-tabs" />
-    <SidebarLink to="/dashboard/goals" label="My Goals" icon="target" />
-    <SidebarLink to="/dashboard/settings" label="Settings" icon="settings" />
+    <SidebarLinkGroup :links="nav" />
     <SidebarUser />
   </aside>
 </template>
