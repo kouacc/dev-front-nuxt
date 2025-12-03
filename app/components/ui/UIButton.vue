@@ -3,13 +3,13 @@ import { computed } from 'vue'
 
 const props = withDefaults(
   defineProps<{
-    type?: 'button' | 'link'
+    as?: 'button' | 'link'
     variant?: 'default' | 'outline' | 'ghost'
     size?: 'tiny' | 'small' | 'medium' | 'large' | 'giant'
     disabled?: boolean
   }>(),
   {
-    type: 'button',
+    as: 'button',
     variant: 'default',
     size: 'medium',
     disabled: false
@@ -17,12 +17,12 @@ const props = withDefaults(
 )
 
 const renderedComponent = computed(() => {
-  return props.type === 'link' ? 'a' : 'button'
+  return props.as === 'link' ? 'a' : 'button'
 })
 </script>
 
 <template>
-  <component :is="renderedComponent" :class="['ui-btn', `-${props.variant}`, `-${props.size}`]" :disabled="props.disabled">
+  <component :is="renderedComponent" :class="['ui-btn', `-${props.variant}`, `-${props.size}`]" :disabled="props.disabled" v-bind="$attrs">
     <slot />
   </component>
 </template>

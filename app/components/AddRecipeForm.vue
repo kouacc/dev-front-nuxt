@@ -21,17 +21,21 @@ const formContent = reactive<AddRecipeForm & { clear: () => void }>({
   }
 })
 
-const { data: cuisines } = await useAsyncData('cuisines', async () => {
-  const { data } = await $fetch<APIResponse<Cuisine[]>>('/cuisines', {
-    baseURL: useRuntimeConfig().public.apiUrl
+const [{ data: cuisines }, { data: goals }] = await Promise.all([
+  useAsyncData('cuisines', async () => {
+    const { data } = await $fetch<APIResponse<Cuisine[]>>('/cuisines', {
+      baseURL: useRuntimeConfig().public.apiUrl
+    })
+    return data
+  }),
+  useAsyncData('goals', async () => {
+    const data = await $fetch<Goal[]>('/goals', {
+      baseURL: useRuntimeConfig().public.apiUrl
+    })
+    return data
   })
-  return data
-})
+])
 
-// PAS D'ENDPOINT POUR LES GOALS
-/* const { data: goals } = await useAsyncData('goals', async () => {
-  const { data } = await $fetch<APIResponse<Goal[]>>('/goals')
-}) */
 
 const onSubmit = async () => {
   await $fetch('/recipes', {
@@ -62,6 +66,10 @@ const onSubmit = async () => {
     <select v-model="formContent.cuisine_id" required>
       <option v-for="(cuisine, index) in cuisines" :key="index" :value="cuisine.cuisine_id">{{ cuisine.name }}</option>
     </select>
+    <select v-model="formContent.goal_id" required>
+      <option v-for="(goal, index) in goals" :key="index" :value="goal.goal_id">{{ goal.name }}</option>
+    </select>
     <button type="submit">Envoyer</button>
+    <UIButton as="button" type="submit">Envoyer</UIButton>
   </form>
 </template> 
