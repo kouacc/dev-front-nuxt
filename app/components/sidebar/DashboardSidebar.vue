@@ -3,6 +3,9 @@
 
 <template>
   <aside class="dh-sidebar">
+    <SidebarLink to="/dashboard" label="My Recipes" icon="lucide:notebook-tabs" />
+    <SidebarLink to="/dashboard/goals" label="My Goals" icon="target" />
+    <SidebarLink to="/dashboard/settings" label="Settings" icon="settings" />
   </aside>
 </template>
 
