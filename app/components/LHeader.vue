@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { SanitySiteSettings } from '~/types/cms/settings'
+import type { SiteSettings } from '~/types/sanity.types'
 
 defineProps<{
-  nav: SanitySiteSettings['navigation'] | null;
+  nav: SiteSettings['mainNavigation']
 }>()
 </script>
 

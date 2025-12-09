@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import type { SiteSettings } from '~/types/sanity.types'
+
 const nav_query = groq`*[_type == "siteSettings"][0]{title, description, mainNavigation}`
 
-const { data: settings } = await useLazySanityQuery<SanitySiteSettings>(nav_query)
+const { data: settings } = await useLazySanityQuery<SiteSettings>(nav_query)
 
 
 useSeoMeta({
