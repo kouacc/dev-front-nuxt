@@ -19,6 +19,8 @@ useSeoMeta({
       <NuxtImg v-if="homepage?.heroImage" :src="useSanityImage(homepage?.heroImage)?.url()" />
     </div>
     <UITitle>Homepage</UITitle>
+    <pre>{{ homepage }}</pre>
+    <SanityContent v-for="(sec, index) in homepage?.content" :key="index" :value="sec.sectionBody"/>
     
   </div>
 </template>
