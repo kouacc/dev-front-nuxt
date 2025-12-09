@@ -17,6 +17,8 @@
     "@nuxt/icon": "^2.1.0",
     "@nuxt/image": "^2.0.0",
     "@nuxt/test-utils": "^3.20.1",
+    "@nuxtjs/sanity": "^2.0.0",
+    "@sanity/image-url": "^2.0.2",
     "eslint": "^9.39.1",
     "jwt-decode": "^4.0.0",
     "nuxt": "^4.2.1",

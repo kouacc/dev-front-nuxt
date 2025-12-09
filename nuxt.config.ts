@@ -7,6 +7,9 @@ export default defineNuxtConfig({
     { path: '~/components', pathPrefix: false, extensions: ['vue'] }
   ],
   vite: {
+    optimizeDeps: {
+      include: ['react-compiler-runtime', 'react', 'react-dom']
+    },
     css: {
       preprocessorOptions: {
         scss: {
@@ -26,11 +29,17 @@ export default defineNuxtConfig({
     }
   },
 
+  sanity: {
+    projectId: 'xo6l7kej',
+    dataset: 'production'
+  },
+
   modules: [
     '@nuxt/eslint',
     '@nuxt/fonts',
     '@nuxt/icon',
     '@nuxt/image',
-    '@nuxt/test-utils'
+    '@nuxt/test-utils',
+    '@nuxtjs/sanity'
   ]
 })
