@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import type { NuxtLinkProps } from '#app'
 
 const props = withDefaults(
   defineProps<{
@@ -7,6 +7,8 @@ const props = withDefaults(
     variant?: 'default' | 'outline' | 'ghost'
     size?: 'tiny' | 'small' | 'medium' | 'large' | 'giant'
     disabled?: boolean
+    // eslint-disable-next-line vue/require-default-prop
+    to?: NuxtLinkProps['to']
   }>(),
   {
     as: 'button',
@@ -17,12 +19,12 @@ const props = withDefaults(
 )
 
 const renderedComponent = computed(() => {
-  return props.as === 'link' ? 'a' : 'button'
+  return props.as === 'link' ? resolveComponent('NuxtLink') : 'button'
 })
 </script>
 
 <template>
-  <component :is="renderedComponent" :class="['ui-btn', `-${props.variant}`, `-${props.size}`]" :disabled="props.disabled" v-bind="$attrs">
+  <component :is="renderedComponent" :class="['ui-btn', `-${props.variant}`, `-${props.size}`]" :disabled="props.disabled" v-bind="$attrs" :to="props.as === 'link' ? props.to : null">
     <slot />
   </component>
 </template>
@@ -54,6 +56,7 @@ const renderedComponent = computed(() => {
   justify-content: center;
   font-weight: 600;
   font-size: var(--button-font-size);
+  text-decoration: none;
 
   background-color: var(--button-bg-color);
   color: var(--button-text-color);
