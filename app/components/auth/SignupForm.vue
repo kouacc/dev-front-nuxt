@@ -55,4 +55,13 @@ const onSubmitSignup = async () => {
   flex-direction: column;
   gap: rem(16);
 
+  &__vl--valid {
+    color: var(--color-green-500);
+  }
+
+  &__vl--invalid {
+    color: var(--color-red-500);
+  }
+}
+
 </style>
