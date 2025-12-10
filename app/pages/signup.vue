@@ -19,6 +19,15 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
 
+  @include medium-down {
+    grid-template-columns: 1fr;
+    gap: rem(32);
+    margin-bottom: rem(32);
+
+    > * {
+      min-width: 100%;
+    }
+  }
 
   &__login {
     margin-top: rem(16);
