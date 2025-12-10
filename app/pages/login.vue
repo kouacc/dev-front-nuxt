@@ -8,7 +8,7 @@
     <LoginForm />
     <div class="p-login__signup">
       <span>Pas encore de compte ?</span>
-      <UIButton variant="ghost" href="/signup">S'inscrire</UIButton>
+      <UIButton variant="ghost" size="small" as="link" to="/signup">S'inscrire</UIButton>
     </div>
   </div>
 </template>
@@ -19,18 +19,22 @@
     display: grid;
     place-items: center;
 
+    gap: rem(32);
+
     > * {
       min-width: rem(600);
     }
 
     &__signup {
-      margin-top: rem(16);
       text-align: center;
       background-color: var(--color-white);
       padding: rem(16);
       border: 1px solid var(--color-grey-200);
       border-radius: rem(16);
 
+      & span {
+        margin-right: rem(10);
+      }
     }
   }
 
