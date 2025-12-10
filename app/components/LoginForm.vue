@@ -37,3 +37,25 @@ const submitLoginForm = async () => {
     <UIButton type="button" class="login-form__submit" @click="submitLoginForm">Se connecter</UIButton>
   </form>
 </template>
+
+<style lang="scss">
+.login-form {
+  --lf-bg-color: var(--color-white);
+  --lf-border-color: var(--color-grey-200);
+
+  background-color: var(--lf-bg-color);
+  border: 1px solid var(--lf-border-color);
+  border-radius: rem(16);
+  padding: rem(24);
+  max-width: rem(500);
+
+  display: flex;
+  flex-direction: column;
+  gap: rem(16);
+  
+  &__submit {
+    margin-top: rem(8);
+    align-self: flex-end;
+  }
+}
+</style>
