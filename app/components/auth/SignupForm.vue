@@ -11,6 +11,36 @@ const form = reactive<RegisterPayload & { confirm_password: string }>({
   username: '',
   is_admin: false
 })
+
+
+const passwordRegex = {
+  full: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+  length: /.{8,}/,
+  lowercase: /(?=.*?[a-z])/,
+  uppercase: /(?=.*?[A-Z])/,
+  number: /(?=.*?[0-9])/,
+  specialChar: /(?=.*?[#?!@$%^&*-])/
+}
+
+const isPasswordValid = computed(() => {
+  return {
+    full: passwordRegex.full.test(form.password),
+    length: passwordRegex.length.test(form.password),
+    lowercase: passwordRegex.lowercase.test(form.password),
+    uppercase: passwordRegex.uppercase.test(form.password),
+    number: passwordRegex.number.test(form.password),
+    specialChar: passwordRegex.specialChar.test(form.password)
+  }
+})
+
+const isPasswordSame = computed(() => {
+  return form.password === form.confirm_password
+})
+
+const passwordInputColor = computed(() => {
+  return form.password && !isPasswordValid.value.full ? 'error' : (!form.password ? undefined : 'success')
+})
+
 const onSubmitSignup = async () => {
   try {
     if (!isPasswordValid.value.full) {
@@ -35,6 +65,17 @@ const onSubmitSignup = async () => {
     <UIInput v-model="form.username" label="Nom d'utilisateur" type="text" required />
     <UIInput v-model="form.email" label="Adresse e-mail" type="email" required />
     <UIInput v-model="form.password" label="Mot de passe" type="password" :color="passwordInputColor" required />
+    <div>
+      <p>Le mot de passe doit contenir au moins :</p>
+      <ul>
+        <li :class="{ 'register-form__vl--valid': form.password && isPasswordValid.length, 'register-form__vl--invalid': form.password && !isPasswordValid.length }">8 caractères</li>
+        <li :class="{ 'register-form__vl--valid': form.password && isPasswordValid.lowercase, 'register-form__vl--invalid': form.password && !isPasswordValid.lowercase }">une minuscule</li>
+        <li :class="{ 'register-form__vl--valid': form.password && isPasswordValid.uppercase, 'register-form__vl--invalid': form.password && !isPasswordValid.uppercase }">une majuscule</li>
+        <li :class="{ 'register-form__vl--valid': form.password && isPasswordValid.number, 'register-form__vl--invalid': form.password && !isPasswordValid.number }">un chiffre</li>
+        <li :class="{ 'register-form__vl--valid': form.password && isPasswordValid.specialChar, 'register-form__vl--invalid': form.password && !isPasswordValid.specialChar }">un caractère spécial (#?!@$%^&*-)</li>
+      </ul>
+    </div>
+    <UIInput v-model="form.confirm_password" label="Confirmer le mot de passe" :color="(form.password &&form.confirm_password) && isPasswordSame ? 'success' : undefined" type="password" required />
 
     <UIButton as="button" type="submit">S'inscrire</UIButton>
   </form>
