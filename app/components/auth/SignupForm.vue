@@ -1,4 +1,7 @@
 <script setup lang="ts">
+const auth = useAuth()
+const toast = useToast()
+
 const form = reactive<RegisterPayload & { confirm_password: string }>({
   email: '',
   password: '',
@@ -8,7 +11,23 @@ const form = reactive<RegisterPayload & { confirm_password: string }>({
   username: '',
   is_admin: false
 })
+const onSubmitSignup = async () => {
+  try {
+    if (!isPasswordValid.value.full) {
+      toast.addToast({ title: 'Erreur', message: 'Le mot de passe ne respecte pas les critères de sécurité.', type: 'error', duration: 5000 })
+    }
+    if (!isPasswordSame.value) {
+      toast.addToast({ title: 'Erreur', message: 'Les mots de passe ne correspondent pas.', type: 'error', duration: 5000 })
+    }
+    await auth.register(form)
+  } catch {
+    toast.addToast({ title: 'Erreur', message: 'Erreur lors de l\'inscription.', type: 'error', duration: 5000 })
+  }
+}
+
+
 </script>
+
 <template>
   <form class="register-form" @submit.prevent="onSubmitSignup">
     <UIInput v-model="form.first_name" label="Prénom" type="text" required />
