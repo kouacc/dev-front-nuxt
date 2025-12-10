@@ -39,3 +39,20 @@ const onSubmitSignup = async () => {
     <UIButton as="button" type="submit">S'inscrire</UIButton>
   </form>
 </template>
+
+<style lang="scss">
+.register-form {
+  --rf-bg-color: var(--color-white);
+  --rf-border-color: var(--color-grey-200);
+
+  background-color: var(--rf-bg-color);
+  border: 1px solid var(--rf-border-color);
+  border-radius: rem(16);
+  padding: rem(24);
+  max-width: rem(500);
+
+  display: flex;
+  flex-direction: column;
+  gap: rem(16);
+
+</style>
