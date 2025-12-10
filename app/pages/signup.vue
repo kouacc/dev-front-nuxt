@@ -13,3 +13,18 @@
     <SignupForm />
   </div>
 </template>
+
+<style lang="scss">
+.p-signup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+
+  &__login {
+    margin-top: rem(16);
+    text-decoration: none;
+    color: var(--color-primary-500);
+  }
+}
+
+</style>
