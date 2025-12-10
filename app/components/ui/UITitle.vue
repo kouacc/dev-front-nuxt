@@ -75,6 +75,6 @@ const tag = computed(() => {
 
   &.--align-right {
     --ui-title-align: right;
-
+  }
 }
 </style>
