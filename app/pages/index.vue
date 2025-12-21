@@ -33,10 +33,28 @@ useSeoMeta({
 </template>
 
 <style lang="scss">
-.hero {
+.hp-hero {
   border-radius: rem(24);
   width: 100%;
   height: rem(300);
-  background-color: var(--color-grey-200);
+  position: relative;
+  overflow: hidden;
+  padding: rem(24);
+
+  &__img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    color: var(--color-white);
+  }
 }
 </style>
