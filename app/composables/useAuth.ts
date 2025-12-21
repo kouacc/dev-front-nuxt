@@ -35,6 +35,7 @@ type LoginResponse = {
 
 export const useAuth = () => {
   const apiUrl = useRuntimeConfig().public.apiUrl
+  const toast = useToast()
 
   const getUser = (): JWTPayload | null => {
     const token = useCookie('user-token').value
@@ -57,7 +58,18 @@ export const useAuth = () => {
     const user = await $fetch<LoginResponse>('/users/login', {
       baseURL: apiUrl,
       method: 'POST',
-      body: payload
+      body: payload,
+      onResponse: ({ response }) => {
+        if (response.status !== 200) {
+          toast.addToast({
+            title: 'Echec de la connexion',
+            message: 'Veuillez vérifier vos identifiants et réessayer.',
+            type: 'error',
+            icon: 'lucide:alert-circle',
+            duration: 5000
+          })
+        }
+      }
     })
     useCookie('user-token').value = user.data.token
     return user
