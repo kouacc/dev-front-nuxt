@@ -13,10 +13,16 @@ useSeoMeta({
 
 <template>
   <div>
-    <div class="hero">
-      <h1>{{ homepage?.heroTitle }}</h1>
-      <p>{{ homepage?.heroSubtitle }}</p>
-      <NuxtImg v-if="homepage?.heroImage" :src="useSanityImage(homepage?.heroImage)?.url()" />
+    <div class="hp-hero">
+      <div class="hp-hero__content">
+        <h1>{{ homepage?.heroTitle }}</h1>
+        <p>{{ homepage?.heroSubtitle }}</p>
+      </div>
+      <NuxtImg
+        v-if="homepage?.heroImage"
+        class="hp-hero__img"
+        :src="useSanityImage(homepage?.heroImage)?.url()"
+      />
     </div>
     <SanityContent
       v-for="(sec, index) in homepage?.content"
