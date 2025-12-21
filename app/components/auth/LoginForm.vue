@@ -9,6 +9,7 @@ const form = reactive<LoginPayload>({
 const submitLoginForm = async () => {
   try {
     await auth.login(form)
+    navigateTo('/dashboard')
   } catch {
     throw createError({
       statusCode: 500,
