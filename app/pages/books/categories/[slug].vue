@@ -17,7 +17,7 @@ const { data: books } = await useLazySanityQuery<SanityBook[]>(query, useRoute()
   <div v-if="books">
     <!-- <UITitle tag="h1">{{ categoryName }}</UITitle> -->
     <pre>{{ books }}</pre>
-    <NuxtLink v-for="book in books" :key="book._id" :to="`/books/${book.slug.current}`">
+    <NuxtLink v-for="book in books" :key="book._id" :to="`/books/${book.slug}`">
       <div>
         <NuxtImg v-if="book.cover" :src="useSanityImage(book.cover)?.url()" :alt="book?.title" />
         <h2>{{ book.title }}</h2>

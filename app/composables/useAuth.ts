@@ -35,10 +35,11 @@ type LoginResponse = {
 
 export const useAuth = () => {
   const apiUrl = useRuntimeConfig().public.apiUrl
+  const toast = useToast()
 
   const getUser = (): JWTPayload | null => {
     const token = useCookie('user-token').value
-    if (!token) {
+    if (!token || token.length === 0) {
       return null
     }
     const decoded = jwtDecode<JWTPayload>(token)
@@ -46,10 +47,23 @@ export const useAuth = () => {
   }
 
   const register = async (payload: RegisterPayload) => {
-    return await $fetch('/users/register', {
+    await $fetch('/users/register', {
       baseURL: apiUrl,
       method: 'POST',
-      body: payload
+      body: payload,
+      onResponse: ({ response }) => {
+        if (response.status === 201) {
+          login({ email: payload.email, password: payload.password })
+        } else {
+          toast.addToast({
+            title: 'Echec de l\'inscription',
+            message: 'Une erreur est survenue lors de l\'inscription. Veuillez réessayer.',
+            type: 'error',
+            icon: 'lucide:alert-circle',
+            duration: 5000
+          })
+        }
+      }
     })
   } 
 
@@ -57,7 +71,18 @@ export const useAuth = () => {
     const user = await $fetch<LoginResponse>('/users/login', {
       baseURL: apiUrl,
       method: 'POST',
-      body: payload
+      body: payload,
+      onResponse: ({ response }) => {
+        if (response.status !== 200) {
+          toast.addToast({
+            title: 'Echec de la connexion',
+            message: 'Veuillez vérifier vos identifiants et réessayer.',
+            type: 'error',
+            icon: 'lucide:alert-circle',
+            duration: 5000
+          })
+        }
+      }
     })
     useCookie('user-token').value = user.data.token
     return user

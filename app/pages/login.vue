@@ -1,40 +1,43 @@
 <script setup lang="ts">
-const auth = useAuth()
-
-const form = reactive<LoginPayload>({
-  email: '',
-  password: ''
+definePageMeta({
+  middleware: 'auth'
 })
-
-const submitLoginForm = async () => {
-  try {
-    await auth.login(form)
-  } catch {
-    throw createError({
-      statusCode: 500,
-      statusMessage: 'Erreur lors de la connexion.'
-    })
-  }
-}
 </script>
 
 <template>
-  <div>
-    <form @submit.prevent="submitLoginForm">
-      <UIInput
-        v-model="form.email"
-        label="Email"
-        type="email"
-        required
-      />
-      <UIInput
-        v-model="form.password"
-        label="Mot de passe"
-        type="password"
-        required
-      />
-      <UIButton type="button" @click="submitLoginForm">Se connecter</UIButton>
-    </form>
-    <UIButton type="button" @click="auth.logout">Se déconnecter</UIButton>
+  <div class="p-login">
+    <UITitle align="center">Connexion</UITitle>
+    <LoginForm />
+    <div class="p-login__signup">
+      <span>Pas encore de compte ?</span>
+      <UIButton variant="ghost" size="small" as="link" to="/signup">S'inscrire</UIButton>
+    </div>
   </div>
 </template>
+
+<style lang="scss">
+  .p-login {
+    // center the content
+    display: grid;
+    place-items: center;
+    gap: rem(32);
+
+    > * {
+      max-width: rem(600);
+      width: 100%;
+    }
+
+    &__signup {
+      text-align: center;
+      background-color: var(--color-white);
+      padding: rem(16);
+      border: 1px solid var(--color-grey-200);
+      border-radius: rem(16);
+
+      & span {
+        margin-right: rem(10);
+      }
+    }
+  }
+
+</style>
