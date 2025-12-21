@@ -17,9 +17,13 @@ const isLoggedin = computed(() => useAuth().getUser !== null)
         </li>
       </ul>
       <div class="m-header__auth">
-        <UIButton v-if="isLoggedin" size="small" as="link" to="/dashboard">Mon dashboard</UIButton>
-        <UIButton size="small" as="link" to="/login" variant="ghost">Se connecter</UIButton>
-        <UIButton size="small" as="link" to="/signup">Créer un compte</UIButton>
+        <template v-if="isLoggedin">
+          <UIButton size="small" as="link" to="/dashboard">Mon dashboard</UIButton>
+        </template>
+        <template v-else>
+          <UIButton size="small" as="link" to="/login" variant="ghost">Se connecter</UIButton>
+          <UIButton size="small" as="link" to="/signup">Créer un compte</UIButton>
+        </template>
       </div>
     </nav>
   </header>
