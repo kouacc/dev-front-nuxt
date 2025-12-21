@@ -47,10 +47,23 @@ export const useAuth = () => {
   }
 
   const register = async (payload: RegisterPayload) => {
-    return await $fetch('/users/register', {
+    await $fetch('/users/register', {
       baseURL: apiUrl,
       method: 'POST',
-      body: payload
+      body: payload,
+      onResponse: ({ response }) => {
+        if (response.status === 201) {
+          login({ email: payload.email, password: payload.password })
+        } else {
+          toast.addToast({
+            title: 'Echec de l\'inscription',
+            message: 'Une erreur est survenue lors de l\'inscription. Veuillez réessayer.',
+            type: 'error',
+            icon: 'lucide:alert-circle',
+            duration: 5000
+          })
+        }
+      }
     })
   } 
 

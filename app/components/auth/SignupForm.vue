@@ -50,6 +50,7 @@ const onSubmitSignup = async () => {
       toast.addToast({ title: 'Erreur', message: 'Les mots de passe ne correspondent pas.', type: 'error', duration: 5000 })
     }
     await auth.register(form)
+    navigateTo('/dashboard')
   } catch {
     toast.addToast({ title: 'Erreur', message: 'Erreur lors de l\'inscription.', type: 'error', duration: 5000 })
   }
