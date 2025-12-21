@@ -1,5 +1,7 @@
 <script setup lang="ts">
-
+definePageMeta({
+  middleware: 'auth'
+})
 </script>
 
 <template>
@@ -18,11 +20,11 @@
     // center the content
     display: grid;
     place-items: center;
-
     gap: rem(32);
 
     > * {
-      min-width: rem(600);
+      max-width: rem(600);
+      width: 100%;
     }
 
     &__signup {
