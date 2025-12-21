@@ -39,7 +39,7 @@ export const useAuth = () => {
 
   const getUser = (): JWTPayload | null => {
     const token = useCookie('user-token').value
-    if (!token) {
+    if (!token || token.length === 0) {
       return null
     }
     const decoded = jwtDecode<JWTPayload>(token)

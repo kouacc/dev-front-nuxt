@@ -5,7 +5,7 @@ defineProps<{
   nav: SiteSettings['mainNavigation']
 }>()
 
-const isLoggedin = computed(() => useAuth().getUser !== null)
+const isLoggedin = computed(() => useAuth().getUser() !== null)
 </script>
 
 <template>
