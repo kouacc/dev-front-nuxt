@@ -36,11 +36,35 @@ watch(
 <template>
   <ul class="m-header__menu">
     <LHeaderMenuItem
-      v-for="(item, index) in nav"
+      v-for="(item, index) in visibleItems"
       :key="index"
       :label="item.label!"
       :link="item.link!"
     />
+
+    <li v-if="hasHiddenItems" ref="submenuRef" class="m-header__menu__more">
+      <button
+        class="m-header__menu__more-btn"
+        :class="{ 'is-open': isSubmenuOpen }"
+        @click.stop="toggleSubmenu"
+      >
+        Plus
+        <Icon
+          name="lucide:chevron-down"
+          class="m-header__menu__more-icon"
+          size="16"
+        />
+      </button>
+
+      <ul v-show="isSubmenuOpen" class="m-header__submenu">
+        <LHeaderMenuItem
+          v-for="(item, index) in hiddenItems"
+          :key="`hidden-${index}`"
+          :label="item.label!"
+          :link="item.link!"
+        />
+      </ul>
+    </li>
   </ul>
 </template>
 
