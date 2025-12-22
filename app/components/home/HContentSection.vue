@@ -16,3 +16,30 @@ const props = defineProps<{
     <NuxtImg class="h-section__img" src="https://placehold.co/600x400" />
   </div>
 </template>
+
+<style lang="scss">
+.h-section {
+  margin-bottom: rem(24);
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-md);
+  border-radius: rem(16);
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+
+  @include medium-down {
+    flex-direction: column;
+  }
+
+  &__content {
+    margin-bottom: rem(16);
+    padding: rem(24);
+    flex: 1;
+  }
+
+  &__img {
+    width: rem(200);
+    object-fit: cover;
+  }
+}
+</style>
