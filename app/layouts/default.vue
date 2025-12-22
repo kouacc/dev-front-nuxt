@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import LHeader from '~/components/layout/LHeader.vue'
 import type { SiteSettings } from '~/types/sanity.types'
 
 const nav_query = groq`*[_type == "siteSettings"][0]{title, description, mainNavigation}`
@@ -13,7 +14,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <LHeader :nav="settings?.mainNavigation" />
+  <LHeader :nav="settings?.mainNavigation || []" />
   <!-- eslint-disable-next-line vue/no-multiple-template-root -->
   <main class="container">
     <slot />
@@ -29,7 +30,7 @@ useSeoMeta({
 }
 
 body {
-  background-color: var(--color-primary-50);
+  background-color: var(--color-background);
   color: var(--color-text);
 }
 </style>
