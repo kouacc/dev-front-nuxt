@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Homepage } from '~/types/sanity.types'
 
-const homepage_query = groq`*[_type == "homepage"][0]{seoTitle, seoDescription, heroTitle, heroSubtitle, heroImage, content}`
+const homepage_query = groq`*[_type == "homepage"][0]{seoTitle, seoDescription, heroTitle, heroSubtitle, heroImage, contentTitle, content}`
 
 const { data: homepage } = await useLazySanityQuery<Homepage>(homepage_query)
 
