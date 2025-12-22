@@ -24,11 +24,7 @@ useSeoMeta({
         :src="useSanityImage(homepage?.heroImage)?.url()"
       />
     </div>
-    <SanityContent
-      v-for="(sec, index) in homepage?.content"
-      :key="index"
-      :value="sec.sectionBody"
-    />
+    <HContentSectionList v-if="homepage?.content && homepage?.contentTitle" :content="homepage.content" :title="homepage.contentTitle" />
   </div>
 </template>
 

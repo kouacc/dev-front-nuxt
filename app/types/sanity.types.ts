@@ -35,8 +35,21 @@ export type Homepage = {
   }
   seoTitle?: string
   seoDescription?: string
+  contentTitle?: string
   content?: Array<{
     sectionTitle?: string
+    sectionImage?: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
     sectionBody?: Array<{
       children?: Array<{
         marks?: Array<string>
