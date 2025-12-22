@@ -12,11 +12,7 @@ const isLoggedin = computed(() => useAuth().getUser() !== null)
   <header class="m-header">
     <div class="m-header__wrapper">
       <nav class="m-header__content">
-        <ul class="m-header__menu">
-          <li v-for="(l, index) in nav" :key="index" class="m-header__menu__item">
-            <NuxtLink :to="l.link" class="m-header__menu__item--link">{{ l.label }}</NuxtLink>
-          </li>
-        </ul>
+        <LHeaderMenu v-if="nav" :nav="nav" />
         <div class="m-header__auth">
           <template v-if="isLoggedin">
             <UIButton size="small" as="link" to="/dashboard">Mon dashboard</UIButton>
@@ -66,39 +62,15 @@ const isLoggedin = computed(() => useAuth().getUser() !== null)
     margin: 0 auto;
   }
 
-  &__menu {
-      display: flex;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      gap: rem(12);
-
-    &__item {
-      display: flex;
-      align-items: center;
-
-      &--item {
-        margin-right: rem(16);
-      }
-    }
-  }
-
-  &__menu__item--link {
-    font-weight: 600;
-    color: var(--mheader-text-color);
-    text-decoration: none;
-    padding: rem(8) rem(12);
-    border-radius: rem(9999);
-    transition: background-color 0.1s ease-in-out;
-
-    &:hover {
-      background-color: var(--color-primary-100);
-    }
-  }
+  
 
   &__auth {
     display: flex;
     gap: rem(8);
+  }
+
+  @include small-only {
+
   }
 }
 </style>
