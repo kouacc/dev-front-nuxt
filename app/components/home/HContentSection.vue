@@ -32,7 +32,6 @@ const props = defineProps<{
   }
 
   &__content {
-    margin-bottom: rem(16);
     padding: rem(24);
     flex: 1;
   }

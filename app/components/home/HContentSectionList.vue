@@ -8,8 +8,8 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div>
-    <UITitle type="heading2" >{{ props.title }}</UITitle>
+  <div class="h-content-sl">
+    <UITitle type="heading2" align="center" class="h-content-sl__title">{{ props.title }}</UITitle>
     <HContentSection
       v-for="(section, index) in props.content"
       :key="index"
@@ -17,3 +17,13 @@ const props = defineProps<{
     />
   </div>
 </template>
+
+<style lang="scss">
+.h-content-sl {
+  margin-top: rem(48);
+
+  &__title {
+    margin-bottom: rem(32);
+  }
+}
+</style>
