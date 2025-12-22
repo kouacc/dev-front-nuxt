@@ -1,9 +1,8 @@
 @use './functions' as *;
 
 :root {
-  --color-background: #fff;
+  --color-background: var(--color-primary-50);
   --color-text: #000;
-  --color-primary: green;
 
   --font-size-base: #{rem(14)};
 
