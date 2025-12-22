@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import LHeader from '~/components/layout/LHeader.vue'
 import type { SiteSettings } from '~/types/sanity.types'
 
 const nav_query = groq`*[_type == "siteSettings"][0]{title, description, mainNavigation}`
