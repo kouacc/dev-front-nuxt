@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import type { SiteSettings } from '~/types/sanity.types';
+import type { SiteSettings } from '~/types/sanity.types'
 
 defineProps<{
-  nav: SiteSettings['mainNavigation']
+  nav: SiteSettings['mainNavigation'];
 }>()
-
 </script>
 
 <template>
@@ -20,10 +19,15 @@ defineProps<{
 
 <style lang="scss">
 .m-header__menu {
-      display: flex;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      gap: rem(12);
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: rem(12);
+
+  @include medium-down {
+    flex-direction: column;
+    gap: rem(4);
+  }
 }
 </style>

@@ -28,6 +28,13 @@ const props = defineProps<{
     &:hover {
       background-color: var(--color-primary-100);
     }
+
+    @include medium-down {
+      display: block;
+      width: 100%;
+      padding: rem(12) rem(16);
+      font-size: rem(18);
+    }
   }
 }
 </style>
