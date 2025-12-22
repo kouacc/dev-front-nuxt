@@ -12,8 +12,7 @@ const props = defineProps<{
     <div class="h-section__content">
       <SanityContent :value="props.content.sectionBody" />
     </div>
-    <!-- <NuxtImg v-if="props.content.sectionImage" class="h-section__img" :src="useSanityImage(props.content.sectionImage)?.url()" /> -->
-    <NuxtImg class="h-section__img" src="https://placehold.co/600x400" />
+    <NuxtImg v-if="props.content.sectionImage" class="h-section__img" :src="useSanityImage(props.content.sectionImage)?.url()" />
   </div>
 </template>
 
