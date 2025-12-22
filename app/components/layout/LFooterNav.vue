@@ -1,3 +1,12 @@
+<script setup lang="ts">
+import type { SiteSettings } from '~/types/sanity.types'
+
+const props = defineProps<{
+  menu: NonNullable<SiteSettings['footerNavigation']>[number]
+}>()
+
+</script>
+
 <template>
   <nav>
     <span>{{ props.menu.title }}</span>

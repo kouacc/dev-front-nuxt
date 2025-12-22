@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import type { SiteSettings } from '~/types/sanity.types'
+
+const props = defineProps<{
+  nav: SiteSettings['footerNavigation'];
+}>()
+</script>
+
 <template>
   <footer class="m-footer">
     <LFooterNav v-for="(n, index) in props.nav" :key="index" :menu="n" />
