@@ -13,56 +13,9 @@ useSeoMeta({
 
 <template>
   <div>
-    <div class="hp-hero">
-      <div class="hp-hero__content">
-        <h1>{{ homepage?.heroTitle }}</h1>
-        <p>{{ homepage?.heroSubtitle }}</p>
-      </div>
-      <NuxtImg
-        v-if="homepage?.heroImage"
-        class="hp-hero__img"
-        :src="useSanityImage(homepage?.heroImage)?.url()"
-      />
-    </div>
+    <HHero v-if="homepage" :title="homepage.heroTitle" :subtitle="homepage.heroSubtitle" :image="homepage.heroImage" />
     <HContentSectionList v-if="homepage?.content && homepage?.contentTitle" :content="homepage.content" :title="homepage.contentTitle" />
   </div>
 </template>
 
-<style lang="scss">
-.hp-hero {
-  border-radius: rem(24);
-  width: 100%;
-  height: rem(300);
-  position: relative;
-  overflow: hidden;
-  padding: rem(24);
 
-  &__img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    object-fit: cover;
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-  }
-
-  &__content {
-    position: relative;
-    z-index: 1;
-    color: var(--color-white);
-  }
-
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: 1;
-    display: block;
-    }
-}
-</style>
