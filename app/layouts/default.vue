@@ -25,7 +25,7 @@ useSeoMeta({
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 15px;
-  margin-top: rem(40);
+  margin-top: rem(110);
 }
 
 body {
