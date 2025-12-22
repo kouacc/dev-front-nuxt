@@ -13,7 +13,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <LHeader :nav="settings?.mainNavigation" />
+  <LHeader :nav="settings?.mainNavigation || []" />
   <!-- eslint-disable-next-line vue/no-multiple-template-root -->
   <main class="container">
     <slot />
@@ -25,11 +25,11 @@ useSeoMeta({
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 15px;
-  margin-top: rem(40);
+  margin-top: rem(110);
 }
 
 body {
-  background-color: var(--color-primary-50);
+  background-color: var(--color-background);
   color: var(--color-text);
 }
 </style>
