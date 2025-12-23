@@ -58,5 +58,25 @@ defineProps({
   &__btn {
     margin-top: #{rem(24)};
   }
+
+  &__stack {
+    margin-top: #{rem(48)};
+    width: 100%;
+    text-align: left;
+  }
+
+  &__stack-content {
+    margin-top: #{rem(16)};
+    padding: #{rem(16)};
+    background-color: var(--color-grey-900);
+    color: var(--color-grey-100);
+    border-radius: #{rem(8)};
+    overflow-x: auto;
+    font-size: #{rem(12)};
+    line-height: 1.6;
+    font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
 }
 </style>
