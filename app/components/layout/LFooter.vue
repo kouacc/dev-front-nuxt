@@ -38,10 +38,72 @@ const currentYear = new Date().getFullYear()
 <style lang="scss">
 .m-footer {
   margin-top: rem(60);
-  padding: rem(20) 0;
-  text-align: center;
   font-size: rem(14);
   color: var(--color-text-secondary);
-  border-top: 1px solid var(--color-grey-200);
+  background-color: var(--color-grey-50);
+
+  &__top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: rem(48);
+    padding: rem(48) rem(80);
+    border-top: 1px solid var(--color-grey-200);
+
+    @include medium-down {
+      flex-direction: column;
+      padding: rem(32) rem(24);
+      gap: rem(32);
+    }
+  }
+
+  &__brand {
+    flex: 0 0 rem(280);
+    max-width: rem(320);
+
+    @include medium-down {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
+  }
+
+  &__logo {
+    display: inline-block;
+    text-decoration: none;
+    margin-bottom: rem(16);
+  }
+
+  &__description {
+    margin: 0 0 rem(20);
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+
+  &__navs {
+    display: flex;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+    gap: rem(32);
+    justify-content: flex-end;
+
+    @include medium-down {
+      justify-content: flex-start;
+    }
+  }
+
+  &__bottom {
+    padding: rem(20) rem(80);
+    border-top: 1px solid var(--color-grey-200);
+    background-color: var(--color-white);
+    text-align: center;
+
+    @include medium-down {
+      padding: rem(20) rem(24);
+    }
+  }
+
+  &__copyright {
+    margin: 0;
+    color: var(--color-text-tertiary);
+  }
 }
 </style>
