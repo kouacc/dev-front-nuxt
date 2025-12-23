@@ -13,6 +13,33 @@
  */
 
 // Source: schema.json
+export type LegalType = {
+  _id: string
+  _type: 'legalType'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  lastUpdated?: string
+  content?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+}
+
 export type Homepage = {
   _id: string
   _type: 'homepage'
@@ -101,6 +128,30 @@ export type SiteSettings = {
     label?: string
     link?: string
     _type: 'navigationItem'
+    _key: string
+  }>
+  footerImg?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  footerDescription?: string
+  footerNavigation?: Array<{
+    title?: string
+    items?: Array<{
+      label?: string
+      link?: string
+      _type: 'navigationItem'
+      _key: string
+    }>
+    _type: 'navigationMenu'
     _key: string
   }>
 }
@@ -294,6 +345,7 @@ export type Geopoint = {
 }
 
 export type AllSanitySchemaTypes =
+  | LegalType
   | Homepage
   | SanityImageCrop
   | SanityImageHotspot

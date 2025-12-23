@@ -1,7 +1,8 @@
+
 <script setup lang="ts">
 import type { SiteSettings } from '~/types/sanity.types'
 
-const nav_query = groq`*[_type == "siteSettings"][0]{title, description, mainNavigation}`
+const nav_query = groq`*[_type == "siteSettings"][0]{title, description, mainNavigation, footerNavigation, footerImg, footerDescription}`
 
 const { data: settings } = await useLazySanityQuery<SiteSettings>(nav_query)
 
@@ -14,10 +15,11 @@ useSeoMeta({
 
 <template>
   <LHeader :nav="settings?.mainNavigation || []" />
-  <!-- eslint-disable-next-line vue/no-multiple-template-root -->
   <main class="container">
     <slot />
   </main>
+  <!-- eslint-disable vue/no-multiple-template-root -->
+  <LFooter :nav="settings?.footerNavigation" :description="settings?.footerDescription" :img="settings?.footerImg" />
 </template>
 
 <style lang="scss">
