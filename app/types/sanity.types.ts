@@ -130,6 +130,19 @@ export type SiteSettings = {
     _type: 'navigationItem'
     _key: string
   }>
+  footerImg?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  footerDescription?: string
   footerNavigation?: Array<{
     title?: string
     items?: Array<{
