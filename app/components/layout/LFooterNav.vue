@@ -8,11 +8,11 @@ const props = defineProps<{
 </script>
 
 <template>
-  <nav>
-    <span>{{ props.menu.title }}</span>
-    <ul>
-      <li v-for="(i, index) in props.menu.items" :key="index">
-        <NuxtLink :to="i.link">{{ i.label }}</NuxtLink>
+  <nav class="m-footer-nav">
+    <span class="m-footer-nav__title">{{ props.menu.title }}</span>
+    <ul class="m-footer-nav__list">
+      <li v-for="(i, index) in props.menu.items" :key="index" class="m-footer-nav__item">
+        <NuxtLink class="m-footer-nav__link" :to="i.link">{{ i.label }}</NuxtLink>
       </li>
     </ul>
   </nav>
