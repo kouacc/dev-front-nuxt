@@ -12,7 +12,26 @@ const currentYear = new Date().getFullYear()
 
 <template>
   <footer class="m-footer">
-    <LFooterNav v-for="(n, index) in props.nav" :key="index" :menu="n" />
+    <div class="m-footer__top">
+      <div class="m-footer__brand">
+        <NuxtLink to="/" class="m-footer__logo">
+          <NuxtImg v-if="props.img" :src="useSanityImage(props.img)?.url()" />
+        </NuxtLink>
+        <p v-if="props.description" class="m-footer__description">
+          {{ props.description }}
+        </p>
+      </div>
+
+      <div class="m-footer__navs">
+        <LFooterNav v-for="(n, index) in props.nav" :key="index" :menu="n" />
+      </div>
+    </div>
+
+    <div class="m-footer__bottom">
+      <p class="m-footer__copyright">
+        © {{ currentYear }} RecipeBook. Tous droits réservés.
+      </p>
+    </div>
   </footer>
 </template>
 
