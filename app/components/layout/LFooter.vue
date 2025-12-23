@@ -3,7 +3,11 @@ import type { SiteSettings } from '~/types/sanity.types'
 
 const props = defineProps<{
   nav: SiteSettings['footerNavigation'];
+  description: SiteSettings['footerDescription'];
+  img: SiteSettings['footerImg'];
 }>()
+
+const currentYear = new Date().getFullYear()
 </script>
 
 <template>
