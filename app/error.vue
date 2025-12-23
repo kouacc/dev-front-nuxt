@@ -20,6 +20,12 @@ defineProps({
         Retour à l'accueil
       </UIButton>
 
+      <DevOnly>
+        <div v-if="error?.stack" class="error-page__stack">
+          <UITitle type="heading4"> Stack Trace </UITitle>
+          <pre class="error-page__stack-content">{{ error.stack }}</pre>
+        </div>
+      </DevOnly>
     </div>
   </div>
 </template>
