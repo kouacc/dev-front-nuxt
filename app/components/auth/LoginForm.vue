@@ -35,7 +35,7 @@ const submitLoginForm = async () => {
       size="large"
       required
     />
-    <UIButton type="button" class="login-form__submit" @click="submitLoginForm">Se connecter</UIButton>
+    <UIButton as="button" type="submit" class="login-form__submit" @click="submitLoginForm">Se connecter</UIButton>
   </form>
 </template>
 
