@@ -6,6 +6,10 @@ const { slug } = useRoute().params
 const query = groq`*[_id == "${slug}"][0]`
 
 const { data: page } = await useLazySanityQuery<LegalType>(query)
+
+if (!page.value) {
+  throw createError({ statusCode: 404, statusMessage: 'Page not found' })
+}
 </script>
 
 <template>
