@@ -7,3 +7,17 @@ const model = defineModel({ type: String, default: '' })
     <slot />
   </select>
 </template>
+
+<style lang="scss">
+.ui-select {
+  --select-text-color: var(--color-text);
+  --select-bg-color: #000000;
+  --select-border-radius: #{rem(8)};
+  --select-padding: #{rem(12)} #{rem(12)};
+
+  color: var(--select-text-color);
+  background-color: var(--select-bg-color);
+  border-radius: var(--select-border-radius);
+  padding: var(--select-padding);
+}
+</style>
