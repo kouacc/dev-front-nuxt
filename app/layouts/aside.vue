@@ -12,6 +12,7 @@
   main {
     margin-left: rem(300);
     padding: rem(24);
+    min-height: 100vh;
   }
 
   aside {
