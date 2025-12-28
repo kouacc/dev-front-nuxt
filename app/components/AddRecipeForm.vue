@@ -63,13 +63,12 @@ const onSubmit = async () => {
   <form @submit.prevent="onSubmit">
     <UIInput v-model="formContent.title" label="Titre" required />
     <UIInput v-model="formContent.description" label="Description" required />
-    <select v-model="formContent.cuisine_id" required>
-      <option v-for="(cuisine, index) in cuisines" :key="index" :value="cuisine.cuisine_id">{{ cuisine.name }}</option>
-    </select>
-    <select v-model="formContent.goal_id" required>
-      <option v-for="(goal, index) in goals" :key="index" :value="goal.goal_id">{{ goal.name }}</option>
-    </select>
-    <button type="submit">Envoyer</button>
+    <UISelect v-model="formContent.cuisine_id" required>
+      <UISelectOption v-for="(cuisine, index) in cuisines" :key="index" :value="cuisine.cuisine_id">{{ cuisine.name }}</UISelectOption>
+    </UISelect>
+    <UISelect v-model="formContent.goal_id" required>
+      <UISelectOption v-for="(goal, index) in goals" :key="index" :value="goal.goal_id">{{ goal.name }}</UISelectOption>
+    </UISelect>
     <UIButton as="button" type="submit">Envoyer</UIButton>
   </form>
 </template> 
