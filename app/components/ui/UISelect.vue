@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<SelectProps>(), {
   name: undefined
 })
 
-const model = defineModel({ type: String, default: '' })
+const model = defineModel<unknown>()
 </script>
 
 <template>
