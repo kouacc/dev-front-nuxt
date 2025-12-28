@@ -7,7 +7,7 @@ const model = defineModel({ type: String, default: '' })
 </script>
 
 <template>
-  <select v-bind="$attrs" v-model="model" class="ui-select">
+  <select v-bind="props" v-model="model" class="ui-select" :size="props.multiple ? 1 : undefined">
     <UISelectOption v-if="props.placeholder" value="" disabled>{{ props.placeholder }}</UISelectOption>
     <slot />
   </select>
