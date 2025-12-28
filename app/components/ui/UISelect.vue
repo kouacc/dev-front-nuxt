@@ -30,6 +30,10 @@ const model = defineModel({ type: String, default: '' })
   transition: 0.4s;
   min-width: #{rem(200)};
 
+  &[multiple] {
+    appearance: menulist-button;
+  }
+
   &::picker(select) {
     appearance: base-select;
     border-radius: var(--select-border-radius);
