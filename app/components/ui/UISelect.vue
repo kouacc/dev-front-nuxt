@@ -30,5 +30,13 @@ const model = defineModel({ type: String, default: '' })
   transition: 0.4s;
   min-width: #{rem(200)};
 
+  &::picker(select) {
+    appearance: base-select;
+    border-radius: var(--select-border-radius);
+    background-color: var(--select-bg-color);
+    color: var(--select-text-color);
+    border: 1px solid var(--select-border-color);
+
+  }
 }
 </style>
