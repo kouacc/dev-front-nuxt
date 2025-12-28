@@ -26,5 +26,9 @@ const model = defineModel({ type: String, default: '' })
   border: 1px solid var(--select-border-color);
   border-radius: var(--select-border-radius);
   padding: var(--select-padding);
+  appearance: base-select;
+  transition: 0.4s;
+  min-width: #{rem(200)};
+
 }
 </style>
