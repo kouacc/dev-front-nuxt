@@ -1,7 +1,14 @@
 <script setup lang="ts">
-import type { SelectHTMLAttributes } from 'vue'
+interface SelectProps {
+  placeholder?: string;
+  multiple?: boolean;
+  disabled?: boolean;
+  required?: boolean;
+  name?: string;
+  autofocus?: boolean;
+}
 
-const props = defineProps<SelectHTMLAttributes & { placeholder?: string }>()
+const props = defineProps<SelectProps>()
 
 const model = defineModel({ type: String, default: '' })
 </script>
