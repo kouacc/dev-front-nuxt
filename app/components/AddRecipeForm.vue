@@ -69,7 +69,7 @@ const onSubmit = async () => {
   <form class="fr-createrecipe" @submit.prevent="onSubmit">
     <UITitle type="heading2">Informations</UITitle>
     <UIInput v-model="formContent.title" label="Titre" required />
-    <UIInput v-model="formContent.description" label="Description" required />
+    <UIInput v-model="formContent.description" label="Description" required :disabled="recipeId !== null" />
     <div class="fr-createrecipe__selects">
       <UISelect v-model="formContent.cuisine_id" required label="Cuisine" :disabled="recipeId !== null">
         <UISelectOption v-for="(cuisine, index) in cuisines" :key="index" :value="cuisine.cuisine_id">{{ cuisine.name }}</UISelectOption>
