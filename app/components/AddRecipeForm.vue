@@ -21,6 +21,8 @@ const formContent = reactive<AddRecipeForm & { clear: () => void }>({
   }
 })
 
+const recipeId = ref<number | null>(null)
+
 const [{ data: cuisines }, { data: goals }] = await Promise.all([
   useAsyncData('cuisines', async () => {
     const { data } = await $fetch<APIResponse<Cuisine[]>>('/cuisines', {
@@ -47,12 +49,16 @@ const onSubmit = async () => {
     body: formContent,
     onResponse ({ response }) {
       if (response.status === 201) {
+        const data = response._data as APIResponse<{ recipe_id: number; title: string; description: string }>
         toast.addToast({
           title: 'Recette ajoutée',
           message: 'Votre recette a bien été ajoutée.',
           type: 'success'
         })
-        formContent.clear()
+
+        formContent.title = data.data.title
+        formContent.description = data.data.description
+        recipeId.value = data.data.recipe_id
       }
     }
   })
