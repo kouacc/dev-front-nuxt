@@ -28,6 +28,16 @@ const model = defineModel<unknown>()
 </template>
 
 <style lang="scss">
+.ui-select-container {
+  display: flex;
+  flex-direction: column;
+
+  > .ui-select__label {
+    font-size: rem(16);
+    font-weight: 500;
+    margin-bottom: rem(8);
+  }
+}
 .ui-select {
   --select-text-color: var(--color-text);
   --select-bg-color: var(--color-white);
