@@ -19,9 +19,11 @@ const model = defineModel({ type: String, default: '' })
   --select-bg-color: var(--color-white);
   --select-border-radius: #{rem(8)};
   --select-padding: #{rem(12)} #{rem(12)};
+  --select-border-color: var(--color-grey-200);
 
   color: var(--select-text-color);
   background-color: var(--select-bg-color);
+  border: 1px solid var(--select-border-color);
   border-radius: var(--select-border-radius);
   padding: var(--select-padding);
 }
