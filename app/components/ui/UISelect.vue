@@ -1,10 +1,9 @@
 <script setup lang="ts">
-const props = defineProps<{
-  placeholder?: string
-}>()
+import type { SelectHTMLAttributes } from 'vue'
+
+const props = defineProps<SelectHTMLAttributes & { placeholder?: string }>()
 
 const model = defineModel({ type: String, default: '' })
-
 </script>
 
 <template>
