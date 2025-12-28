@@ -40,6 +40,29 @@ const [{ data: cuisines }, { data: goals }] = await Promise.all([
 
 
 const onSubmit = async () => {
+  if (recipeId.value !== null) {
+    await $fetch(`/recipes/${recipeId.value}/title`, {
+      method: 'PUT',
+      baseURL: useRuntimeConfig().public.apiUrl,
+      headers: {
+        Authorization: `Bearer ${useCookie('user-token').value}`
+      },
+      body: {
+        title: formContent.title
+      },
+      onResponse ({ response }) {
+        if (response.status === 200) {
+          toast.addToast({
+            title: 'Recette modifiée',
+            message: 'Votre recette a bien été modifiée.',
+            type: 'success'
+          })
+        }
+      }
+    })
+    return
+  }
+
   await $fetch('/recipes', {
     method: 'POST',
     baseURL: useRuntimeConfig().public.apiUrl,
