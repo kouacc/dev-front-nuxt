@@ -81,3 +81,29 @@ const onSubmit = async () => {
     <UIButton as="button" type="submit">{{ recipeId ? 'Modifier' : 'Envoyer' }}</UIButton>
   </form>
 </template>
+
+<style lang="scss">
+.fr-createrecipe {
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: rem(16);
+  padding: rem(24);
+  border-radius: rem(8);
+  border: 1px solid var(--color-grey-200);
+
+  > *:not(button) {
+    width: 100%;
+  }
+
+  &__selects {
+    display: flex;
+    gap: rem(16);
+
+    > * {
+      flex: 1;
+    }
+  }
+}
+</style>
