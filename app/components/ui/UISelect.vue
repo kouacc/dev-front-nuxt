@@ -38,6 +38,10 @@ const model = defineModel({ type: String, default: '' })
     color: var(--select-text-color);
     border: 1px solid var(--select-border-color);
 
+    top: calc(anchor(bottom) + 2px);
+    padding: #{rem(4)} #{rem(4)};
+  }
+
   &::picker-icon {
     transition: 0.4s rotate;
     content: var(--select-picker-icon);
