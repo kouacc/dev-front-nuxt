@@ -1,5 +1,10 @@
 <script setup lang="ts">
+const props = defineProps<{
+  placeholder?: string
+}>()
+
 const model = defineModel({ type: String, default: '' })
+
 </script>
 
 <template>
