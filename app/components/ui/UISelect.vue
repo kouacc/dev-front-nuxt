@@ -16,7 +16,7 @@ const model = defineModel({ type: String, default: '' })
 <style lang="scss">
 .ui-select {
   --select-text-color: var(--color-text);
-  --select-bg-color: #000000;
+  --select-bg-color: var(--color-white);
   --select-border-radius: #{rem(8)};
   --select-padding: #{rem(12)} #{rem(12)};
 
