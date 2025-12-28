@@ -66,15 +66,18 @@ const onSubmit = async () => {
 </script>
 
 <template>
-  <form @submit.prevent="onSubmit">
+  <form class="fr-createrecipe" @submit.prevent="onSubmit">
+    <UITitle type="heading2">Informations</UITitle>
     <UIInput v-model="formContent.title" label="Titre" required />
     <UIInput v-model="formContent.description" label="Description" required />
-    <UISelect v-model="formContent.cuisine_id" required>
-      <UISelectOption v-for="(cuisine, index) in cuisines" :key="index" :value="cuisine.cuisine_id">{{ cuisine.name }}</UISelectOption>
-    </UISelect>
-    <UISelect v-model="formContent.goal_id" required>
-      <UISelectOption v-for="(goal, index) in goals" :key="index" :value="goal.goal_id">{{ goal.name }}</UISelectOption>
-    </UISelect>
-    <UIButton as="button" type="submit">Envoyer</UIButton>
+    <div class="fr-createrecipe__selects">
+      <UISelect v-model="formContent.cuisine_id" required label="Cuisine" :disabled="recipeId !== null">
+        <UISelectOption v-for="(cuisine, index) in cuisines" :key="index" :value="cuisine.cuisine_id">{{ cuisine.name }}</UISelectOption>
+      </UISelect>
+      <UISelect v-model="formContent.goal_id" required label="Goal" :disabled="recipeId !== null">
+        <UISelectOption v-for="(goal, index) in goals" :key="index" :value="goal.goal_id">{{ goal.name }}</UISelectOption>
+      </UISelect>
+    </div>
+    <UIButton as="button" type="submit">{{ recipeId ? 'Modifier' : 'Envoyer' }}</UIButton>
   </form>
-</template> 
+</template>
