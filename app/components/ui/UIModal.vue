@@ -22,3 +22,19 @@ const open = defineModel<boolean>({ default: false });
         </div>
     </div>
 </template>
+<style lang="scss">
+.ui-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  padding: rem(16);
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
