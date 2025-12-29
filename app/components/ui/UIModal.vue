@@ -13,6 +13,9 @@ const open = defineModel<boolean>({ default: false });
         <div v-if="open" class="ui-modal-dialog">
           <div class="ui-modal-dialog__header">
             <UITitle type="heading2">{{ props.title }}</UITitle>
+            <button class="ui-modal-dialog__close" @click="open = false">
+              <Icon name="lucide:x" />
+            </button>
           </div>
 
           <div class="ui-modal-dialog__content">
@@ -60,6 +63,27 @@ const open = defineModel<boolean>({ default: false });
       padding: rem(16);
       border-bottom: 1px solid var(--color-grey-200);
       flex-shrink: 0;
+
+    &__close {
+      position: absolute;
+      top: rem(16);
+      right: rem(16);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: rem(16);
+      color: var(--color-text);
+      padding: rem(8);
+      background-color: transparent;
+      border-radius: rem(4);
+      display: flex;
+      z-index: 1;
+
+      &:hover {
+        color: var(--color-primary);
+        background-color: var(--color-grey-100);
+      }
+    }
     }
 }
 
