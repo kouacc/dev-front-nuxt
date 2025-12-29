@@ -11,6 +11,19 @@ const { data: ingredients } = await useAsyncData('ingredients', async () => {
   })
   return data
 })
+
+const selectedIngredients = ref<{ ingredient_id: number; quantity: string }[]>([
+  { ingredient_id: 0, quantity: '1' }
+])
+
+const addIngredient = () => {
+  selectedIngredients.value.push({ ingredient_id: 0, quantity: '1' })
+}
+
+const removeIngredient = (index: number) => {
+  selectedIngredients.value.splice(index, 1)
+}
+
 </script>
 
 <template>
