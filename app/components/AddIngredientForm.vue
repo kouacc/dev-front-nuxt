@@ -24,6 +24,42 @@ const removeIngredient = (index: number) => {
   selectedIngredients.value.splice(index, 1)
 }
 
+const onSubmit = async () => {
+  if (!props.recipeId) {
+    toast.addToast({
+      title: 'Erreur',
+      message: 'Veuillez d\'abord créer une recette.',
+      type: 'error'
+    })
+    return
+  }
+
+  const validIngredients = selectedIngredients.value.filter(i => i.ingredient_id !== 0)
+  
+  await $fetch(`/recipes/${props.recipeId}/ingredients`, {
+    method: 'POST',
+    baseURL: useRuntimeConfig().public.apiUrl,
+    headers: {
+      Authorization: `Bearer ${useCookie('user-token').value}`
+    },
+    body: validIngredients,
+    onResponse ({ response }) {
+      if (response.status !== 201) {
+        toast.addToast({
+          title: 'Erreur',
+          message: 'Une erreur est survenue lors de l\'ajout des ingrédients.',
+          type: 'error'
+        })
+        return
+      }
+      toast.addToast({
+        title: 'Ingrédients ajoutés',
+        message: 'Les ingrédients ont bien été ajoutés à la recette.',
+        type: 'success'
+      })
+    }
+  })
+}
 </script>
 
 <template>
