@@ -81,5 +81,13 @@ const onSubmit = async () => {
   > *:not(button) {
     width: 100%;
   }
+
+  &__title {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
 }
 </style>
