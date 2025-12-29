@@ -85,3 +85,44 @@ const onSubmit = async () => {
     <UIButton as="button" type="submit">Envoyer</UIButton>
   </form>
 </template>
+
+<style lang="scss">
+.fr-addingredient {
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: rem(16);
+  padding: rem(24);
+  border-radius: rem(8);
+  border: 1px solid var(--color-grey-200);
+
+  > *:not(button) {
+    width: 100%;
+  }
+
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__row {
+    display: flex;
+    align-items: flex-end;
+    gap: rem(8);
+    width: 100%;
+    padding: rem(8);
+    border-radius: rem(8);
+    border: 1px solid var(--color-grey-200);
+
+    &__select {
+      flex: 2;
+    }
+
+    &__quantity {
+      flex: 1;
+    }
+  }
+}
+</style>
