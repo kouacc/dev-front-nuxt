@@ -65,3 +65,21 @@ const onSubmit = async () => {
     <UIButton as="button" type="submit">Envoyer</UIButton>
   </form>
 </template>
+
+<style lang="scss">
+.fr-addinstruction {
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: rem(16);
+  padding: rem(24);
+  border-radius: rem(8);
+  border: 1px solid var(--color-grey-200);
+  flex-grow: 1;
+
+  > *:not(button) {
+    width: 100%;
+  }
+}
+</style>
