@@ -84,6 +84,13 @@ const open = defineModel<boolean>({ default: false });
         background-color: var(--color-grey-100);
       }
     }
+
+    &__content {
+      padding: rem(16);
+      overflow-y: auto;
+      flex: 1;
+
+    }
     }
 }
 
