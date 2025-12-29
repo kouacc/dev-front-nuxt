@@ -124,6 +124,9 @@ const open = defineModel<boolean>({ default: false });
         padding: rem(12);
         flex-direction: column;
 
+        :deep(button) {
+          width: 100%;
+        }
       }
     }
   }
