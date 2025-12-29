@@ -91,7 +91,18 @@ const open = defineModel<boolean>({ default: false });
       flex: 1;
 
     }
+
+    &__footer {
+      padding: rem(16);
+      border-top: 1px solid var(--color-grey-200);
+      text-align: right;
+      flex-shrink: 0;
+      display: flex;
+      gap: rem(8);
+      justify-content: flex-end;
+
     }
+  }
 }
 
 .modal-overlay-enter-active,
