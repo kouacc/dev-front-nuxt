@@ -89,5 +89,28 @@ const onSubmit = async () => {
     align-items: center;
   }
 
+  &__instruction {
+    display: flex;
+    align-items: center;
+    gap: rem(8);
+    width: 100%;
+    padding: rem(8);
+    border-radius: rem(8);
+    border: 1px solid var(--color-grey-200);
+
+    &__stepn {
+      font-size: rem(12);
+      width: rem(32);
+      height: rem(32);
+      display: grid;
+      place-items: center;
+      background-color: var(--color-primary-100);
+      border-radius: 50%;
+    }
+
+    &__input {
+      flex-grow: 1;
+    }
+  }
 }
 </style>
