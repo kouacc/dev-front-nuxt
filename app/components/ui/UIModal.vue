@@ -41,6 +41,22 @@ const open = defineModel<boolean>({ default: false });
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &-dialog {
+    position: relative;
+    background-color: var(--color-white);
+    border-radius: rem(8);
+    width: 100%;
+    max-width: rem(500);
+    max-height: calc(100vh - rem(32));
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+
+}
+
 .modal-overlay-enter-active,
 .modal-overlay-leave-active {
   transition: opacity 0.3s ease;
