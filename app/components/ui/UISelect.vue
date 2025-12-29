@@ -6,9 +6,16 @@ interface SelectProps {
   required?: boolean;
   name?: string;
   autofocus?: boolean;
+  size?: 'medium' | 'large';
+  anchor?: 'top' | 'bottom' | 'left' | 'right';
 }
 
-const props = defineProps<SelectProps>()
+const props = withDefaults(defineProps<SelectProps>(), {
+  size: 'medium',
+  anchor: 'bottom',
+  placeholder: undefined,
+  name: undefined
+})
 
 const model = defineModel({ type: String, default: '' })
 </script>
