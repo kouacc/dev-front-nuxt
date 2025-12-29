@@ -21,6 +21,41 @@ const errors = reactive({
     this.unit = ''
   }
 })
+
+const isAbbreviation = (value: string): boolean => {
+  const trimmed = value.trim()
+
+  if (trimmed.length <= 3) return true
+  if (trimmed.endsWith('.')) return true
+
+  if (/^[bcdfghjklmnpqrstvwxz]+$/i.test(trimmed) && trimmed.length <= 4) return true
+  return false
+}
+
+const validateForm = (): boolean => {
+  errors.clear()
+  let isValid = true
+
+  if (!formContent.name.trim()) {
+    errors.name = 'Le nom de l\'ingrédient est requis.'
+    isValid = false
+  } else if (ingredients.value.some(
+    ing => ing.name.toLowerCase() === formContent.name.trim().toLowerCase()
+  )) {
+    errors.name = 'Cet ingrédient existe déjà.'
+    isValid = false
+  }
+
+  if (!formContent.unit.trim()) {
+    errors.unit = 'L\'unité est requise.'
+    isValid = false
+  } else if (isAbbreviation(formContent.unit)) {
+    errors.unit = 'Veuillez utiliser le nom complet de l\'unité (ex: grammes, millilitres, pièces).'
+    isValid = false
+  }
+
+  return isValid
+}
 const onClose = () => {
   formContent.clear()
   errors.clear()
