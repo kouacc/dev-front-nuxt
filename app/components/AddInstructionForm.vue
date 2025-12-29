@@ -50,11 +50,17 @@ const onSubmit = async () => {
 </script>
 
 <template>
-  <form @submit.prevent="onSubmit">
-    <UIButton type="button" size="small" @click="addInstruction">Ajouter une instruction</UIButton>
-    <div v-for="i in instructions" :key="i.step">
-      <UIInput v-model="i.description" :label="`Étape ${i.step}`" :required="i.step === 1" />
-      <UIButton type="button" size="small" variant="ghost" :disabled="i.step === 1" @click="deleteInstruction(i.step)">Supprimer l'instruction</UIButton>
+  <form class="fr-addinstruction" @submit.prevent="onSubmit">
+    <div class="fr-addinstruction__title">
+      <UITitle type="heading2">Instructions</UITitle>
+      <UIButton type="button" size="small" @click="addInstruction"><Icon name="lucide:plus" />Ajouter</UIButton>
+    </div>
+    <div v-for="i in instructions" :key="i.step" class="fr-addinstruction__instruction">
+      <span class="fr-addinstruction__instruction__stepn">{{ i.step }}</span>
+      <UIInput v-model="i.description" class="fr-addinstruction__instruction__input" :required="i.step === 1" />
+      <UIButton type="button" size="small" variant="ghost" :disabled="i.step === 1" @click="deleteInstruction(i.step)">
+        <Icon name="lucide:x" />
+      </UIButton>
     </div>
     <UIButton as="button" type="submit">Envoyer</UIButton>
   </form>
