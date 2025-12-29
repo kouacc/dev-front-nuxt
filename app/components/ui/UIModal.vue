@@ -7,7 +7,9 @@ const open = defineModel<boolean>({ default: false });
 </script>
 
 <template>
+  <Transition name="modal-overlay">
     <div v-if="open" class="ui-modal">
+      <Transition>
         <div v-if="open" class="ui-modal-dialog">
           <div class="ui-modal-dialog__header">
             <UITitle type="heading2">{{ props.title }}</UITitle>
@@ -20,8 +22,11 @@ const open = defineModel<boolean>({ default: false });
             <slot name="footer" />
           </div>
         </div>
+      </Transition>
     </div>
+  </Transition>
 </template>
+
 <style lang="scss">
 .ui-modal {
   position: fixed;
@@ -36,5 +41,22 @@ const open = defineModel<boolean>({ default: false });
   display: flex;
   align-items: center;
   justify-content: center;
+.modal-overlay-enter-active,
+.modal-overlay-leave-active {
+  transition: opacity 0.3s ease;
+}
+.modal-overlay-enter-from,
+.modal-overlay-leave-to {
+  opacity: 0;
+}
+
+.modal-content-enter-active,
+.modal-content-leave-active {
+  transition: all 0.3s ease;
+}
+.modal-content-enter-from,
+.modal-content-leave-to {
+  opacity: 0;
+  transform: scale(0.95);
 }
 </style>
