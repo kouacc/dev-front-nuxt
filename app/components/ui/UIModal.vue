@@ -3,7 +3,7 @@ const props = defineProps<{
   title: string;
 }>()
 
-const open = defineModel<boolean>({ default: false });
+const open = defineModel<boolean>({ default: false })
 </script>
 
 <template>
