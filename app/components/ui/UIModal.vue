@@ -55,6 +55,12 @@ const open = defineModel<boolean>({ default: false });
     flex-direction: column;
     margin: auto;
 
+
+    &__header {
+      padding: rem(16);
+      border-bottom: 1px solid var(--color-grey-200);
+      flex-shrink: 0;
+    }
 }
 
 .modal-overlay-enter-active,
