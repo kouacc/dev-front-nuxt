@@ -21,7 +21,7 @@ const formContent = reactive<AddRecipeForm & { clear: () => void }>({
   }
 })
 
-const recipeId = ref<number | null>(null)
+const recipeId = defineModel<number | null>()
 
 const [{ data: cuisines }, { data: goals }] = await Promise.all([
   useAsyncData('cuisines', async () => {
@@ -115,6 +115,7 @@ const onSubmit = async () => {
   padding: rem(24);
   border-radius: rem(8);
   border: 1px solid var(--color-grey-200);
+  flex-grow: 0;
 
   > *:not(button) {
     width: 100%;
