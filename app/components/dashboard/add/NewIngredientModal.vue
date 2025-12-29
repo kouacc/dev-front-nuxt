@@ -56,6 +56,40 @@ const validateForm = (): boolean => {
 
   return isValid
 }
+
+const onSubmit = async () => {
+  if (!validateForm()) return
+
+  await $fetch('/ingredients', {
+    method: 'POST',
+    baseURL: useRuntimeConfig().public.apiUrl,
+    headers: {
+      Authorization: `Bearer ${useCookie('user-token').value}`
+    },
+    body: formContent,
+    onResponse ({ response }) {
+      if (response.status !== 201) {
+        toast.addToast({
+          title: 'Erreur',
+          message: 'Une erreur est survenue lors de la création de l\'ingrédient.',
+          type: 'error'
+        })
+        return
+      }
+      const data = response._data as APIResponse<Omit<Ingredient, 'quantity'>>
+      ingredients.value = [...ingredients.value, data.data]
+      toast.addToast({
+        title: 'Ingrédient créé',
+        message: 'L\'ingrédient a bien été créé.',
+        type: 'success'
+      })
+      formContent.clear()
+      errors.clear()
+      open.value = false
+    }
+  })
+}
+
 const onClose = () => {
   formContent.clear()
   errors.clear()
