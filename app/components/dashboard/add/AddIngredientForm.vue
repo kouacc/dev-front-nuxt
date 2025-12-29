@@ -12,6 +12,8 @@ const { data: ingredients } = await useAsyncData('ingredients', async () => {
   return data
 })
 
+const modal = ref<boolean>(false)
+
 const selectedIngredients = ref<{ ingredient_id: number; quantity: string }[]>([
   { ingredient_id: 0, quantity: '1' }
 ])
@@ -66,9 +68,12 @@ const onSubmit = async () => {
   <form class="fr-addingredient" @submit.prevent="onSubmit">
     <div class="fr-addingredient__title">
       <UITitle type="heading2">Ingrédients</UITitle>
-      <UIButton type="button" size="small" @click="addIngredient">
-        <Icon name="lucide:plus" />Ajouter
-      </UIButton>
+      <div class="fr-addingredient__btns">
+        <UIButton  type="button" size="small" variant="ghost" @click="modal = true">Créer un nouvel ingrédient</UIButton>
+        <UIButton type="button" size="small" @click="addIngredient">
+          <Icon name="lucide:plus" />Ajouter
+        </UIButton>
+      </div>
     </div>
     <div v-for="(item, index) in selectedIngredients" :key="index" class="fr-addingredient__row">
       <UISelect v-model="item.ingredient_id" label="Ingrédient" class="fr-addingredient__row__select">
@@ -84,6 +89,7 @@ const onSubmit = async () => {
     </div>
     <UIButton as="button" type="submit">Envoyer</UIButton>
   </form>
+  <NewIngredientModal v-if="ingredients" v-model:open="modal" v-model:ingredients="ingredients" />
 </template>
 
 <style lang="scss">
@@ -105,6 +111,11 @@ const onSubmit = async () => {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  &__btns {
+    display: flex;
+    gap: rem(8);
   }
 
   &__row {
