@@ -21,7 +21,7 @@ const model = defineModel({ type: String, default: '' })
 </script>
 
 <template>
-  <select v-bind="props" v-model="model" class="ui-select" :size="props.multiple ? 1 : undefined">
+  <select v-bind="props" v-model="model" :class="['ui-select', `-${props.size}`, `-anchor-${props.anchor}`]" :size="props.multiple ? 1 : undefined">
     <UISelectOption v-if="props.placeholder" value="" disabled>{{ props.placeholder }}</UISelectOption>
     <slot />
   </select>
@@ -61,8 +61,22 @@ const model = defineModel({ type: String, default: '' })
     padding: #{rem(4)} #{rem(4)};
   }
 
+  &.-anchor-bottom::picker(select) {
     top: calc(anchor(bottom) + 2px);
-    padding: #{rem(4)} #{rem(4)};
+  }
+
+  &.-anchor-top::picker(select) {
+    bottom: calc(anchor(top) + 2px);
+  }
+
+  &.-anchor-left::picker(select) {
+    right: calc(anchor(left) + 2px);
+    top: anchor(top);
+  }
+
+  &.-anchor-right::picker(select) {
+    left: calc(anchor(right) + 2px);
+    top: anchor(top);
   }
 
   &::picker-icon {
