@@ -58,11 +58,22 @@ const open = defineModel<boolean>({ default: false });
     flex-direction: column;
     margin: auto;
 
+    @include small-only {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 0;
+      margin: 0;
+    }
 
     &__header {
       padding: rem(16);
       border-bottom: 1px solid var(--color-grey-200);
       flex-shrink: 0;
+
+      @include small-only {
+        padding: rem(12);
+      }
+    }
 
     &__close {
       position: absolute;
@@ -79,6 +90,11 @@ const open = defineModel<boolean>({ default: false });
       display: flex;
       z-index: 1;
 
+      @include small-only {
+        top: rem(8);
+        right: rem(8);
+      }
+
       &:hover {
         color: var(--color-primary);
         background-color: var(--color-grey-100);
@@ -90,6 +106,9 @@ const open = defineModel<boolean>({ default: false });
       overflow-y: auto;
       flex: 1;
 
+      @include small-only {
+        padding: rem(12);
+      }
     }
 
     &__footer {
@@ -101,6 +120,11 @@ const open = defineModel<boolean>({ default: false });
       gap: rem(8);
       justify-content: flex-end;
 
+      @include small-only {
+        padding: rem(12);
+        flex-direction: column;
+
+      }
     }
   }
 }
