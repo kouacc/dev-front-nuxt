@@ -4,14 +4,20 @@ definePageMeta({
   layout: 'aside'
 })
 
+const recipeId = ref<number | null>(null)
 </script>
 
 <template>
-  <div>
+  <div class="p-dashboard-add-wrapper">
     <UITitle>Créer une nouvelle recette</UITitle>
     <div class="p-dashboard-add">
-      <AddRecipeForm />
-      <AddInstructionForm recipe-id="1" />
+      <div class="p-dashboard-add__left">
+        <AddRecipeForm v-model="recipeId" />
+        <AddIngredientForm :recipe-id="recipeId" />
+      </div>
+      <div class="p-dashboard-add__right">
+        <AddInstructionForm :recipe-id="recipeId" />
+      </div>
     </div>
   </div>
 </template>
