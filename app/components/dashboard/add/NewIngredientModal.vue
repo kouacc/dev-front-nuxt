@@ -21,6 +21,11 @@ const errors = reactive({
     this.unit = ''
   }
 })
+const onClose = () => {
+  formContent.clear()
+  errors.clear()
+  open.value = false
+}
 </script>
 
 <template>
