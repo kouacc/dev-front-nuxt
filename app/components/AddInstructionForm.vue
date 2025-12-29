@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const props = defineProps<{
-  recipeId: string
+  recipeId: number | null
 }>()
 
 const toast = useToast()
