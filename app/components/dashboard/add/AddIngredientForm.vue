@@ -107,8 +107,9 @@ const onSubmit = async () => {
   padding: rem(24);
   border-radius: rem(8);
   border: 1px solid var(--color-grey-200);
+  height: 100%;
 
-  > *:not(button) {
+  > *:not(button, .ui-tooltip) {
     width: 100%;
   }
 
