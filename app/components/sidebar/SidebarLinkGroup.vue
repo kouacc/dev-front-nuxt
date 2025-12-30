@@ -6,8 +6,8 @@ defineProps<{
 
 <template>
   <nav class="sidebar-link-group">
-    <ul>
-      <li v-for="link in links" :key="link.to">
+    <ul class="sidebar-link-group__list">
+      <li v-for="link in links" :key="link.to" class="sidebar-link-group__list-item">
         <SidebarLink :to="link.to" :label="link.label" :icon="link.icon" />
       </li>
     </ul>
@@ -16,7 +16,8 @@ defineProps<{
 
 <style lang="scss">
 .sidebar-link-group {
-  ul {
+  
+  &__list {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -26,7 +27,7 @@ defineProps<{
     border-radius: rem(12);
     padding: rem(4);
 
-    > li {
+    &-item {
       width: 100%;
       display: block;
 
