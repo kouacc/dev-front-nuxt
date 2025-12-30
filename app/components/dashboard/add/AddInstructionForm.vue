@@ -55,14 +55,15 @@ const onSubmit = async () => {
       <UITitle type="heading2">Instructions</UITitle>
       <UIButton type="button" size="small" @click="addInstruction"><Icon name="lucide:plus" />Ajouter</UIButton>
     </div>
-    <div v-for="i in instructions" :key="i.step" class="fr-addinstruction__instruction">
-      <span class="fr-addinstruction__instruction__stepn">{{ i.step }}</span>
-      <UIInput v-model="i.description" class="fr-addinstruction__instruction__input" :required="i.step === 1" />
-      <UIButton type="button" size="small" variant="ghost" :disabled="i.step === 1" @click="deleteInstruction(i.step)">
-        <Icon name="lucide:x" />
-      </UIButton>
-    </div>
-    <UIButton as="button" type="submit">Envoyer</UIButton>
+    <ul class="fr-addinstruction__list">
+      <li v-for="i in instructions" :key="i.step" class="fr-addinstruction__instruction">
+        <span class="fr-addinstruction__instruction__stepn">{{ i.step }}</span>
+        <UIInput v-model="i.description" class="fr-addinstruction__instruction__input" :required="i.step === 1" />
+        <UIButton type="button" size="small" variant="ghost" :disabled="i.step === 1" @click="deleteInstruction(i.step)">
+          <Icon name="lucide:x" />
+        </UIButton>
+      </li>
+    </ul>
   </form>
 </template>
 
@@ -87,6 +88,18 @@ const onSubmit = async () => {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: rem(8);
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
   }
 
   &__instruction {

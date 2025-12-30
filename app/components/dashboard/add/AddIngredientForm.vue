@@ -75,19 +75,20 @@ const onSubmit = async () => {
         </UIButton>
       </div>
     </div>
-    <div v-for="(item, index) in selectedIngredients" :key="index" class="fr-addingredient__row">
-      <UISelect v-model="item.ingredient_id" label="Ingrédient" class="fr-addingredient__row__select">
-        <UISelectOption :value="0" disabled>Choisir un ingrédient</UISelectOption>
-        <UISelectOption v-for="ingredient in ingredients" :key="ingredient.ingredient_id" :value="ingredient.ingredient_id">
-          {{ ingredient.name }} ({{ ingredient.unit }})
-        </UISelectOption>
-      </UISelect>
-      <UIInput v-model="item.quantity" type="number" label="Quantité" min="1" class="fr-addingredient__row__quantity" />
-      <UIButton type="button" size="small" variant="ghost" :disabled="selectedIngredients.length === 1" @click="removeIngredient(index)">
-        <Icon name="lucide:x" />
-      </UIButton>
-    </div>
-    <UIButton as="button" type="submit">Envoyer</UIButton>
+    <ul class="fr-addingredient__list">
+      <li v-for="(item, index) in selectedIngredients" :key="index" class="fr-addingredient__row">
+        <UISelect v-model="item.ingredient_id" label="Ingrédient" class="fr-addingredient__row__select">
+          <UISelectOption :value="0" disabled>Choisir un ingrédient</UISelectOption>
+          <UISelectOption v-for="ingredient in ingredients" :key="ingredient.ingredient_id" :value="ingredient.ingredient_id">
+            {{ ingredient.name }} ({{ ingredient.unit }})
+          </UISelectOption>
+        </UISelect>
+        <UIInput v-model="item.quantity" type="number" label="Quantité" min="1" class="fr-addingredient__row__quantity" />
+        <UIButton type="button" size="small" variant="ghost" :disabled="selectedIngredients.length === 1" @click="removeIngredient(index)">
+          <Icon name="lucide:x" />
+        </UIButton>
+      </li>
+    </ul>
   </form>
   <NewIngredientModal v-if="ingredients" v-model:open="modal" v-model:ingredients="ingredients" />
 </template>
@@ -116,6 +117,18 @@ const onSubmit = async () => {
   &__btns {
     display: flex;
     gap: rem(8);
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: rem(8);
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
   }
 
   &__row {
