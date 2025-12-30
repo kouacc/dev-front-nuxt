@@ -9,6 +9,12 @@ const formContent = reactive({
   name: ''
 })
 
+watch(() => cuisineData.value, (newCuisine) => {
+  if (newCuisine?.name) {
+    formContent.name = newCuisine.name
+  }
+}, { immediate: true })
+
 const updateCuisine = async () => {
   if (!formContent.name.trim()) {
     toast.addToast({
