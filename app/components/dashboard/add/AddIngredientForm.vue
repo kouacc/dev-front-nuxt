@@ -89,6 +89,10 @@ const onSubmit = async () => {
         </UIButton>
       </li>
     </ul>
+    <UIButton v-if="props.recipeId" as="button" type="submit">Envoyer</UIButton>
+    <UITooltip v-else content="Merci de compléter et d'envoyer la recette avant les ingrédients">
+      <UIButton as="button" type="submit" disabled>Envoyer</UIButton>
+    </UITooltip>
   </form>
   <NewIngredientModal v-if="ingredients" v-model:open="modal" v-model:ingredients="ingredients" />
 </template>
