@@ -28,12 +28,19 @@ defineProps<{
   padding: rem(12) rem(16);
   border-radius: rem(8);
   transition: background-color 0.1s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  gap: rem(8);
+  width: 100%;
 
   &:hover {
     background-color: var(--sd-link-hover);
   }
 
   &--active {
+    --sd-link-bg-color: var(--color-primary-100);
+    --sd-link-text-color: var(--color-primary-700);
+    font-weight: 600;
   }
 }
 </style>
