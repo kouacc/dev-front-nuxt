@@ -10,6 +10,49 @@ const formContent = reactive({
     this.name = ''
   }
 })
+
+const createCuisine = async () => {
+  if (!formContent.name.trim()) {
+    toast.addToast({
+      title: 'Erreur',
+      message: 'Le nom de la cuisine est requis.',
+      type: 'error'
+    })
+    return
+  }
+
+  await $fetch('/cuisines', {
+    method: 'POST',
+    baseURL: useRuntimeConfig().public.apiUrl,
+    headers: {
+      Authorization: `Bearer ${useCookie('user-token').value}`
+    },
+    body: {
+      name: formContent.name.trim()
+    },
+    onResponse ({ response }) {
+      if (response.status !== 201) {
+        toast.addToast({
+          title: 'Erreur',
+          message: 'Une erreur est survenue lors de la création de la cuisine.',
+          type: 'error'
+        })
+        return
+      }
+      toast.addToast({
+        title: 'Cuisine créée',
+        message: 'La cuisine a bien été créée.',
+        type: 'success'
+      })
+      const resdata = response._data as APIResponse<Cuisine>
+
+      cuisines.value.push(resdata.data)
+      formContent.clear()
+      open.value = false
+    }
+  })
+}
+
 const onClose = () => {
   formContent.clear()
   open.value = false
