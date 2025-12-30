@@ -19,7 +19,14 @@ const openModal = (modalType: 'create' | 'update' | 'delete', cuisine?: Cuisine)
   modalOpen.value = true
 }
 </script>
+
 <template>
   <div class="cuisines-list">
+    <div class="cuisines-list__header">
+      <UITitle>Gestion des cuisines</UITitle>
+      <UIButton @click="openModal('create')">
+        <Icon name="lucide:plus" /> Créer
+      </UIButton>
+    </div>
   </div>
 </template>
