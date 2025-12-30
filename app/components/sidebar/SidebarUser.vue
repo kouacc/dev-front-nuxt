@@ -1,7 +1,9 @@
 <script setup lang="ts">
-const user = useAuth().getUser()
+import type { JWTPayload } from '~/types/jwt'
 
-//TODO: déconnexion avec prompt modal
+defineProps<{
+  user: JWTPayload
+}>()
 </script>
 
 <template>
