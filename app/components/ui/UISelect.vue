@@ -8,26 +8,41 @@ interface SelectProps {
   autofocus?: boolean;
   size?: 'medium' | 'large';
   anchor?: 'top' | 'bottom' | 'left' | 'right';
+  label?: string | null;
 }
 
 const props = withDefaults(defineProps<SelectProps>(), {
   size: 'medium',
   anchor: 'bottom',
   placeholder: undefined,
-  name: undefined
+  name: undefined,
+  label: null
 })
 
-const model = defineModel({ type: String, default: '' })
+const model = defineModel<unknown>()
 </script>
 
 <template>
-  <select v-bind="props" v-model="model" :class="['ui-select', `-${props.size}`, `-anchor-${props.anchor}`]" :size="props.multiple ? 1 : undefined">
-    <UISelectOption v-if="props.placeholder" value="" disabled>{{ props.placeholder }}</UISelectOption>
-    <slot />
-  </select>
+  <div class="ui-select-container">
+    <label v-if="props.label" class="ui-select__label">{{ props.label }}</label>
+    <select v-bind="props" v-model="model" :class="['ui-select', `-${props.size}`, `-anchor-${props.anchor}`]" :size="props.multiple ? 1 : undefined">
+      <UISelectOption v-if="props.placeholder" value="" disabled>{{ props.placeholder }}</UISelectOption>
+      <slot />
+    </select>
+  </div>
 </template>
 
 <style lang="scss">
+.ui-select-container {
+  display: flex;
+  flex-direction: column;
+
+  > .ui-select__label {
+    font-size: rem(16);
+    font-weight: 500;
+    margin-bottom: rem(8);
+  }
+}
 .ui-select {
   --select-text-color: var(--color-text);
   --select-bg-color: var(--color-white);

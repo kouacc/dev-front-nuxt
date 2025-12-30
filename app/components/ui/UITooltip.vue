@@ -12,10 +12,49 @@ const props = withDefaults(
 )
 
 const isVisible = ref(false)
+const triggerRef = ref<HTMLElement | null>(null)
+const tooltipPosition = ref({ top: '0px', left: '0px' })
 let timeoutId: ReturnType<typeof setTimeout> | null = null
+
+const calculatePosition = () => {
+  if (!triggerRef.value) return
+
+  const rect = triggerRef.value.getBoundingClientRect()
+  const scrollX = window.scrollX
+  const scrollY = window.scrollY
+  const gap = 8
+
+  switch (props.orientation) {
+    case 'top':
+      tooltipPosition.value = {
+        top: `${rect.top + scrollY - gap}px`,
+        left: `${rect.left + scrollX + rect.width / 2}px`
+      }
+      break
+    case 'bottom':
+      tooltipPosition.value = {
+        top: `${rect.bottom + scrollY + gap}px`,
+        left: `${rect.left + scrollX + rect.width / 2}px`
+      }
+      break
+    case 'left':
+      tooltipPosition.value = {
+        top: `${rect.top + scrollY + rect.height / 2}px`,
+        left: `${rect.left + scrollX - gap}px`
+      }
+      break
+    case 'right':
+      tooltipPosition.value = {
+        top: `${rect.top + scrollY + rect.height / 2}px`,
+        left: `${rect.right + scrollX + gap}px`
+      }
+      break
+  }
+}
 
 const handleMouseEnter = () => {
   timeoutId = setTimeout(() => {
+    calculatePosition()
     isVisible.value = true
   }, props.delay)
 }
@@ -31,13 +70,22 @@ const handleMouseLeave = () => {
 
 <template>
   <div 
+    ref="triggerRef"
     class="ui-tooltip" 
-    :class="`-${orientation}`"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
   >
     <slot />
-    <span v-if="isVisible" class="ui-tooltip__content">{{ content }}</span>
+    <Teleport to="body">
+      <span 
+        v-if="isVisible" 
+        class="ui-tooltip__content"
+        :class="`-${orientation}`"
+        :style="{ top: tooltipPosition.top, left: tooltipPosition.left }"
+      >
+        {{ content }}
+      </span>
+    </Teleport>
   </div>
 </template>
 
@@ -52,11 +100,9 @@ const handleMouseLeave = () => {
     padding: #{rem(6)} #{rem(8)};
     border-radius: #{rem(8)};
     font-size: #{rem(14)};
-    position: absolute;
+    position: fixed;
     white-space: nowrap;
-    z-index: 10;
-    opacity: 0;
-    transition: opacity 0.2s;
+    z-index: 9999;
     pointer-events: none;
 
     &::after {
@@ -64,69 +110,53 @@ const handleMouseLeave = () => {
       position: absolute;
       border-style: solid;
     }
-  }
 
-  &:hover &__content {
-    opacity: 1;
-  }
+    &.-top {
+      transform: translate(-50%, -100%);
 
-  &.-top &__content {
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-bottom: #{rem(8)};
+      &::after {
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: #{rem(6)} #{rem(6)} 0 #{rem(6)};
+        border-color: var(--color-primary-500) transparent transparent transparent;
+      }
+    }
 
-    &::after {
-      top: 100%;
-      left: 50%;
+    &.-bottom {
       transform: translateX(-50%);
-      border-width: #{rem(6)} #{rem(6)} 0 #{rem(6)};
-      border-color: var(--color-primary-500) transparent transparent transparent;
+
+      &::after {
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 0 #{rem(6)} #{rem(6)} #{rem(6)};
+        border-color: transparent transparent var(--color-primary-500) transparent;
+      }
     }
-  }
 
-  &.-bottom &__content {
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: #{rem(8)};
+    &.-left {
+      transform: translate(-100%, -50%);
 
-    &::after {
-      bottom: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      border-width: 0 #{rem(6)} #{rem(6)} #{rem(6)};
-      border-color: transparent transparent var(--color-primary-500) transparent;
+      &::after {
+        left: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        border-width: #{rem(6)} 0 #{rem(6)} #{rem(6)};
+        border-color: transparent transparent transparent var(--color-primary-500);
+      }
     }
-  }
 
-  &.-left &__content {
-    right: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-    margin-right: #{rem(8)};
-
-    &::after {
-      left: 100%;
-      top: 50%;
+    &.-right {
       transform: translateY(-50%);
-      border-width: #{rem(6)} 0 #{rem(6)} #{rem(6)};
-      border-color: transparent transparent transparent var(--color-primary-500);
-    }
-  }
 
-  &.-right &__content {
-    left: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-    margin-left: #{rem(8)};
-
-    &::after {
-      right: 100%;
-      top: 50%;
-      transform: translateY(-50%);
-      border-width: #{rem(6)} #{rem(6)} #{rem(6)} 0;
-      border-color: transparent var(--color-primary-500) transparent transparent;
+      &::after {
+        right: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        border-width: #{rem(6)} #{rem(6)} #{rem(6)} 0;
+        border-color: transparent var(--color-primary-500) transparent transparent;
+      }
     }
   }
 }

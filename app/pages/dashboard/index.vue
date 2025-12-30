@@ -18,7 +18,5 @@ const { data } = await useAsyncData('my-recipes', () => {
   <div>
     <UITitle>Dashboard</UITitle>
     <pre>{{ data }}</pre>
-    <AddRecipeForm />
-    <AddInstructionForm recipe-id="6" />
   </div>
 </template>
