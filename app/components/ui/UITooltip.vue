@@ -12,10 +12,49 @@ const props = withDefaults(
 )
 
 const isVisible = ref(false)
+const triggerRef = ref<HTMLElement | null>(null)
+const tooltipPosition = ref({ top: '0px', left: '0px' })
 let timeoutId: ReturnType<typeof setTimeout> | null = null
+
+const calculatePosition = () => {
+  if (!triggerRef.value) return
+
+  const rect = triggerRef.value.getBoundingClientRect()
+  const scrollX = window.scrollX
+  const scrollY = window.scrollY
+  const gap = 8
+
+  switch (props.orientation) {
+    case 'top':
+      tooltipPosition.value = {
+        top: `${rect.top + scrollY - gap}px`,
+        left: `${rect.left + scrollX + rect.width / 2}px`
+      }
+      break
+    case 'bottom':
+      tooltipPosition.value = {
+        top: `${rect.bottom + scrollY + gap}px`,
+        left: `${rect.left + scrollX + rect.width / 2}px`
+      }
+      break
+    case 'left':
+      tooltipPosition.value = {
+        top: `${rect.top + scrollY + rect.height / 2}px`,
+        left: `${rect.left + scrollX - gap}px`
+      }
+      break
+    case 'right':
+      tooltipPosition.value = {
+        top: `${rect.top + scrollY + rect.height / 2}px`,
+        left: `${rect.right + scrollX + gap}px`
+      }
+      break
+  }
+}
 
 const handleMouseEnter = () => {
   timeoutId = setTimeout(() => {
+    calculatePosition()
     isVisible.value = true
   }, props.delay)
 }
@@ -31,13 +70,22 @@ const handleMouseLeave = () => {
 
 <template>
   <div 
+    ref="triggerRef"
     class="ui-tooltip" 
-    :class="`-${orientation}`"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
   >
     <slot />
-    <span v-if="isVisible" class="ui-tooltip__content">{{ content }}</span>
+    <Teleport to="body">
+      <span 
+        v-if="isVisible" 
+        class="ui-tooltip__content"
+        :class="`-${orientation}`"
+        :style="{ top: tooltipPosition.top, left: tooltipPosition.left }"
+      >
+        {{ content }}
+      </span>
+    </Teleport>
   </div>
 </template>
 
