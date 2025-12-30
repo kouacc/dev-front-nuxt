@@ -11,7 +11,6 @@ export default defineNuxtRouteMiddleware((to) => {
   }
   
   const decoded = jwtDecode<JWTPayload>(token)
-  console.log(decoded)
 
   if (decoded.is_admin !== 1) {
     return navigateTo('/dashboard')
