@@ -28,5 +28,21 @@ const openModal = (modalType: 'create' | 'update' | 'delete', cuisine?: Cuisine)
         <Icon name="lucide:plus" /> Créer
       </UIButton>
     </div>
+
+    <ul class="cuisines-list__items">
+      <li v-for="cuisine in cuisines" :key="cuisine.cuisine_id" class="cuisines-list__item">
+        <span class="cuisines-list__item-name">{{ cuisine.name }}</span>
+        <div class="cuisines-list__item-actions">
+          <UIButton variant="outline" size="small" @click="openModal('update', cuisine)">Modifier</UIButton>
+          <UIButton variant="outline" size="small" variation="danger" @click="openModal('delete', cuisine)">Supprimer</UIButton>
+        </div>
+      </li>
+    </ul>
+
+    <template v-if="cuisines">
+      <CreateCuisineModal v-if="selectedModal === 'create'" v-model:open="modalOpen" v-model:cuisines="cuisines" />
+      <UpdateCuisineModal v-if="selectedModal === 'update' && selectedCuisine" v-model:open="modalOpen" v-model:cuisine="selectedCuisine" v-model:cuisines="cuisines" />
+      <DeleteCuisineModal v-if="selectedModal === 'delete' && selectedCuisine" v-model:open="modalOpen" v-model:cuisine="selectedCuisine" v-model:cuisines="cuisines" />
+    </template>
   </div>
 </template>
