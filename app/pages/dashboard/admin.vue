@@ -12,6 +12,7 @@ if (useRoute().path === '/dashboard/admin') {
 
 <template>
   <div class="p-admin-wrapper">
+    <AdminTabBar />
     <NuxtPage />
   </div>
 </template>
