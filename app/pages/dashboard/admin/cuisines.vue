@@ -6,4 +6,5 @@ definePageMeta({
 </script>
 
 <template>
+  <CuisinesList />
 </template>
