@@ -15,3 +15,12 @@ if (useRoute().path === '/dashboard/admin') {
     <NuxtPage />
   </div>
 </template>
+
+<style lang="scss">
+.p-admin-wrapper {
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+</style>
