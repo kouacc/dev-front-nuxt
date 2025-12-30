@@ -46,3 +46,14 @@ const openModal = (modalType: 'create' | 'update' | 'delete', cuisine?: Cuisine)
     </template>
   </div>
 </template>
+
+<style lang="scss">
+.cuisines-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  height: 100%;
+  overflow: hidden;
+
+}
+</style>
