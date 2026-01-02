@@ -9,6 +9,41 @@ const recipeData = defineModel<Recipe>('recipe', {
   required: true
 })
 
+const deleteRecipe = async () => {
+  await $fetch(`/recipes/${recipeData.value.recipe_id}`, {
+    method: 'DELETE',
+    baseURL: useRuntimeConfig().public.apiUrl,
+    headers: {
+      Authorization: `Bearer ${useCookie('user-token').value}`
+    },
+    onResponse ({ response }) {
+      if (response.status !== 200) {
+        toast.addToast({
+          title: 'Erreur',
+          message:
+            response._data.message ||
+            'Une erreur est survenue lors de la suppression de la recette.',
+          type: 'error'
+        })
+        return
+      }
+      toast.addToast({
+        title: 'Recette supprimée',
+        message: 'La recette a bien été supprimée.',
+        type: 'success'
+      })
+
+      const index = recipes.value.findIndex((r) => r.recipe_id === recipeData.value.recipe_id)
+      if (index !== -1) {
+        recipes.value.splice(index, 1)
+      }
+
+      open.value = false
+      recipeData.value = {} as Recipe
+    }
+  })
+}
+
 const onClose = () => {
   open.value = false
   recipeData.value = {} as Recipe
