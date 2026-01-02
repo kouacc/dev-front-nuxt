@@ -28,3 +28,47 @@ const openModal = (recipe: Recipe) => {
     </li>
   </ul>
 </template>
+
+<style lang="scss">
+.recipes-list {
+  display: grid;
+  grid-auto-flow: row;
+  background-color: var(--color-white);
+  border: 1px solid var(--border-color);
+  border-radius: rem(12);
+  overflow: hidden;
+  padding: 0;
+
+  &__item {
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    background-color: var(--card-bg-color);
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: var(--hover-bg-color, rgba(0, 0, 0, 0.02));
+    }
+  }
+
+  &__item-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: rem(4);
+  }
+
+  &__item-title {
+    font-weight: 500;
+    flex: 1;
+  }
+
+  &__item-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: auto;
+  }
+}
+</style>
