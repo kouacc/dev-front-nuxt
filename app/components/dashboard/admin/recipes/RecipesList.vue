@@ -27,6 +27,7 @@ const openModal = (recipe: Recipe) => {
       </div>
     </li>
   </ul>
+  <DeleteRecipeModal v-if="recipes && selectedRecipe" v-model="modal" :recipes="recipes" :recipe="selectedRecipe"  />
 </template>
 
 <style lang="scss">
