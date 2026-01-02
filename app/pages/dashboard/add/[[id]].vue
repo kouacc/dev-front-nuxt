@@ -4,6 +4,12 @@ definePageMeta({
   layout: 'aside'
 })
 
+const { id } = useRoute().params
+
+watch(() => id, (newId) => {
+  recipeId.value = newId ? parseInt(newId as string, 10) : null
+}, { immediate: true })
+
 const recipeId = ref<number | null>(null)
 </script>
 
