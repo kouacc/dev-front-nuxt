@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { SanityBook } from '~/types/cms/book'
 
-const query = groq`*[_type == "book" && slug.current == $slug][0]{title, slug, publishedAt, cover, author->{ name }, body}`
+const query = groq`*[_type == "book" && slug.current == $slug][0]{title, slug, publishedAt, cover, author->{ name }, body, categories[]->{ _key, title }}`
 
 const { data: book } = await useLazySanityQuery<SanityBook>(query, useRoute().params)
 /* if (!book.value) {
