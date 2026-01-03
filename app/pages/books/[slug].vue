@@ -7,12 +7,21 @@ const { data: book, status } = await useLazySanityQuery<SanityBook>(query, useRo
 if (status.value === 'error') {
   throw createError({ statusCode: 404, statusMessage: 'Book not found' })
 } 
+
+const breadcrumbItems = computed(() => [
+  { text: 'Accueil', href: '/' },
+  { text: 'Livres', href: '/books' },
+  { text: book.value?.title || 'Livre' }
+])
 </script>
 
 <template>
-  <div v-if="book">
-    <UITitle tag="h1">{{ book.title }}</UITitle>
-    <NuxtImg v-if="book.cover" :src="useSanityImage(book.cover)?.url()" :alt="book?.title" />
-    <SanityContent v-if="book.body" :value="book.body" />
+  <div v-if="book" class="book-page">
+    <div class="book-page__container">
+      <UIBreadcrumb
+        class="book-page__breadcrumb"
+        :items="breadcrumbItems"
+      />
+    </div>
   </div>
 </template>
