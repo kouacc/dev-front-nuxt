@@ -199,8 +199,36 @@ if (error.value) {
   &__ingredients-name {
     flex: 1;
   }
+
+  &__instructions {
+    background-color: var(--color-grey-50);
+    border-color: var(--color-grey-200);
   }
 
+  &__instructions-item {
+    display: flex;
+    gap: rem(16);
+    border-color: var(--color-grey-200);
+
+    .number {
+      flex-shrink: 0;
+      width: rem(36);
+      height: rem(36);
+      display: grid;
+      place-items: center;
+      background-color: var(--color-primary-600);
+      color: white;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: rem(16);
+    }
+  }
+
+  &__instructions-text {
+    flex: 1;
+    line-height: 1.6;
+    color: var(--color-grey-700);
+    align-self: center;
   }
 }
 </style>
