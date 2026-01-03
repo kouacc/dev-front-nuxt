@@ -167,5 +167,25 @@ const breadcrumbItems = computed(() => [
       color: var(--color-primary-500);
     }
   }
+
+  &__categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: rem(12);
+
+    @include medium-down {
+      justify-content: center;
+    }
+  }
+
+  &__category {
+    display: inline-block;
+    padding: rem(8) rem(16);
+    background-color: var(--color-primary-100);
+    color: var(--color-primary-700);
+    border-radius: rem(20);
+    font-size: rem(14);
+    font-weight: 500;
+  }
 }
 </style>
