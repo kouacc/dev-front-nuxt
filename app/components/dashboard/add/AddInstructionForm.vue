@@ -11,6 +11,16 @@ const instructions = ref<{ step: number; description: string }[]>([
   { step: 1, description: '' }
 ])
 
+watch(() => props.recipeData, (data) => {
+  if (data && data.instructions && data.instructions.length > 0) {
+    instructions.value = data.instructions.map(inst => ({
+      step: inst.step_number,
+      description: inst.description
+    }))
+  }
+}, { immediate: true })
+
+
 const addInstruction = () => {
   instructions.value.push({
     step: instructions.value.length + 1,

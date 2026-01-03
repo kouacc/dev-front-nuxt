@@ -43,6 +43,23 @@ const [{ data: cuisines }, { data: goals }] = await Promise.all([
   })
 ])
 
+watch(() => props.recipeData, (data) => {
+  if (data && cuisines.value && goals.value) {
+    formContent.title = data.title
+    formContent.description = data.description
+    
+    const cuisine = cuisines.value.find(c => c.name === data.cuisine_name)
+    if (cuisine) {
+      formContent.cuisine_id = cuisine.cuisine_id
+    }
+    
+    const goal = goals.value.find(g => g.name === data.goal_name)
+    if (goal) {
+      formContent.goal_id = goal.goal_id
+    }
+  }
+}, { immediate: true })
+
 
 const onSubmit = async () => {
   if (recipeId.value !== null) {
