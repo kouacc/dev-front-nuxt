@@ -104,5 +104,22 @@ defineProps<{
     color: var(--color-gray-600);
     margin: 0;
   }
+
+  &__categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: rem(8);
+    margin-top: auto;
+  }
+
+  &__category {
+    display: inline-block;
+    padding: rem(4) rem(12);
+    background-color: var(--color-primary-100);
+    color: var(--color-primary-700);
+    border-radius: rem(16);
+    font-size: rem(12);
+    font-weight: 500;
+  }
 }
 </style>
