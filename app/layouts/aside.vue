@@ -27,6 +27,48 @@ const closeSidebar = () => {
 
 <style lang="scss">
 .ly-aside {
+  &__hamburger {
+    display: none;
+    position: fixed;
+    top: rem(16);
+    left: rem(16);
+    z-index: 1001;
+    background: var(--color-white);
+    border: 1px solid var(--color-grey-200);
+    border-radius: rem(8);
+    padding: rem(8);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    color: var(--color-text);
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    @include large-down {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &__overlay {
+    display: none;
+
+    @include large-down {
+      display: block;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      animation: fadeIn 0.2s ease;
+    }
+  }
+
   main {
     margin-left: rem(300);
     padding: rem(24);
@@ -40,6 +82,12 @@ const closeSidebar = () => {
     position: fixed;
     left: 0;
     top: 0;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 </style>
