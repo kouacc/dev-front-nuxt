@@ -19,6 +19,9 @@ defineProps<{
         height="400"
         fit="crop"
       />
+      <div v-else class="book-card__image-placeholder">
+        <Icon name="lucide:book-open" size="48" />
+      </div>
     </div>
     <div class="book-card__content">
       <h2 class="book-card__title">{{ book.title }}</h2>
