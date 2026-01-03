@@ -55,5 +55,28 @@ defineProps<{
   &:hover {
     transform: scale(1.01);
   }
+
+  &__image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--color-primary-100), var(--color-primary-200));
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__image-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: var(--color-primary-500);
+  }
 }
 </style>
