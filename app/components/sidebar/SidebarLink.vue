@@ -33,6 +33,17 @@ defineProps<{
   gap: rem(8);
   width: 100%;
 
+  @include medium-down {
+    padding: rem(10) rem(14);
+    font-size: rem(14);
+    gap: rem(6);
+  }
+
+  @include small-only {
+    padding: rem(8) rem(12);
+    font-size: rem(13);
+  }
+
   &:hover {
     background-color: var(--sd-link-hover);
   }

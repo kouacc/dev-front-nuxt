@@ -24,8 +24,17 @@ defineProps<{
     margin-bottom: rem(8);
     color: var(--color-grey-600);
     padding-left: rem(4);
+
+    @include medium-down {
+      font-size: rem(13);
+      margin-bottom: rem(6);
+    }
+
+    @include small-only {
+      font-size: rem(12);
+    }
   }
-  
+
   &__list {
     list-style: none;
     padding: 0;
@@ -36,10 +45,14 @@ defineProps<{
     border-radius: rem(12);
     padding: rem(4);
 
+    @include medium-down {
+      border-radius: rem(10);
+      padding: rem(3);
+    }
+
     &-item {
       width: 100%;
       display: block;
-
     }
   }
 }

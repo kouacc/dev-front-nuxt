@@ -38,10 +38,29 @@ const user = useAuth().getUser()
   border-right: 1.5px solid var(--color-primary-200);
   padding: rem(24);
 
+  @include large-down {
+    height: 100vh;
+    padding-top: rem(68);
+  }
+
+  @include medium-down {
+    padding: rem(64) rem(20) rem(20);
+    max-width: rem(280);
+  }
+
+  @include small-only {
+    padding: rem(60) rem(16) rem(16);
+    max-width: rem(260);
+  }
+
   &__navs {
     display: flex;
     flex-direction: column;
     gap: rem(32);
+
+    @include medium-down {
+      gap: rem(24);
+    }
   }
 }
 </style>
