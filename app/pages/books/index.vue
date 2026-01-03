@@ -33,16 +33,18 @@ watch(currentPage, async () => {
 </script>
 
 <template>
-  <div>
-    <UITitle tag="h1">Liste des livres</UITitle>
-    <NuxtLink v-for="book in books" :key="book._id" :to="`/books/${book.slug?.current}`">
-      <div>
-        <NuxtImg v-if="book.cover" :src="useSanityImage(book.cover)?.url()" :alt="book?.title" />
-        <h2>{{ book.title }}</h2>
-        <p>Publié le {{ new Date(book.publishedAt ?? '').toLocaleDateString() }}</p>
-        <!-- <p>par {{ book.author?.name ?? '' }}</p> -->
-      </div>
-    </NuxtLink>
-    <pre>{{ books }}</pre>
+  <div class="books-page">
+    <div class="books-page__header">
+      <UITitle tag="h1">Livres</UITitle>
+      <p class="books-page__count">{{ totalBooks }} livre{{ totalBooks && totalBooks > 1 ? 's' : '' }}</p>
+    </div>
+    <div v-else class="books-page__empty">
+      <Icon name="lucide:book-open" size="64" />
+      <p>Aucun livre disponible pour le moment</p>
+    </div>
+
+    <div v-if="totalPages > 1" class="books-page__pagination">
+      <UIPagination v-model:page="currentPage" :page-amount="totalPages" />
+    </div>
   </div>
 </template>
