@@ -119,6 +119,9 @@ const paginatedRecipes = computed<FullRecipe[]>(() => {
     color: var(--color-gray-600);
     font-size: rem(16);
   }
+
+  &__pagination {
+    align-self: center;
   }
 }
 </style>
