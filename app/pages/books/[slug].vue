@@ -22,6 +22,34 @@ const breadcrumbItems = computed(() => [
         class="book-page__breadcrumb"
         :items="breadcrumbItems"
       />
+
+      <div class="book-page__header">
+        <div class="book-page__cover">
+          <NuxtImg 
+            v-if="book.cover" 
+            :src="useSanityImage(book.cover)?.url()" 
+            :alt="book?.title || 'Couverture du livre'" 
+            width="400"
+            height="600"
+            fit="cover"
+          />
+          <div v-else class="book-page__cover-placeholder">
+            <Icon name="lucide:book-open" size="80" />
+          </div>
+        </div>
+
+        <div class="book-page__info">
+          <UITitle tag="h1" class="book-page__title">{{ book.title }}</UITitle>
+          
+          <div v-if="book.author" class="book-page__author">
+            <Icon name="lucide:user" size="20" />
+            <span>{{ book.author.name }}</span>
+          </div>
+
+          <div v-if="book.publishedAt" class="book-page__date">
+            <Icon name="lucide:calendar" size="20" />
+            <span>Publié le {{ new Date(book.publishedAt).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' }) }}</span>
+          </div>
     </div>
   </div>
 </template>
