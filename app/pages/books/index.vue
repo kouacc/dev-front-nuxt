@@ -53,3 +53,24 @@ watch(currentPage, async () => {
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.books-page {
+  max-width: rem(1400);
+  margin: 0 auto;
+
+  &__header {
+    margin-bottom: rem(40);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__count {
+    font-size: rem(16);
+    color: var(--color-gray-600);
+    margin: 0;
+  }
+}
+</style>
