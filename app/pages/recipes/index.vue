@@ -22,16 +22,16 @@ if (recipesError.value || cuisinesError.value) {
   })
 }
 
-const filters = ref<string[]>([])
-const itemsPerPage = 2
+const filters = ref<string>('')
+const itemsPerPage = 6
 const page = ref<number>(1)
 const searchQuery = ref<string>('')
 
 const filteredRecipes = computed<FullRecipe[]>(() => {
   let filtered = recipes.value || []
   
-  if (filters.value.length > 0) {
-    filtered = filtered.filter(recipe => filters.value.includes(recipe.cuisine_name))
+  if (filters.value) {
+    filtered = filtered.filter(recipe => recipe.cuisine_name === filters.value)
   }
 
   const formattedSearch = searchQuery.value.trim().toLowerCase()
