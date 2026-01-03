@@ -110,6 +110,15 @@ const paginatedRecipes = computed<FullRecipe[]>(() => {
       margin: 0;
       list-style: none;
   }
+
+  &__empty {
+    background-color: var(--color-white);
+    border-radius: rem(12);
+    padding: rem(48) rem(24);
+    text-align: center;
+    color: var(--color-gray-600);
+    font-size: rem(16);
+  }
   }
 }
 </style>
