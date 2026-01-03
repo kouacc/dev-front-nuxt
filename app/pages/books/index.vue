@@ -38,6 +38,11 @@ watch(currentPage, async () => {
       <UITitle tag="h1">Livres</UITitle>
       <p class="books-page__count">{{ totalBooks }} livre{{ totalBooks && totalBooks > 1 ? 's' : '' }}</p>
     </div>
+
+    <div v-if="books && books.length > 0" class="books-page__grid">
+      <BookCard v-for="book in books" :key="book._id" :book="book" />
+    </div>
+
     <div v-else class="books-page__empty">
       <Icon name="lucide:book-open" size="64" />
       <p>Aucun livre disponible pour le moment</p>
