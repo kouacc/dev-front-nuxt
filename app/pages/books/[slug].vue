@@ -91,5 +91,46 @@ const breadcrumbItems = computed(() => [
   &__breadcrumb {
     margin-bottom: rem(32);
   }
+
+  &__header {
+    display: grid;
+    grid-template-columns: rem(400) 1fr;
+    gap: rem(48);
+    margin-bottom: rem(48);
+
+    @include medium-down {
+      grid-template-columns: 1fr;
+      gap: rem(32);
+    }
+  }
+
+  &__cover {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2/3;
+    border-radius: rem(16);
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--color-primary-100), var(--color-primary-200));
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @include medium-down {
+      max-width: rem(300);
+      margin: 0 auto;
+    }
+  }
+
+  &__cover-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: var(--color-primary-500);
+  }
 }
 </style>
