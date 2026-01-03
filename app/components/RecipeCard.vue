@@ -1,16 +1,24 @@
 <script setup lang="ts">
 defineProps<{ recipe: Recipe }>()
+
+const imageError = ref(false)
+
+const handleImageError = () => {
+  imageError.value = true
+}
 </script>
 
 <template>
   <div class="recipe-card">
-    <NuxtImg :src="'/recipes/' + recipe.image_url" />
-    <p>{{ recipe.title }}</p>
-    <UIButton type="button">Voir</UIButton>
     <NuxtImg 
+      v-if="!imageError"
       :src="'/recipes/' + recipe.image_url" 
       class="recipe-card__image"
+      @error="handleImageError"
     />
+    <div v-else class="recipe-card__placeholder">
+      <Icon name="lucide:image" size="64" />
+    </div>
     <div class="recipe-card__overlay">
       <p class="recipe-card__title">{{ recipe.title }}</p>
     </div>
