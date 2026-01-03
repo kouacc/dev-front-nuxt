@@ -50,6 +50,19 @@ const breadcrumbItems = computed(() => [
             <Icon name="lucide:calendar" size="20" />
             <span>Publié le {{ new Date(book.publishedAt).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' }) }}</span>
           </div>
+
+          <div v-if="book.categories && book.categories.length" class="book-page__categories">
+            <span 
+              v-for="category in book.categories" 
+              :key="category._key" 
+              class="book-page__category"
+            >
+              {{ category.title }}
+            </span>
+          </div>
+        </div>
+      </div>
+
       <div v-if="book.body" class="book-page__content wysiwyg">
         <SanityContent :value="book.body" />
       </div>
