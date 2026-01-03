@@ -76,3 +76,20 @@ const breadcrumbItems = computed(() => [
     </div>
   </div>
 </template>
+
+<style lang="scss">
+.book-page {
+  min-height: 100vh;
+  background-color: var(--color-gray-50);
+
+  &__container {
+    max-width: rem(1200);
+    margin: 0 auto;
+    padding: rem(40) rem(20);
+  }
+
+  &__breadcrumb {
+    margin-bottom: rem(32);
+  }
+}
+</style>
