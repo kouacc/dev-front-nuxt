@@ -22,6 +22,17 @@ if (error.value) {
       <UITitle type="heading1">{{ recipe?.title }}</UITitle>
       <p class="p-recipe__description">{{ recipe?.description }}</p>
     </div>
+
+    <div class="p-recipe__body">
+      <div class="p-recipe__grid">
+        <div class="p-recipe__left">
+          <div class="p-recipe__cover">
+            <NuxtImg 
+              :src="'/recipes/' + recipe?.image_url || 'https://placehold.co/1000x600'" 
+              :alt="recipe?.title" 
+            />
+          </div>
+        </div>
       </div>
           </li>
         </ol>
