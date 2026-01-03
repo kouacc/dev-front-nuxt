@@ -131,6 +131,29 @@ if (error.value) {
       object-fit: cover;
     }
   }
+
+  &__info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: rem(16);
+
+    @include small-only {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__info {
+    padding: rem(20);
+    background-color: var(--color-grey-100);
+    border-radius: rem(12);
+    border: 1px solid var(--color-grey-200);
+  }
+
+  &__info-value {
+    font-size: rem(18);
+    font-weight: 600;
+    color: var(--color-grey-800);
+  }
     border-radius: rem(16);
   }
 
