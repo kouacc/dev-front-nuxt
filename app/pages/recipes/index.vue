@@ -95,6 +95,21 @@ const paginatedRecipes = computed<FullRecipe[]>(() => {
       margin-top: rem(16);
     }
   }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: rem(24);
+  }
+
+  &__list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(rem(280), 1fr));
+      gap: rem(24);
+      padding: 0;
+      margin: 0;
+      list-style: none;
+  }
   }
 }
 </style>
