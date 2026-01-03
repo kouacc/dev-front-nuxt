@@ -66,6 +66,13 @@ if (error.value) {
           </ul>
         </aside>
       </div>
+
+      <div class="p-recipe__instructions">
+        <UITitle type="heading2">Instructions</UITitle>
+        <ol class="p-recipe__instructions-list">
+          <li v-for="(step, index) in recipe?.instructions" :key="index" class="p-recipe__instructions-item">
+            <span class="number">{{ step.step_number }}</span>
+            <p class="p-recipe__instructions-text">{{ step.description }}</p>
           </li>
         </ol>
       </div>
