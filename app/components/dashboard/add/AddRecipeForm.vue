@@ -1,4 +1,9 @@
 <script setup lang="ts">
+const props = defineProps<{
+  mode: 'create' | 'edit',
+  recipeData: FullRecipe | null
+}>()
+
 const toast = useToast()
 
 interface AddRecipeForm {
