@@ -4,13 +4,36 @@ definePageMeta({
   layout: 'aside'
 })
 
+const recipeId = ref<number | null>(null)
+const mode = computed(() => (id ? 'edit' : 'create'))
 const { id } = useRoute().params
 
-watch(() => id, (newId) => {
-  recipeId.value = newId ? parseInt(newId as string, 10) : null
-}, { immediate: true })
+const recipeData = ref<FullRecipe | null>(null)
 
-const recipeId = ref<number | null>(null)
+watch(() => id, async (newId) => {
+  recipeId.value = newId ? parseInt(newId as string, 10) : null
+  
+  if (recipeId.value) {
+    try {
+      const response = await $fetch<APIResponse<FullRecipe>>(`/recipes/${recipeId.value}`, {
+        baseURL: useRuntimeConfig().public.apiUrl,
+        headers: {
+          Authorization: `Bearer ${useCookie('user-token').value}`
+        }
+      })
+      recipeData.value = response.data
+    } catch {
+      useToast().addToast({
+        title: 'Erreur',
+        message: 'Une erreur est survenue lors de la récupération des données de la recette.',
+        type: 'error',
+        duration: 8000
+      })
+    }
+  } else {
+    recipeData.value = null
+  }
+}, { immediate: true })
 </script>
 
 <template>
