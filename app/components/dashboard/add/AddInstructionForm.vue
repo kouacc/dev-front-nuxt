@@ -95,6 +95,20 @@ const onSubmit = async () => {
   border: 1px solid var(--color-grey-200);
   height: 100%;
 
+  @include large-down {
+    height: auto;
+  }
+
+  @include medium-down {
+    padding: rem(20);
+    gap: rem(14);
+  }
+
+  @include small-only {
+    padding: rem(16);
+    gap: rem(12);
+  }
+
   > *:not(button, .ui-tooltip) {
     width: 100%;
   }
@@ -104,6 +118,12 @@ const onSubmit = async () => {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @include medium-down {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: rem(12);
+    }
   }
 
   &__list {
@@ -116,6 +136,11 @@ const onSubmit = async () => {
     width: 100%;
     height: 100%;
     overflow-y: auto;
+
+    @include large-down {
+      height: auto;
+      overflow-y: visible;
+    }
   }
 
   &__instruction {
@@ -127,6 +152,10 @@ const onSubmit = async () => {
     border-radius: rem(8);
     border: 1px solid var(--color-grey-200);
 
+    @include medium-down {
+      padding: rem(12);
+    }
+
     &__stepn {
       font-size: rem(12);
       width: rem(32);
@@ -135,10 +164,21 @@ const onSubmit = async () => {
       place-items: center;
       background-color: var(--color-primary-100);
       border-radius: 50%;
+      flex-shrink: 0;
+
+      @include small-only {
+        width: rem(28);
+        height: rem(28);
+        font-size: rem(11);
+      }
     }
 
     &__input {
       flex-grow: 1;
+    }
+
+    button {
+      flex-shrink: 0;
     }
   }
 }

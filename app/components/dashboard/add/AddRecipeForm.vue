@@ -139,6 +139,16 @@ const onSubmit = async () => {
   border: 1px solid var(--color-grey-200);
   flex-grow: 0;
 
+  @include medium-down {
+    padding: rem(20);
+    gap: rem(14);
+  }
+
+  @include small-only {
+    padding: rem(16);
+    gap: rem(12);
+  }
+
   > *:not(button) {
     width: 100%;
   }
@@ -146,6 +156,11 @@ const onSubmit = async () => {
   &__selects {
     display: flex;
     gap: rem(16);
+
+    @include medium-down {
+      flex-direction: column;
+      gap: rem(12);
+    }
 
     > * {
       flex: 1;
