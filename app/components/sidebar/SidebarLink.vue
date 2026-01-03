@@ -3,13 +3,17 @@ import type { NuxtLinkProps } from '#app'
 
 defineProps<{
   to: NuxtLinkProps['to']
-  label: string;
-  icon?: string;
+  label: string
+  icon?: string
+}>()
+
+const emit = defineEmits<{
+  click: []
 }>()
 </script>
 
 <template>
-  <NuxtLink :to="to" class="sidebar-link" active-class="sidebar-link--active">
+  <NuxtLink :to="to" class="sidebar-link" active-class="sidebar-link--active" @click="emit('click')">
     <Icon v-if="icon" :name="icon" />
     {{ label }}
   </NuxtLink>

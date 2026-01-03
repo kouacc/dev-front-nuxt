@@ -1,4 +1,12 @@
 <script setup lang="ts">
+defineProps<{
+  isOpen?: boolean
+}>()
+
+const emit = defineEmits<{
+  close: []
+}>()
+
 const nav = [
   { to: '/dashboard', label: 'Accueil', icon: 'lucide:notebook-tabs' },
   { to: '/dashboard/add', label: 'Créer une recette', icon: 'lucide:plus' }
@@ -11,13 +19,17 @@ const adminNav = [
 ]
 
 const user = useAuth().getUser()
+
+const handleLinkClick = () => {
+  emit('close')
+}
 </script>
 
 <template>
-  <aside class="dh-sidebar">
+  <aside class="dh-sidebar" :class="{ 'is-open': isOpen }">
     <div class="dh-sidebar__navs">
-      <SidebarLinkGroup :links="nav" />
-      <SidebarLinkGroup v-if="user?.is_admin" :links="adminNav" label="Administration" />
+      <SidebarLinkGroup :links="nav" @link-click="handleLinkClick" />
+      <SidebarLinkGroup v-if="user?.is_admin" :links="adminNav" label="Administration" @link-click="handleLinkClick" />
     </div>
     <SidebarUser :user="user!" />
   </aside>

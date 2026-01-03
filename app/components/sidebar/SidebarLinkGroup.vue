@@ -3,6 +3,10 @@ defineProps<{
   links: { to: string; label: string; icon?: string }[]
   label?: string
 }>()
+
+const emit = defineEmits<{
+  linkClick: []
+}>()
 </script>
 
 <template>
@@ -10,7 +14,7 @@ defineProps<{
     <span v-if="label" class="sidebar-link-group__label">{{ label }}</span>
     <ul class="sidebar-link-group__list">
       <li v-for="link in links" :key="link.to" class="sidebar-link-group__list-item">
-        <SidebarLink :to="link.to" :label="link.label" :icon="link.icon" />
+        <SidebarLink :to="link.to" :label="link.label" :icon="link.icon" @click="emit('linkClick')" />
       </li>
     </ul>
   </nav>
