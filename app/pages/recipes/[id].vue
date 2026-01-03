@@ -32,6 +32,28 @@ if (error.value) {
               :alt="recipe?.title" 
             />
           </div>
+
+          <div class="p-recipe__info-grid">
+            <div class="p-recipe__info">
+              <UITitle type="heading3">Cuisine</UITitle>
+              <p class="p-recipe__info-value">{{ recipe?.cuisine_name }}</p>
+            </div>
+
+            <div class="p-recipe__info">
+              <UITitle type="heading3">Objectif</UITitle>
+              <p class="p-recipe__info-value">{{ recipe?.goal_name }}</p>
+            </div>
+
+            <div class="p-recipe__info">
+              <UITitle type="heading3">Régime</UITitle>
+              <p class="p-recipe__info-value">{{ recipe?.diet_name }}</p>
+            </div>
+
+            <div class="p-recipe__info">
+              <UITitle type="heading3">Allergies</UITitle>
+              <p class="p-recipe__info-value">{{ recipe?.allergy_name }}</p>
+            </div>
+          </div>
         </div>
       </div>
           </li>
