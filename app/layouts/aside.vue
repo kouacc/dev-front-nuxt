@@ -76,12 +76,34 @@ const closeSidebar = () => {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+
+    @include large-down {
+      margin-left: 0;
+      padding: rem(64) rem(16) rem(16);
+    }
+
+    @include medium-down {
+      padding: rem(60) rem(12) rem(12);
+    }
   }
 
   aside {
     position: fixed;
     left: 0;
     top: 0;
+
+    @include large-down {
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      z-index: 1000;
+
+      &.is-open {
+        transform: translateX(0);
+      }
+    }
+  }
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
