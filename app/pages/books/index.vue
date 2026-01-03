@@ -54,7 +54,7 @@ watch(currentPage, async () => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .books-page {
   max-width: rem(1400);
   margin: 0 auto;
