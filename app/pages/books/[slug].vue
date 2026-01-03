@@ -132,5 +132,40 @@ const breadcrumbItems = computed(() => [
     height: 100%;
     color: var(--color-primary-500);
   }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: rem(24);
+  }
+
+  &__title {
+    margin: 0;
+    color: var(--color-gray-900);
+    font-size: rem(48);
+    line-height: 1.2;
+
+    @include medium-down {
+      font-size: rem(32);
+      text-align: center;
+    }
+  }
+
+  &__author,
+  &__date {
+    display: flex;
+    align-items: center;
+    gap: rem(12);
+    font-size: rem(16);
+    color: var(--color-gray-700);
+
+    @include medium-down {
+      justify-content: center;
+    }
+
+    svg {
+      color: var(--color-primary-500);
+    }
+  }
 }
 </style>
