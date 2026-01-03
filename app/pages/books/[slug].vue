@@ -53,6 +53,13 @@ const breadcrumbItems = computed(() => [
       <div v-if="book.body" class="book-page__content wysiwyg">
         <SanityContent :value="book.body" />
       </div>
+
+      <div class="book-page__actions">
+        <UIButton as="link" href="/books">
+          <Icon name="lucide:arrow-left" />
+          Retour aux livres
+        </UIButton>
+      </div>
     </div>
   </div>
 </template>
