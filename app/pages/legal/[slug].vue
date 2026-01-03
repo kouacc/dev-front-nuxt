@@ -16,10 +16,14 @@ if (!page.value) {
   <div>
     <UITitle>{{ page?.title }}</UITitle>
     <p>Dernière mise à jour : {{ page?.lastUpdated }}</p>
-    <SanityContent :value="page?.content" />
+    <div class="wysiwyg p-legal-content">
+      <SanityContent :value="page?.content" />
+    </div>
   </div>
 </template>
 
 <style lang="scss">
-
+.p-legal-content {
+  margin-top: rem(32);
+}
 </style>
