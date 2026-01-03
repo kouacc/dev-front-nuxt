@@ -154,7 +154,51 @@ if (error.value) {
     font-weight: 600;
     color: var(--color-grey-800);
   }
+
+  &__ingredients,
+  &__instructions {
+    padding: rem(24);
     border-radius: rem(16);
+    border: 2px solid;
+  }
+
+  &__ingredients-list,
+  &__instructions-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  &__ingredients-item,
+  &__instructions-item {
+    padding: rem(12) 0;
+    border-bottom: 1px solid;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__ingredients {
+    background-color: var(--color-primary-50);
+    border-color: var(--color-primary-200);
+    position: sticky;
+    top: rem(100);
+  }
+
+  &__ingredients-item {
+    display: flex;
+    justify-content: space-between;
+    border-color: var(--color-primary-200);
+  }
+
+  &__ingredients-quantity {
+    font-weight: 600;
+    color: var(--color-primary-600);
+  }
+
+  &__ingredients-name {
+    flex: 1;
+  }
   }
 
   }
