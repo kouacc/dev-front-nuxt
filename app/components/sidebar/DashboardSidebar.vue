@@ -1,15 +1,25 @@
 <script setup lang="ts">
 const nav = [
-  { to: '/dashboard', label: 'My Recipes', icon: 'lucide:notebook-tabs' },
-  { to: '/dashboard/goals', label: 'My Goals', icon: 'lucide:target' },
-  { to: '/dashboard/settings', label: 'Settings', icon: 'lucide:settings' }
+  { to: '/dashboard', label: 'Accueil', icon: 'lucide:notebook-tabs' },
+  { to: '/dashboard/add', label: 'Créer une recette', icon: 'lucide:plus' }
 ]
+
+const adminNav = [
+  { to: '/dashboard/admin/cuisines', label: 'Cuisines', icon: 'lucide:cooking-pot' },
+  { to: '/dashboard/admin/ingredients', label: 'Ingrédients', icon: 'lucide:carrot' },
+  { to: '/dashboard/admin/recipes', label: 'Recettes', icon: 'lucide:book-open' }
+]
+
+const user = useAuth().getUser()
 </script>
 
 <template>
   <aside class="dh-sidebar">
-    <SidebarLinkGroup :links="nav" />
-    <SidebarUser />
+    <div class="dh-sidebar__navs">
+      <SidebarLinkGroup :links="nav" />
+      <SidebarLinkGroup v-if="user?.is_admin" :links="adminNav" label="Administration" />
+    </div>
+    <SidebarUser :user="user!" />
   </aside>
 </template>
 
@@ -27,5 +37,11 @@ const nav = [
 
   border-right: 1.5px solid var(--color-primary-200);
   padding: rem(24);
+
+  &__navs {
+    display: flex;
+    flex-direction: column;
+    gap: rem(32);
+  }
 }
 </style>

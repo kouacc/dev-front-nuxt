@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const props = defineProps<{
-  recipeId: number | null
+  recipeId: number | null,
+  mode: 'create' | 'edit',
+  recipeData: FullRecipe | null
 }>()
 
 const toast = useToast()
@@ -17,6 +19,16 @@ const modal = ref<boolean>(false)
 const selectedIngredients = ref<{ ingredient_id: number; quantity: string }[]>([
   { ingredient_id: 0, quantity: '1' }
 ])
+
+watch(() => props.recipeData, (data) => {
+  if (data && data.ingredients && data.ingredients.length > 0) {
+    selectedIngredients.value = data.ingredients.map(ing => ({
+      ingredient_id: ing.ingredient_id,
+      quantity: ing.quantity.toString()
+    }))
+  }
+}, { immediate: true })
+
 
 const addIngredient = () => {
   selectedIngredients.value.push({ ingredient_id: 0, quantity: '1' })

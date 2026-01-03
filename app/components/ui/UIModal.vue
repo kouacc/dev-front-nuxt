@@ -4,6 +4,10 @@ const props = defineProps<{
 }>()
 
 const open = defineModel<boolean>({ default: false })
+
+defineEmits<{
+  (e: 'close'): void
+}>()
 </script>
 
 <template>
@@ -13,7 +17,7 @@ const open = defineModel<boolean>({ default: false })
         <div v-if="open" class="ui-modal-dialog">
           <div class="ui-modal-dialog__header">
             <UITitle type="heading2">{{ props.title }}</UITitle>
-            <button class="ui-modal-dialog__close" @click="open = false">
+            <button class="ui-modal-dialog__close" @click="$emit('close'); open = false">
               <Icon name="lucide:x" />
             </button>
           </div>

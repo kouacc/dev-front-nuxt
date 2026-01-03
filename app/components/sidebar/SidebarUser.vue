@@ -1,7 +1,9 @@
 <script setup lang="ts">
-const user = useAuth().getUser()
+import type { JWTPayload } from '~/types/jwt'
 
-//TODO: déconnexion avec prompt modal
+defineProps<{
+  user: JWTPayload
+}>()
 </script>
 
 <template>
@@ -10,7 +12,11 @@ const user = useAuth().getUser()
       <UIAvatar :name="user!.username" />
       <span>{{ user?.username }}</span>
     </div>
-    <UITooltip content="Déconnexion" :delay="1000"><button class="sidebar-user__btn" @click="useAuth().logout"><Icon name="lucide:log-out" size="20" /></button></UITooltip>
+    <UITooltip content="Déconnexion" :delay="1000">
+      <button class="sidebar-user__btn" @click="useAuth().logout">
+        <Icon name="lucide:log-out" size="20" />
+      </button>
+    </UITooltip>
   </div>
 </template> 
 
@@ -41,6 +47,7 @@ const user = useAuth().getUser()
     --sd-user-btn-color: transparent;
 
     background: var(--sd-user-btn-color);
+    color: var(--color-text);
     border: none;
     cursor: pointer;
     padding: 0;
