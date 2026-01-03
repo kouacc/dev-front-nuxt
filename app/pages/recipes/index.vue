@@ -85,6 +85,10 @@ const paginatedRecipes = computed<FullRecipe[]>(() => {
   gap: rem(24);
   grid-template-columns: 1fr 3fr;
 
+  @include medium-down {
+    grid-template-columns: 1fr;
+  }
+
   &__filters {
     background-color: var(--color-white);
     border-radius: rem(12);
@@ -109,6 +113,15 @@ const paginatedRecipes = computed<FullRecipe[]>(() => {
       padding: 0;
       margin: 0;
       list-style: none;
+
+      @include medium-down {
+        grid-template-columns: repeat(auto-fill, minmax(rem(200), 1fr));
+        gap: rem(16);
+      }
+
+      @include small-only {
+        grid-template-columns: 1fr;
+      }
   }
 
   &__empty {
@@ -118,6 +131,11 @@ const paginatedRecipes = computed<FullRecipe[]>(() => {
     text-align: center;
     color: var(--color-gray-600);
     font-size: rem(16);
+
+    @include small-only {
+      padding: rem(32) rem(16);
+      font-size: rem(14);
+    }
   }
 
   &__pagination {
