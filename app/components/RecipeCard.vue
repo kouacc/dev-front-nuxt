@@ -9,10 +9,10 @@ const handleImageError = () => {
 </script>
 
 <template>
-  <div class="recipe-card">
-    <NuxtImg 
+  <NuxtLink :to="{ name: 'recipes-id', params: { id: recipe.recipe_id } }" class="recipe-card">
+    <NuxtImg
       v-if="!imageError"
-      :src="'/recipes/' + recipe.image_url" 
+      :src="'/recipes/' + recipe.image_url"
       class="recipe-card__image"
       @error="handleImageError"
     />
@@ -22,18 +22,20 @@ const handleImageError = () => {
     <div class="recipe-card__overlay">
       <p class="recipe-card__title">{{ recipe.title }}</p>
     </div>
-  </div>
+  </NuxtLink>
 </template>
 
 <style lang="scss">
 .recipe-card {
   position: relative;
+  display: block;
   width: 100%;
   height: rem(300);
   border-radius: rem(12);
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.3s ease;
+  text-decoration: none;
 
   &:hover {
     transform: scale(1.01);
