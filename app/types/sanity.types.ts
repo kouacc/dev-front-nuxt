@@ -19,6 +19,7 @@ export type LegalType = {
   _createdAt: string
   _updatedAt: string
   _rev: string
+  title?: string
   lastUpdated?: string
   content?: Array<{
     children?: Array<{
