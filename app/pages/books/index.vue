@@ -72,5 +72,38 @@ watch(currentPage, async () => {
     color: var(--color-gray-600);
     margin: 0;
   }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(rem(280), 1fr));
+    gap: rem(32);
+    margin-bottom: rem(48);
+
+    @include medium-down {
+      grid-template-columns: repeat(auto-fill, minmax(rem(200), 1fr));
+      gap: rem(20);
+    }
+  }
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: rem(20);
+    padding: rem(80) rem(20);
+    color: var(--color-gray-500);
+
+    p {
+      font-size: rem(18);
+      margin: 0;
+    }
+  }
+
+  &__pagination {
+    display: flex;
+    justify-content: center;
+    padding: rem(40) 0;
+  }
 }
 </style>
