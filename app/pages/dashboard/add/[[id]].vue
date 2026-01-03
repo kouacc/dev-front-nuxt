@@ -38,14 +38,14 @@ watch(() => id, async (newId) => {
 
 <template>
   <div class="p-dashboard-add-wrapper">
-    <UITitle>Créer une nouvelle recette</UITitle>
+    <UITitle>{{ mode === 'edit' ? 'Modifier la recette' : 'Créer une nouvelle recette' }}</UITitle>
     <div class="p-dashboard-add">
       <div class="p-dashboard-add__left">
-        <AddRecipeForm v-model="recipeId" />
-        <AddIngredientForm :recipe-id="recipeId" />
+        <AddRecipeForm v-model="recipeId" :mode="mode" :recipe-data="recipeData" />
+        <AddIngredientForm :recipe-id="recipeId" :mode="mode" :recipe-data="recipeData" />
       </div>
       <div class="p-dashboard-add__right">
-        <AddInstructionForm :recipe-id="recipeId" />
+        <AddInstructionForm :recipe-id="recipeId" :mode="mode" :recipe-data="recipeData" />
       </div>
     </div>
   </div>
