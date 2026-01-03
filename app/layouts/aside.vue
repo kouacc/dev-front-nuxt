@@ -1,6 +1,24 @@
+<script setup lang="ts">
+const sidebarOpen = ref(false)
+
+const toggleSidebar = () => {
+  sidebarOpen.value = !sidebarOpen.value
+}
+
+const closeSidebar = () => {
+  sidebarOpen.value = false
+}
+</script>
+
 <template>
   <div class="ly-aside">
-    <DashboardSidebar />
+    <button class="ly-aside__hamburger" aria-label="Toggle menu" @click="toggleSidebar">
+      <Icon :name="sidebarOpen ? 'lucide:x' : 'lucide:menu'" size="24" />
+    </button>
+
+    <div v-if="sidebarOpen" class="ly-aside__overlay" @click="closeSidebar" />
+
+    <DashboardSidebar :is-open="sidebarOpen" @close="closeSidebar" />
     <main class="ly-aside__main">
       <slot />
     </main>
