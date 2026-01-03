@@ -57,29 +57,33 @@ const paginatedRecipes = computed<FullRecipe[]>(() => {
 </script>
 
 <template>
-  <div>
-    <div class="hero" />
-    <UIInput v-model="searchQuery" label="Rechercher une recette" placeholder="Ex: Poulet au curry" />
-    <div class="recipes-filters">
-      <div v-for="(cuisine, index) in cuisines" :key="index" class="recipes-filters__item">
-        <UICheckbox v-model="filters" :label="cuisine.name" :value="cuisine.name" @input="page = 1" />
-      </div>
+  <div class="p-recipes">
+    <div class="p-recipes__filters">
+      <UITitle type="heading2">Filtres</UITitle>
+      <UIInput v-model="searchQuery" label="Rechercher une recette" placeholder="Ex: Poulet au curry" />
+      <UISelect v-model="filters" label="Cuisine" placeholder="Sélectionner une cuisine">
+        <UISelectOption v-for="(cuisine, index) in cuisines" :key="index" :value="cuisine.name" :label="cuisine.name" />
+      </UISelect>
     </div>
-
-    <ul>
-      <li v-for="recipe in paginatedRecipes" :key="recipe.recipe_id">
-        <RecipeCard :recipe="recipe" />
-      </li>
-    </ul>
-    <UIPagination v-model:page="page" :page-amount="totalPages" />
+    <div class="p-recipes__content">
+      <ul v-if="paginatedRecipes.length > 0" class="p-recipes__list">
+        <li v-for="recipe in paginatedRecipes" :key="recipe.recipe_id">
+          <RecipeCard :recipe="recipe" />
+        </li>
+      </ul>
+      <div v-else class="p-recipes__empty">
+        <p>Aucune recette ne correspond à vos critères de recherche.</p>
+      </div>
+      <UIPagination v-if="paginatedRecipes.length > 0" v-model:page="page" class="p-recipes__pagination" :page-amount="totalPages" />
+    </div>
   </div>
 </template>
 
 <style lang="scss">
-.hero {
-  border-radius: rem(24);
-  width: 100%;
-  height: rem(300);
-  background-color: var(--color-grey-200);
+.p-recipes {
+  display: grid;
+  gap: rem(24);
+  grid-template-columns: 1fr 3fr;
+  }
 }
 </style>
