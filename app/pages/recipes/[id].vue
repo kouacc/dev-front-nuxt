@@ -86,6 +86,21 @@ if (error.value) {
   margin: 0 auto;
   padding: rem(32) rem(16);
 
+  > * + * {
+    margin-top: rem(32);
+  }
+
+  &__description {
+    font-size: rem(18);
+    color: var(--color-grey-700);
+    line-height: 1.6;
+  }
+
+  &__body {
+    > * + * {
+      margin-top: rem(24);
+    }
+  }
     border-radius: rem(16);
   }
 
