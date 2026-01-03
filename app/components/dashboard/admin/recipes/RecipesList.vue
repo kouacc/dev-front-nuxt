@@ -49,6 +49,13 @@ const openModal = (recipe: Recipe) => {
     background-color: var(--card-bg-color);
     transition: background-color 0.2s;
 
+    @include medium-down {
+      grid-template-columns: 50px 1fr;
+      grid-template-rows: auto auto;
+      gap: 0.75rem;
+      padding: 0.875rem 1rem;
+    }
+
     &:hover {
       background-color: var(--hover-bg-color, rgba(0, 0, 0, 0.02));
     }
@@ -59,17 +66,37 @@ const openModal = (recipe: Recipe) => {
     height: 50px;
     object-fit: cover;
     border-radius: rem(4);
+
+    @include medium-down {
+      grid-row: 1 / 3;
+    }
   }
 
   &__item-title {
     font-weight: 500;
     flex: 1;
+
+    @include medium-down {
+      grid-column: 2;
+      grid-row: 1;
+    }
   }
 
   &__item-actions {
     display: flex;
     gap: 0.5rem;
     margin-left: auto;
+
+    @include medium-down {
+      grid-column: 2;
+      grid-row: 2;
+      margin-left: 0;
+      width: 100%;
+
+      button {
+        flex: 1;
+      }
+    }
   }
 }
 </style>

@@ -63,6 +63,11 @@ const openModal = (
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
+
+    @include medium-down {
+      flex-direction: column;
+      align-items: stretch;
+    }
   }
 
   &__items {
@@ -86,6 +91,13 @@ const openModal = (
     border-radius: 0.5rem;
     transition: box-shadow 0.2s ease;
 
+    @include medium-down {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0.875rem 1rem;
+      gap: 0.75rem;
+    }
+
     &:hover {
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     }
@@ -94,12 +106,24 @@ const openModal = (
   &__item-name {
     font-weight: 500;
     color: var(--color-grey-800);
+
+    @include medium-down {
+      width: 100%;
+    }
   }
 
   &__item-actions {
     display: flex;
     gap: 0.5rem;
     flex-shrink: 0;
+
+    @include medium-down {
+      width: 100%;
+
+      button {
+        flex: 1;
+      }
+    }
   }
 }
 </style>
