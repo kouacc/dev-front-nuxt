@@ -84,6 +84,17 @@ const paginatedRecipes = computed<FullRecipe[]>(() => {
   display: grid;
   gap: rem(24);
   grid-template-columns: 1fr 3fr;
+
+  &__filters {
+    background-color: var(--color-white);
+    border-radius: rem(12);
+    padding: rem(16);
+    align-self: start;
+
+    > * + * {
+      margin-top: rem(16);
+    }
+  }
   }
 }
 </style>
