@@ -101,6 +101,36 @@ if (error.value) {
       margin-top: rem(24);
     }
   }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: rem(24);
+
+    @include medium-down {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__left {
+    > * + * {
+      margin-top: rem(24);
+    }
+  }
+
+  &__cover {
+    border-radius: rem(16);
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    aspect-ratio: 16 / 9;
+    background-color: var(--color-grey-200);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
     border-radius: rem(16);
   }
 
