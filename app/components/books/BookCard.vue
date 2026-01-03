@@ -78,5 +78,31 @@ defineProps<{
     height: 100%;
     color: var(--color-primary-500);
   }
+
+  &__content {
+    padding: rem(20);
+    display: flex;
+    flex-direction: column;
+    gap: rem(12);
+    flex: 1;
+  }
+
+  &__title {
+    font-size: rem(20);
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--color-gray-900);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &__date {
+    font-size: rem(14);
+    color: var(--color-gray-600);
+    margin: 0;
+  }
 }
 </style>
