@@ -16,15 +16,15 @@ const breadcrumbItems = computed(() => [
 </script>
 
 <template>
-  <div v-if="book" class="book-page">
-    <div class="book-page__container">
+  <div v-if="book" class="p-book">
+    <div class="p-book__container">
       <UIBreadcrumb
-        class="book-page__breadcrumb"
+        class="p-book__breadcrumb"
         :items="breadcrumbItems"
       />
 
-      <div class="book-page__header">
-        <div class="book-page__cover">
+      <div class="p-book__header">
+        <div class="p-book__cover">
           <NuxtImg 
             v-if="book.cover" 
             :src="useSanityImage(book.cover)?.url()" 
@@ -33,29 +33,29 @@ const breadcrumbItems = computed(() => [
             height="600"
             fit="cover"
           />
-          <div v-else class="book-page__cover-placeholder">
+          <div v-else class="p-book__cover-placeholder">
             <Icon name="lucide:book-open" size="80" />
           </div>
         </div>
 
-        <div class="book-page__info">
-          <UITitle tag="h1" class="book-page__title">{{ book.title }}</UITitle>
+        <div class="p-book__info">
+          <UITitle tag="h1" class="p-book__title">{{ book.title }}</UITitle>
           
-          <div v-if="book.author" class="book-page__author">
+          <div v-if="book.author" class="p-book__author">
             <Icon name="lucide:user" size="20" />
             <span>{{ book.author.name }}</span>
           </div>
 
-          <div v-if="book.publishedAt" class="book-page__date">
+          <div v-if="book.publishedAt" class="p-book__date">
             <Icon name="lucide:calendar" size="20" />
             <span>Publié le {{ new Date(book.publishedAt).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' }) }}</span>
           </div>
 
-          <div v-if="book.categories && book.categories.length" class="book-page__categories">
+          <div v-if="book.categories && book.categories.length" class="p-book__categories">
             <span 
               v-for="category in book.categories" 
               :key="category._key" 
-              class="book-page__category"
+              class="p-book__category"
             >
               {{ category.title }}
             </span>
@@ -63,11 +63,11 @@ const breadcrumbItems = computed(() => [
         </div>
       </div>
 
-      <div v-if="book.body" class="book-page__content wysiwyg">
+      <div v-if="book.body" class="p-book__content wysiwyg">
         <SanityContent :value="book.body" />
       </div>
 
-      <div class="book-page__actions">
+      <div class="p-book__actions">
         <UIButton as="link" href="/books">
           <Icon name="lucide:arrow-left" />
           Retour aux livres
@@ -78,7 +78,7 @@ const breadcrumbItems = computed(() => [
 </template>
 
 <style lang="scss">
-.book-page {
+.p-book {
   min-height: 100vh;
   background-color: var(--color-gray-50);
 

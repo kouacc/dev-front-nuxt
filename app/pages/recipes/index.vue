@@ -22,16 +22,16 @@ if (recipesError.value || cuisinesError.value) {
   })
 }
 
-const filters = ref<string[]>([])
-const itemsPerPage = 2
+const filters = ref<string>('')
+const itemsPerPage = 6
 const page = ref<number>(1)
 const searchQuery = ref<string>('')
 
 const filteredRecipes = computed<FullRecipe[]>(() => {
   let filtered = recipes.value || []
   
-  if (filters.value.length > 0) {
-    filtered = filtered.filter(recipe => filters.value.includes(recipe.cuisine_name))
+  if (filters.value) {
+    filtered = filtered.filter(recipe => recipe.cuisine_name === filters.value)
   }
 
   const formattedSearch = searchQuery.value.trim().toLowerCase()
@@ -57,29 +57,89 @@ const paginatedRecipes = computed<FullRecipe[]>(() => {
 </script>
 
 <template>
-  <div>
-    <div class="hero" />
-    <UIInput v-model="searchQuery" label="Rechercher une recette" placeholder="Ex: Poulet au curry" />
-    <div class="recipes-filters">
-      <div v-for="(cuisine, index) in cuisines" :key="index" class="recipes-filters__item">
-        <UICheckbox v-model="filters" :label="cuisine.name" :value="cuisine.name" @input="page = 1" />
-      </div>
+  <div class="p-recipes">
+    <div class="p-recipes__filters">
+      <UITitle type="heading2">Filtres</UITitle>
+      <UIInput v-model="searchQuery" label="Rechercher une recette" placeholder="Ex: Poulet au curry" />
+      <UISelect v-model="filters" label="Cuisine" placeholder="Sélectionner une cuisine">
+        <UISelectOption v-for="(cuisine, index) in cuisines" :key="index" :value="cuisine.name" :label="cuisine.name" />
+      </UISelect>
     </div>
-
-    <ul>
-      <li v-for="recipe in paginatedRecipes" :key="recipe.recipe_id">
-        <RecipeCard :recipe="recipe" />
-      </li>
-    </ul>
-    <UIPagination v-model:page="page" :page-amount="totalPages" />
+    <div class="p-recipes__content">
+      <ul v-if="paginatedRecipes.length > 0" class="p-recipes__list">
+        <li v-for="recipe in paginatedRecipes" :key="recipe.recipe_id">
+          <RecipeCard :recipe="recipe" />
+        </li>
+      </ul>
+      <div v-else class="p-recipes__empty">
+        <p>Aucune recette ne correspond à vos critères de recherche.</p>
+      </div>
+      <UIPagination v-if="paginatedRecipes.length > 0" v-model:page="page" class="p-recipes__pagination" :page-amount="totalPages" />
+    </div>
   </div>
 </template>
 
 <style lang="scss">
-.hero {
-  border-radius: rem(24);
-  width: 100%;
-  height: rem(300);
-  background-color: var(--color-grey-200);
+.p-recipes {
+  display: grid;
+  gap: rem(24);
+  grid-template-columns: 1fr 3fr;
+
+  @include medium-down {
+    grid-template-columns: 1fr;
+  }
+
+  &__filters {
+    background-color: var(--color-white);
+    border-radius: rem(12);
+    padding: rem(16);
+    align-self: start;
+
+    > * + * {
+      margin-top: rem(16);
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: rem(24);
+  }
+
+  &__list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(rem(280), 1fr));
+      gap: rem(24);
+      padding: 0;
+      margin: 0;
+      list-style: none;
+
+      @include medium-down {
+        grid-template-columns: repeat(auto-fill, minmax(rem(200), 1fr));
+        gap: rem(16);
+      }
+
+      @include small-only {
+        grid-template-columns: 1fr;
+      }
+  }
+
+  &__empty {
+    background-color: var(--color-white);
+    border-radius: rem(12);
+    padding: rem(48) rem(24);
+    text-align: center;
+    color: var(--color-gray-600);
+    font-size: rem(16);
+
+    @include small-only {
+      padding: rem(32) rem(16);
+      font-size: rem(14);
+    }
+  }
+
+  &__pagination {
+    align-self: center;
+  }
 }
 </style>

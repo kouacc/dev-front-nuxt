@@ -17,45 +17,218 @@ if (error.value) {
 </script>
 
 <template>
-  <div>
-    <UITitle type="heading1">{{ recipe?.title }}</UITitle>
-    <NuxtImg src="https://placehold.co/1000x600" :alt="recipe?.title" />
-    <div class="recipe__content">
-      <div>
-        <UITitle type="heading2">Etapes</UITitle>
-        <ul>
-          <li v-for="(step, index) in recipe?.instructions" :key="index">
-            {{ step.step_number }}. {{ step.description }}
-          </li>
-        </ul>
+  <div class="p-recipe">
+    <div class="p-recipe__header">
+      <UITitle type="heading1">{{ recipe?.title }}</UITitle>
+      <p class="p-recipe__description">{{ recipe?.description }}</p>
+    </div>
+
+    <div class="p-recipe__body">
+      <div class="p-recipe__grid">
+        <div class="p-recipe__left">
+          <div class="p-recipe__cover">
+            <NuxtImg 
+              :src="'/recipes/' + recipe?.image_url || 'https://placehold.co/1000x600'" 
+              :alt="recipe?.title" 
+            />
+          </div>
+
+          <div class="p-recipe__info-grid">
+            <div class="p-recipe__info">
+              <UITitle type="heading3">Cuisine</UITitle>
+              <p class="p-recipe__info-value">{{ recipe?.cuisine_name }}</p>
+            </div>
+
+            <div class="p-recipe__info">
+              <UITitle type="heading3">Objectif</UITitle>
+              <p class="p-recipe__info-value">{{ recipe?.goal_name }}</p>
+            </div>
+
+            <div class="p-recipe__info">
+              <UITitle type="heading3">Régime</UITitle>
+              <p class="p-recipe__info-value">{{ recipe?.diet_name }}</p>
+            </div>
+
+            <div class="p-recipe__info">
+              <UITitle type="heading3">Allergies</UITitle>
+              <p class="p-recipe__info-value">{{ recipe?.allergy_name }}</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="p-recipe__ingredients">
+          <UITitle type="heading2">Ingrédients</UITitle>
+          <ul class="p-recipe__ingredients-list">
+            <li v-for="(ing, index) in recipe?.ingredients" :key="index" class="p-recipe__ingredients-item">
+              <span class="p-recipe__ingredients-name">{{ ing.name }}</span>
+              <span class="p-recipe__ingredients-quantity">{{ ing.quantity }} {{ ing.unit }}</span>
+            </li>
+          </ul>
+        </aside>
       </div>
-      <aside>
-        <UITitle type="heading2">Ingrédients</UITitle>
-        <ul>
-          <li v-for="(ing, index) in recipe?.ingredients" :key="index">
-            {{ ing.quantity }} {{ ing.unit }} de {{ ing.name }}
+
+      <div class="p-recipe__instructions">
+        <UITitle type="heading2">Instructions</UITitle>
+        <ol class="p-recipe__instructions-list">
+          <li v-for="(step, index) in recipe?.instructions" :key="index" class="p-recipe__instructions-item">
+            <span class="number">{{ step.step_number }}</span>
+            <p class="p-recipe__instructions-text">{{ step.description }}</p>
           </li>
-        </ul>
-      </aside>
+        </ol>
+      </div>
     </div>
   </div>
 </template> 
 
 <style lang="scss">
-.recipe__content {
-  display: flex;
-  gap: rem(32);
+.p-recipe {
+  max-width: rem(1200);
+  margin: 0 auto;
+  padding: rem(32) rem(16);
 
-  aside {
-    flex: 1;
-    max-width: rem(300);
-    padding: rem(16);
-    background-color: var(--color-primary-200);
-    border-radius: rem(16);
+  > * + * {
+    margin-top: rem(32);
   }
 
-  div {
-    flex: 2;
+  &__description {
+    font-size: rem(18);
+    color: var(--color-grey-700);
+    line-height: 1.6;
+  }
+
+  &__body {
+    > * + * {
+      margin-top: rem(24);
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: rem(24);
+
+    @include medium-down {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__left {
+    > * + * {
+      margin-top: rem(24);
+    }
+  }
+
+  &__cover {
+    border-radius: rem(16);
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    aspect-ratio: 16 / 9;
+    background-color: var(--color-grey-200);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: rem(16);
+
+    @include small-only {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__info {
+    padding: rem(20);
+    background-color: var(--color-grey-100);
+    border-radius: rem(12);
+    border: 1px solid var(--color-grey-200);
+  }
+
+  &__info-value {
+    font-size: rem(18);
+    font-weight: 600;
+    color: var(--color-grey-800);
+  }
+
+  &__ingredients,
+  &__instructions {
+    padding: rem(24);
+    border-radius: rem(16);
+    border: 2px solid;
+  }
+
+  &__ingredients-list,
+  &__instructions-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  &__ingredients-item,
+  &__instructions-item {
+    padding: rem(12) 0;
+    border-bottom: 1px solid;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__ingredients {
+    background-color: var(--color-primary-50);
+    border-color: var(--color-primary-200);
+    position: sticky;
+    top: rem(100);
+  }
+
+  &__ingredients-item {
+    display: flex;
+    justify-content: space-between;
+    border-color: var(--color-primary-200);
+  }
+
+  &__ingredients-quantity {
+    font-weight: 600;
+    color: var(--color-primary-600);
+  }
+
+  &__ingredients-name {
+    flex: 1;
+  }
+
+  &__instructions {
+    background-color: var(--color-grey-50);
+    border-color: var(--color-grey-200);
+  }
+
+  &__instructions-item {
+    display: flex;
+    gap: rem(16);
+    border-color: var(--color-grey-200);
+
+    .number {
+      flex-shrink: 0;
+      width: rem(36);
+      height: rem(36);
+      display: grid;
+      place-items: center;
+      background-color: var(--color-primary-600);
+      color: white;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: rem(16);
+    }
+  }
+
+  &__instructions-text {
+    flex: 1;
+    line-height: 1.6;
+    color: var(--color-grey-700);
+    align-self: center;
   }
 }
 </style>
