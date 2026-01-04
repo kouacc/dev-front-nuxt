@@ -13,8 +13,8 @@ const props = defineProps<{
 <template>
   <div class="hp-hero">
     <div class="hp-hero__content">
-      <h1>{{ props.title }}</h1>
-      <p>{{ props.subtitle }}</p>
+      <h1 class="hp-hero__title">{{ props.title }}</h1>
+      <p class="hp-hero__subtitle">{{ props.subtitle }}</p>
     </div>
     <NuxtImg
       v-if="props.image"
@@ -28,10 +28,14 @@ const props = defineProps<{
 .hp-hero {
   border-radius: rem(24);
   width: 100%;
-  height: rem(300);
+  height: 70vh;
   position: relative;
   overflow: hidden;
   padding: rem(24);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   &__img {
     position: absolute;
@@ -46,7 +50,32 @@ const props = defineProps<{
   &__content {
     position: relative;
     z-index: 1;
-    color: var(--color-white);
+    color: #fff;
+  }
+  
+  &__title {
+      font-size: rem(96);
+      margin: 0;
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+
+      @include medium-up {
+        font-size: rem(72);
+      }
+
+      @include medium-down {
+        font-size: rem(52);
+      }
+
+      @include small-only {
+        font-size: rem(48);
+      }
+    }
+
+  &__subtitle {
+      font-size: rem(20);
+      margin: rem(12) 0 0 0;
+      text-align: center;
   }
 
   &:before {
