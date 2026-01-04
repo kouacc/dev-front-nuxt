@@ -58,6 +58,18 @@ const props = defineProps<{
       margin: 0;
       text-align: center;
       font-family: 'Playfair Display', serif;
+
+      @include medium-up {
+        font-size: rem(72);
+      }
+
+      @include medium-down {
+        font-size: rem(52);
+      }
+
+      @include small-only {
+        font-size: rem(48);
+      }
     }
 
   &__subtitle {
