@@ -87,6 +87,27 @@ watch(data, (newData) => {
 
 <style lang="scss">
 .p-dashboard {
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: rem(64) rem(32);
+    text-align: center;
+    gap: rem(24);
+  }
+
+  &__empty-icon {
+    font-size: rem(64);
+    color: var(--color-gray-400);
+  }
+
+  &__empty-text {
+    font-size: rem(20);
+    color: var(--color-gray-600);
+    margin: 0;
+  }
   &__grid {
     display: grid;
     gap: rem(24);
