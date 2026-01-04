@@ -43,6 +43,15 @@ watch(data, (newData) => {
 <template>
   <div class="p-dashboard">
     <div v-else class="p-dashboard__content">
+      <div class="p-dashboard__grid">
+        <DashboardRecipeCard
+          v-for="recipe in paginatedRecipes"
+          :key="recipe.recipe_id"
+          :recipe="recipe"
+          @delete="handleDeleteClick"
+        />
+      </div>
+
       <div v-if="totalPages > 1" class="p-dashboard__pagination">
         <UIPagination
           v-model:page="currentPage"
