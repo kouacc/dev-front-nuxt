@@ -12,11 +12,29 @@ const { data } = await useAsyncData<APIResponse<Recipe[]>>('my-recipes', () => {
     }
   })
 })
+
+const recipes = ref<Recipe[]>(data.value?.data || [])
+
+const currentPage = ref(1)
+const itemsPerPage = 9
+const totalPages = computed(() => Math.ceil(recipes.value.length / itemsPerPage))
+
+const paginatedRecipes = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage
+  const end = start + itemsPerPage
+  return recipes.value.slice(start, end)
+})
 </script>
 
 <template>
-  <div>
-    <UITitle>Dashboard</UITitle>
-    <pre>{{ data }}</pre>
+  <div class="p-dashboard">
+    <div v-else class="p-dashboard__content">
+      <div v-if="totalPages > 1" class="p-dashboard__pagination">
+        <UIPagination
+          v-model:page="currentPage"
+          :page-amount="totalPages"
+        />
+      </div>
+    </div>
   </div>
 </template>
