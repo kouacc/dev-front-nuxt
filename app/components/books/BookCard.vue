@@ -41,14 +41,14 @@ defineProps<{
   </NuxtLink>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .book-card {
   display: flex;
   flex-direction: column;
   border-radius: rem(12);
   overflow: hidden;
   background-color: var(--color-white);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease;
   text-decoration: none;
   color: inherit;
 
