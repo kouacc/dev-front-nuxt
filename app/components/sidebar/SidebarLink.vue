@@ -3,13 +3,17 @@ import type { NuxtLinkProps } from '#app'
 
 defineProps<{
   to: NuxtLinkProps['to']
-  label: string;
-  icon?: string;
+  label: string
+  icon?: string
+}>()
+
+const emit = defineEmits<{
+  click: []
 }>()
 </script>
 
 <template>
-  <NuxtLink :to="to" class="sidebar-link" active-class="sidebar-link--active">
+  <NuxtLink :to="to" class="sidebar-link" active-class="sidebar-link--active" @click="emit('click')">
     <Icon v-if="icon" :name="icon" />
     {{ label }}
   </NuxtLink>
@@ -32,6 +36,17 @@ defineProps<{
   align-items: center;
   gap: rem(8);
   width: 100%;
+
+  @include medium-down {
+    padding: rem(10) rem(14);
+    font-size: rem(14);
+    gap: rem(6);
+  }
+
+  @include small-only {
+    padding: rem(8) rem(12);
+    font-size: rem(13);
+  }
 
   &:hover {
     background-color: var(--sd-link-hover);

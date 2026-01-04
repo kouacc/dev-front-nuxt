@@ -23,5 +23,13 @@ if (useRoute().path === '/dashboard/admin') {
   height: 100%;
   display: flex;
   flex-direction: column;
+  
+  @include medium-down {
+    padding: 1rem;
+  }
+
+  @include small-only {
+    padding: 0.75rem;
+  }
 }
 </style>

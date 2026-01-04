@@ -18,7 +18,7 @@ defineProps<{
       </button>
     </UITooltip>
   </div>
-</template> 
+</template>
 
 <style lang="scss">
 .sidebar-user {
@@ -31,15 +31,35 @@ defineProps<{
   align-items: center;
   justify-content: space-between;
 
+  @include medium-down {
+    padding: rem(6);
+  }
+
   &__info {
     display: inline-flex;
     align-items: center;
     gap: rem(8);
 
+    @include small-only {
+      gap: rem(6);
+    }
+
     > span {
       font-weight: 600;
       font-size: rem(14);
       color: var(--color-grey-800);
+
+      @include medium-down {
+        font-size: rem(13);
+      }
+
+      @include small-only {
+        font-size: rem(12);
+        max-width: rem(120);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
     }
   }
 
@@ -55,6 +75,10 @@ defineProps<{
     padding: rem(8);
     border-radius: rem(8);
     display: flex;
+
+    @include medium-down {
+      padding: rem(6);
+    }
 
     &:hover {
       --sd-user-btn-color: var(--color-primary-50);

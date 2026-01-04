@@ -121,6 +121,20 @@ const onSubmit = async () => {
   border: 1px solid var(--color-grey-200);
   height: 100%;
 
+  @include large-down {
+    height: auto;
+  }
+
+  @include medium-down {
+    padding: rem(20);
+    gap: rem(14);
+  }
+
+  @include small-only {
+    padding: rem(16);
+    gap: rem(12);
+  }
+
   > *:not(button, .ui-tooltip) {
     width: 100%;
   }
@@ -129,11 +143,27 @@ const onSubmit = async () => {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @include medium-down {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: rem(12);
+    }
   }
 
   &__btns {
     display: flex;
     gap: rem(8);
+
+    @include medium-down {
+      width: 100%;
+      flex-wrap: wrap;
+    }
+
+    @include small-only {
+      flex-direction: column;
+      gap: rem(6);
+    }
   }
 
   &__list {
@@ -146,6 +176,11 @@ const onSubmit = async () => {
     width: 100%;
     height: 100%;
     overflow-y: auto;
+
+    @include large-down {
+      height: auto;
+      overflow-y: visible;
+    }
   }
 
   &__row {
@@ -157,12 +192,31 @@ const onSubmit = async () => {
     border-radius: rem(8);
     border: 1px solid var(--color-grey-200);
 
+    @include medium-down {
+      flex-wrap: wrap;
+      padding: rem(12);
+    }
+
     &__select {
       flex: 2;
+
+      @include medium-down {
+        flex: 1 1 100%;
+      }
     }
 
     &__quantity {
       flex: 1;
+
+      @include medium-down {
+        flex: 1 1 calc(100% - 50px);
+      }
+    }
+
+    button {
+      @include medium-down {
+        flex-shrink: 0;
+      }
     }
   }
 }

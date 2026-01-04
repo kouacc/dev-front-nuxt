@@ -68,15 +68,39 @@ watch(() => id, async (newId) => {
   min-height: 0;
   overflow: hidden;
 
+  @include large-down {
+    grid-template-columns: 1fr;
+    gap: rem(24);
+    overflow-y: auto;
+  }
+
+  @include medium-down {
+    gap: rem(20);
+    margin-top: rem(8);
+  }
+
   &__left {
     display: flex;
     flex-direction: column;
     gap: rem(32);
     overflow-y: auto;
+
+    @include large-down {
+      gap: rem(24);
+      overflow-y: visible;
+    }
+
+    @include medium-down {
+      gap: rem(20);
+    }
   }
 
   &__right {
     overflow-y: auto;
+
+    @include large-down {
+      overflow-y: visible;
+    }
   }
 }
 </style>

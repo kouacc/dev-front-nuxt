@@ -1,4 +1,12 @@
 <script setup lang="ts">
+defineProps<{
+  isOpen?: boolean
+}>()
+
+const emit = defineEmits<{
+  close: []
+}>()
+
 const nav = [
   { to: '/dashboard', label: 'Accueil', icon: 'lucide:notebook-tabs' },
   { to: '/dashboard/add', label: 'Créer une recette', icon: 'lucide:plus' }
@@ -11,13 +19,17 @@ const adminNav = [
 ]
 
 const user = useAuth().getUser()
+
+const handleLinkClick = () => {
+  emit('close')
+}
 </script>
 
 <template>
-  <aside class="dh-sidebar">
+  <aside class="dh-sidebar" :class="{ 'is-open': isOpen }">
     <div class="dh-sidebar__navs">
-      <SidebarLinkGroup :links="nav" />
-      <SidebarLinkGroup v-if="user?.is_admin" :links="adminNav" label="Administration" />
+      <SidebarLinkGroup :links="nav" @link-click="handleLinkClick" />
+      <SidebarLinkGroup v-if="user?.is_admin" :links="adminNav" label="Administration" @link-click="handleLinkClick" />
     </div>
     <SidebarUser :user="user!" />
   </aside>
@@ -38,10 +50,29 @@ const user = useAuth().getUser()
   border-right: 1.5px solid var(--color-primary-200);
   padding: rem(24);
 
+  @include large-down {
+    height: 100vh;
+    padding-top: rem(68);
+  }
+
+  @include medium-down {
+    padding: rem(64) rem(20) rem(20);
+    max-width: rem(280);
+  }
+
+  @include small-only {
+    padding: rem(60) rem(16) rem(16);
+    max-width: rem(260);
+  }
+
   &__navs {
     display: flex;
     flex-direction: column;
     gap: rem(32);
+
+    @include medium-down {
+      gap: rem(24);
+    }
   }
 }
 </style>
