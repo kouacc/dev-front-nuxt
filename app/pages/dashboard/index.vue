@@ -42,6 +42,22 @@ watch(data, (newData) => {
 
 <template>
   <div class="p-dashboard">
+    <div class="p-dashboard__header">
+      <UITitle>Mes recettes</UITitle>
+      <UIButton as="link" :to="'/dashboard/add'" variant="default">
+        <Icon name="lucide:plus" />
+        Créer une recette
+      </UIButton>
+    </div>
+
+    <div v-if="recipes.length === 0" class="p-dashboard__empty">
+      <Icon name="lucide:chef-hat" class="p-dashboard__empty-icon" />
+      <p class="p-dashboard__empty-text">Vous n'avez pas encore créé de recettes</p>
+      <UIButton as="link" :to="'/dashboard/add'" variant="default">
+        Créer ma première recette
+      </UIButton>
+    </div>
+
     <div v-else class="p-dashboard__content">
       <div class="p-dashboard__grid">
         <DashboardRecipeCard
