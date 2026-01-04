@@ -23,6 +23,18 @@ const onImageError = () => {
           <Icon name="lucide:image" size="64" />
         </div>
       </div>
+
+      <UITitle type="heading3" class="recipe-card__title">{{ recipe.title }}</UITitle>
+
+      <div class="recipe-card__actions">
+        <button class="recipe-card__btn" @click="$router.push({ name: 'dashboard-add-id', params: { id: recipe.recipe_id } })">
+          <Icon name="lucide:edit" size="18" />
+        </button>
+        <button class="recipe-card__btn recipe-card__btn--delete" @click.prevent="$emit('delete', recipe)">
+          <Icon name="lucide:trash" size="18" />
+        </button>
+      </div>
+
     </NuxtLink>
   </div>
 </template>
