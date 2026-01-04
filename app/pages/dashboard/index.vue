@@ -24,6 +24,14 @@ const paginatedRecipes = computed(() => {
   const end = start + itemsPerPage
   return recipes.value.slice(start, end)
 })
+
+const showDeleteModal = ref(false)
+const selectedRecipe = ref<Recipe | null>(null)
+
+const handleDeleteClick = (recipe: Recipe) => {
+  selectedRecipe.value = recipe
+  showDeleteModal.value = true
+}
 </script>
 
 <template>
@@ -36,5 +44,12 @@ const paginatedRecipes = computed(() => {
         />
       </div>
     </div>
+
+    <DeleteRecipeModal
+      v-if="selectedRecipe"
+      v-model:open="showDeleteModal"
+      v-model:recipes="recipes"
+      v-model:recipe="selectedRecipe"
+    />
   </div>
 </template>
