@@ -32,6 +32,12 @@ const handleDeleteClick = (recipe: Recipe) => {
   selectedRecipe.value = recipe
   showDeleteModal.value = true
 }
+
+watch(data, (newData) => {
+  if (newData?.data) {
+    recipes.value = newData.data
+  }
+})
 </script>
 
 <template>
