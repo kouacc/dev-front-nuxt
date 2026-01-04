@@ -84,3 +84,27 @@ watch(data, (newData) => {
     />
   </div>
 </template>
+
+<style lang="scss">
+.p-dashboard {
+  &__grid {
+    display: grid;
+    gap: rem(24);
+    grid-template-columns: 1fr;
+
+    @include medium-up {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include large-up {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: rem(16);
+  }
+}
+</style>
