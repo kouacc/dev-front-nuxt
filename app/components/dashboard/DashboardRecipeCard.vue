@@ -88,5 +88,40 @@ const onImageError = () => {
     font-size: 3rem;
   } 
   }
+
+  &__actions {
+    display: flex;
+    gap: rem(8);
+  }
+
+  &__btn {
+    --btn-bg-color: transparent;
+    --btn-hover-bg-color: var(--color-primary-100);
+    --btn-text-color: var(--color-grey-600);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: var(--btn-bg-color);
+    cursor: pointer;
+    padding: rem(8);
+    border-radius: rem(8);
+    color: var(--btn-text-color);
+    transition: background-color 0.1s ease;
+
+    &:hover {
+      --btn-text-color: var(--color-primary-600);
+      background-color: var(--btn-hover-bg-color);
+    }
+
+    &--delete {
+      --btn-hover-bg-color: var(--color-red-100);
+
+      &:hover {
+        --btn-text-color: var(--color-red-600);
+      }
+    }
+  }
 }
 </style>
