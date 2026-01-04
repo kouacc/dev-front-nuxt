@@ -87,6 +87,14 @@ watch(data, (newData) => {
 
 <style lang="scss">
 .p-dashboard {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: rem(32);
+    gap: rem(16);
+    flex-wrap: wrap;
+  }
 
   &__empty {
     display: flex;
@@ -108,6 +116,13 @@ watch(data, (newData) => {
     color: var(--color-gray-600);
     margin: 0;
   }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: rem(24);
+  }
+
   &__grid {
     display: grid;
     gap: rem(24);
