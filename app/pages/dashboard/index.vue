@@ -4,7 +4,7 @@ definePageMeta({
   layout: 'aside'
 })
 
-const { data } = await useAsyncData('my-recipes', () => {
+const { data } = await useAsyncData<APIResponse<Recipe[]>>('my-recipes', () => {
   return $fetch('/recipes/my-recipes', {
     baseURL: useRuntimeConfig().public.apiUrl,
     headers: {
